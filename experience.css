@@ -1,0 +1,226 @@
+/* ============================================================
+   1. SETUP E COLORI (Tema Verde Log)
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #080808;
+    color: #d0d0d0;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================================
+   2. HEADER SYSTEM LOG (Lo stesso di prima, solido e pulito)
+   ============================================================ */
+.log-header {
+    background: #000;
+    border-bottom: 2px solid #00ff00;
+    padding: 20px 0;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prompt { color: #00ff00; font-weight: bold; }
+.cmd-text { color: #fff; margin-left: 8px; }
+
+.scan-status {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.blink-dot {
+    width: 8px; height: 8px;
+    background: #00ff00;
+    border-radius: 50%;
+    margin-right: 10px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.header-nav { display: flex; align-items: center; gap: 30px; }
+
+.system-info { text-align: right; border-right: 1px solid #222; padding-right: 20px; }
+.system-info .label { color: #444; font-size: 0.65rem; display: block; }
+.system-info .value { color: #00ff00; font-size: 0.8rem; }
+
+.home-log-btn {
+    text-decoration: none;
+    color: #ff4444;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.home-log-btn i { font-size: 1.5rem; }
+.home-log-btn .home-text { font-size: 0.6rem; display: block; font-weight: bold; }
+.home-log-btn:hover { color: #fff; transform: scale(1.1); }
+
+/* ============================================================
+   3. LOG CONTENT CON EFFETTO ESPANSIONE (Hover Accordion)
+   ============================================================ */
+.experience-log-page { padding: 50px 0; }
+
+.log-title {
+    color: #00ff00;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.log-timeline {
+    border-left: 1px solid #222;
+    padding-left: 20px;
+}
+
+/* LA CARD ESPANDIBILE */
+.log-entry {
+    margin-bottom: 20px;
+    background: #0c0c0c;
+    border: 1px solid #1a1a1a;
+    overflow: hidden; /* Fondamentale per nascondere i dettagli */
+    max-height: 85px; /* Altezza iniziale (mostra solo il titolo) */
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s, background 0.3s;
+    cursor: pointer;
+}
+
+.log-entry:hover {
+    max-height: 500px; /* Si espande per mostrare i dettagli */
+    border-color: #00ff0055;
+    background: #111;
+}
+
+.log-content {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+}
+
+.log-status { font-weight: bold; font-size: 0.9rem; min-width: 50px; }
+.success .log-status { color: #00ff00; }
+.info .log-status { color: #0088ff; }
+
+.log-details { flex: 1; }
+
+.log-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.log-details h3 {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.log-details .at { color: #00ff00; }
+
+.log-timestamp {
+    color: #444;
+    font-size: 0.8rem;
+    font-family: monospace;
+}
+
+/* DETTAGLI NASCOSTI CHE APPAIONO */
+.log-full-details {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #222;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.log-entry:hover .log-full-details {
+    opacity: 1;
+}
+
+.log-full-details ul {
+    list-style: none;
+}
+
+.log-full-details li {
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.log-full-details li::before {
+    content: ">>";
+    position: absolute;
+    left: 0;
+    color: #00ff00;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-flex { flex-direction: column; gap: 20px; }
+    .log-content { flex-direction: column; }
+    .log-entry { max-height: 120px; } /* Un po' più alto su mobile */
+    .log-entry:hover { max-height: 800px; }
+}
+
+/* ... (mantiene il resto del codice precedente) ... */
+
+/* Estensione Header Nav per ospitare le lingue */
+.header-nav { 
+    display: flex; 
+    align-items: center; 
+    gap: 25px; /* Spazio bilanciato tra i gruppi */
+}
+
+.system-info { 
+    text-align: right; 
+    border-right: 1px solid #222; 
+    padding-right: 20px; 
+}
+
+/* Stile Pulsanti Lingua Terminale */
+.lang-group {
+    display: flex;
+    gap: 8px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: #00ff00;
+    padding: 4px 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.lang-btn:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: #00ff00;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+}
+
+/* Bottone Exit (mantiene il suo stile rosso per contrasto) */
+.home-log-btn {
+    text-decoration: none;
+    color: #ff4444;
+    text-align: center;
+    transition: 0.3s;
+    padding-left: 15px;
+    border-left: 1px solid #222; /* Separatore visivo finale */
+}
+

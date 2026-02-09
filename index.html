@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antonio Ruocco | CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<header>
+    <div class="container header-flex">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1><span class="glitch">></span> Antonio Ruocco</h1>
+            </a>
+            <p class="subtitle">// Cybersecurity Analyst & Ethical Hacker</p>
+        </div>
+
+        <div class="nav-and-lang" style="display: flex; align-items: center; gap: 20px;">
+            
+            <a href="contact.html" class="contact-link-header">
+                <span class="blink-terminal">_</span>CONNECT
+            </a>
+
+            <div class="language-buttons">
+                <button id="english" class="lang-btn">EN</button>
+                <button id="italian" class="lang-btn">IT</button>
+                <button id="spanish" class="lang-btn">ES</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main> 
+    <section class="about">
+        <div class="container about-content">
+            <div class="about-image"><img src="img/photo.jpeg" alt="Antonio"></div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>Hello! I'm Antonio Ruocco, a cybersecurity enthusiast with a strong foundation in system administration, ethical hacking, and network security. I love solving complex problems and staying updated with the latest tech trends.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards-section">
+        <div class="container">
+            <div class="cards">
+                <a href="experience.html" class="card" id="experience">
+                    <img src="img/experience.png" alt="Experience" class="card-image">
+                    <h2>Experience</h2>
+                </a>
+                <a href="certifications.html" class="card" id="certifications">
+                    <img src="img/certifications.png" alt="Certifications" class="card-image">
+                    <h2>Certifications & Skills</h2>
+                </a>
+                <a href="projects.html" class="card" id="projects">
+                    <img src="img/projects.png" alt="Projects" class="card-image">
+                    <h2>Projects</h2>
+                </a>
+                <a href="books.html" class="card" id="books">
+                    <img src="img/books.png" alt="Books" class="card-image">
+                    <h2>Books</h2>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <h3>Antonio Ruocco</h3>
+            <p>&copy; 2026 | All rights reserved.</p>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <a href="mailto:antonio.ruocco2k@hotmail.com"><i class="fas fa-envelope"></i> antonio.ruocco2k@hotmail.com</a>
+            <a href="tel:+393349754922"><i class="fas fa-phone"></i> +39 334 975 4922</a>
+        </div>
+
+        <div class="footer-social">
+            <h4>Follow Me</h4>
+            <div class="social-icons-wrapper">
+                <a href="https://www.linkedin.com/in/antonio-ruocco" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/isilderrr1" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/your_instagram" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/your_facebook" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="game-trigger" onclick="openTerminal()" title="System Access">
+    <i class="fas fa-terminal"></i>
+</div>
+
+<div id="terminal-overlay">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <span>root@antonio-ruocco:~</span>
+            <button onclick="closeTerminal()">X</button>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+            <p>> SYSTEM LOCKED. ENTER ACCESS CODE TO RETRIEVE SECRET_DATA.TXT</p>
+            <p>> HINT: Name of the creator in binary (ASCII - 7 bytes)</p>
+            <p style="font-size: 0.8rem; color: #888;">01000001 01101110 01110100 01101111 01101110 01101001 01101111</p>
+        </div>
+        <div class="terminal-input-area">
+            <span>$</span>
+            <input type="text" id="terminal-input" autofocus autocomplete="off">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
