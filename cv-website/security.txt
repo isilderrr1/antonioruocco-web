@@ -1,8 +1,0 @@
-# Antonio Ruocco Security Policy
-Contact: mailto:antonio.ruocco2k@hotmail.com
-Expires: 2027-12-31T23:59:59.000Z
-Preferred-Languages: it, en, es
-Canonical: https://tuosito.com/.well-known/security.txt
-
-# Se sei un recruiter e hai trovato questo file, complimenti per l'analisi!
-# Significa che stiamo parlando la stessa lingua.
