@@ -1,0 +1,91 @@
+/* ============================================================
+   1. RESET & FONT GLOBALI
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050505;
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
+    padding-bottom: 50px; /* Spazio per il footer fisso */
+}
+
+/* ============================================================
+   EFFETTO SCANLINE & FLICKER (Versione Soft)
+   ============================================================ */
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    /* Abbiamo ridotto l'opacità delle linee nere per renderle quasi invisibili */
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 9999;
+    pointer-events: none;
+    background-size: 100% 3px, 3px 100%; /* Linee più sottili */
+}
+
+/* Flicker ridotto: cambiamo l'opacità solo dello 0.5% invece del 10% */
+@keyframes soft-flicker {
+    0% { opacity: 0.995; }
+    50% { opacity: 1; }
+    100% { opacity: 0.998; }
+}
+
+body {
+    /* Animazione più lenta (3s invece di 0.15s) per non affaticare l'occhio */
+    animation: soft-flicker 4s infinite linear;
+}
+
+/* ============================================================
+   3. TERMINAL FOOTER (Fisso in basso)
+   ============================================================ */
+.terminal-footer {
+    background: #000;
+    border-top: 1px solid #333;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.footer-flex {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.stat-item { margin-right: 25px; }
+.stat-item .label { color: #666; }
+.stat-item .value { color: #fff; font-weight: bold; }
+
+.pulse-green {
+    color: #00ff00 !important;
+    animation: status-pulse 2s infinite;
+}
+
+@keyframes status-pulse {
+    0%, 100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    50% { opacity: 0.5; text-shadow: 0 0 0px #00ff00; }
+}
+
+/* ============================================================
+   4. UTILITY CLASSES (Traduzioni e Pulsanti)
+   ============================================================ */
+.lang-btn.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: currentColor;
+    font-weight: bold;
+}

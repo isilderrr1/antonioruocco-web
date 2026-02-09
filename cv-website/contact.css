@@ -1,0 +1,89 @@
+.contact-area {
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-interface {
+    width: 100%;
+    max-width: 700px;
+    background: #0d0d0d;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+.window-top {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.window-controls { display: flex; gap: 6px; margin-right: 20px; }
+.w-dot { width: 10px; height: 10px; border-radius: 50%; }
+.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+.window-title { font-size: 0.7rem; color: #666; font-family: monospace; }
+
+.chat-screen {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.msg.system {
+    align-self: center;
+    font-size: 0.65rem;
+    color: #444;
+    letter-spacing: 1px;
+}
+
+.msg.bot {
+    background: #161616;
+    padding: 15px 20px;
+    border-radius: 0 15px 15px 15px;
+    border-left: 3px solid #27c93f;
+    max-width: 80%;
+}
+
+.bot-name { color: #27c93f; font-size: 0.7rem; font-weight: bold; display: block; margin-bottom: 5px; }
+
+.contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 20px;
+}
+
+.contact-bubble {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #e0e0e0; /* Contrasto chiaro stile fumetto outgoing */
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 15px 15px 0 15px;
+    text-decoration: none;
+    align-self: flex-end;
+    transition: 0.3s;
+    width: fit-content;
+}
+
+.contact-bubble:hover {
+    background: #fff;
+    transform: translateX(-5px);
+}
+
+.contact-bubble i { font-size: 1.2rem; }
+.c-label { display: block; font-size: 0.6rem; font-weight: bold; color: #666; }
+.c-val { font-size: 0.9rem; font-weight: 500; }
+
+/* Header specifico della chat */
+.chat-nav-header { padding: 20px 0; border-bottom: 1px solid #222; }
+.secure-icon { color: #27c93f; margin-right: 10px; }
+.status-text { font-size: 0.8rem; font-family: monospace; color: #888; }
+
+.home-btn { text-decoration: none; color: #ff4444; text-align: center; }
+.btn-desc { display: block; font-size: 0.6rem; font-weight: bold; }

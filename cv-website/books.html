@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library | Antonio Ruocco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="books.css">
+    <link rel="stylesheet" href="global.css">
+</head>
+<body>
+    <header class="library-header">
+        <div class="container header-flex">
+            <div class="archive-info">
+                <div class="status-badge">READ_ONLY_ARCHIVE</div>
+                <div class="path-text">> root@ruocco:~/intel/library</div>
+            </div>
+
+            <div class="nav-group">
+               
+                <a href="index.html" class="home-icon-link" title="Return Home">
+                    <i class="fas fa-terminal"></i>
+                    <span class="exit-text">CLOSE</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="library-page">
+        <div class="container">
+            <h2 class="page-title">Personal_Library.bin</h2>
+            <p class="section-intro">A collection of books that have influenced my life, beyond the screen.</p>
+
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover-wrapper">
+                        <img src="img/1984.webp" alt="1984 Cover" class="book-cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">1984</h3>
+                        <p class="book-author">George Orwell</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-cover-wrapper">
+                        <img src="img/capitale.webp" alt="capitale Cover" class="book-cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">Il capitale</h3>
+                        <p class="book-author">Karl Marx</p>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-cover-wrapper">
+                        <img src="img/atlante.webp" alt="atlante Cover" class="book-cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">La Rivolta Di Atlante</h3>
+                        <p class="book-author">Ayn Rand</p>
+                    </div>
+                </div>
+                
+                <div class="book-card">
+                    <div class="book-cover-wrapper">
+                        <img src="img/road.jpg" alt="on the road Cover" class="book-cover">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">On The Road</h3>
+                        <p class="book-author">Jack Kerouac</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<footer class="terminal-footer">
+    <div class="footer-flex">
+        <div class="system-stats">
+            <span class="stat-item"><span class="label">STATUS:</span> <span class="value pulse-green">OPTIMAL</span></span>
+            <span class="stat-item"><span class="label">ENCRYPTION:</span> <span class="value">AES-256</span></span>
+        </div>
+        <div class="session-info">
+            <span class="stat-item" id="live-clock"></span>
+            <span class="stat-item"><span class="label">USER:</span> <span class="value">A_RUOCCO</span></span>
+        </div>
+    </div>
+</footer>
+
+<script src="global.js"></script>
+
+</body>
+</html>
