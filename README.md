@@ -36,6 +36,6 @@ The portfolio is organized into chromatic and functional "modules" to provide an
 To clone and run the system locally:
 
 ```bash
-git clone [https://github.com/isilderrr1/your-repo-name.git](https://github.com/isilderrr1/antonioruocco-web.git)
+git clone [https://github.com/isilderrr1/antonioruocco-web.git](https://github.com/isilderrr1/antonioruocco-web.git)
 cd antonioruocco-web
 # Open index.html in any modern web browser
