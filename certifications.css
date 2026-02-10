@@ -1,44 +1,53 @@
-/* ============================================================
-   1. RESET E SETUP GLOBALE
-   ============================================================ */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* RESET E SETUP */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    height: 100%;
 }
 
-body {
-    background-color: #050505; /* Nero quasi assoluto */
+.vault-theme {
+    background-color: #050505;
     color: #e0e0e0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Container universale per allineare Header e Main */
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 25px;
 }
 
-/* ============================================================
-   2. VAULT HEADER (Il nuovo stile Azzurro Tech)
-   ============================================================ */
+/* HEADER FIX DEFINITIVO */
 .vault-header {
     background: #000;
     border-bottom: 2px solid #00d4ff;
-    padding: 20px 0;
-    font-family: 'Courier New', monospace;
+    padding: 15px 0;
+    width: 100%;
+    z-index: 1000;
+    flex-shrink: 0;
 }
 
-.header-flex {
-    display: flex;
-    justify-content: space-between;
+.header-grid-fixed {
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: center;
+    gap: 20px;
 }
 
-/* Sinistra: Stato Accesso */
+.header-section.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header-section.right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .access-badge {
     background: rgba(0, 212, 255, 0.1);
     color: #00d4ff;
@@ -47,182 +56,183 @@ body {
     font-size: 0.7rem;
     font-weight: bold;
     letter-spacing: 2px;
-    display: inline-block;
-    margin-bottom: 8px;
-    border-radius: 2px;
-    animation: pulse-cyan 2s infinite;
+    margin-bottom: 5px;
+    animation: pulse-cyan-border 2s infinite;
 }
 
-@keyframes pulse-cyan {
-    0% { opacity: 0.6; box-shadow: 0 0 2px #00d4ff; }
-    50% { opacity: 1; box-shadow: 0 0 10px #00d4ff; }
-    100% { opacity: 0.6; box-shadow: 0 0 2px #00d4ff; }
-}
-
-.database-info {
-    font-size: 0.95rem;
-}
-
+.database-info { font-size: 0.85rem; }
 .root-path { color: #00d4ff; font-weight: bold; }
-.typing { color: #fff; }
-
-/* Destra: Navigazione Vault */
-.vault-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
 
 .security-level {
     text-align: right;
-    border-right: 1px solid #333;
-    padding-right: 20px;
+    border-right: 1px solid #222;
+    padding-right: 15px;
+}
+.security-level .label { color: #444; font-size: 0.6rem; display: block; }
+.security-level .level { color: #00d4ff; font-weight: bold; font-size: 0.85rem; }
+
+.export-dossier-btn {
+    text-decoration: none;
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 8px 15px;
+    font-size: 0.7rem;
+    background: rgba(0, 212, 255, 0.05);
+    transition: 0.3s;
+    font-weight: bold;
 }
 
-.security-level .label { 
-    color: #666; 
-    font-size: 0.65rem; 
-    display: block; 
-    letter-spacing: 1px;
-}
-
-.security-level .level { 
-    color: #00d4ff; 
-    font-weight: bold; 
-    font-size: 0.9rem;
+.export-dossier-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    box-shadow: 0 0 10px #00d4ff;
+    color: #fff;
 }
 
 .home-vault-btn {
     text-decoration: none;
-    color: #888;
+    color: #444;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
+.home-vault-btn:hover { color: #fff; }
+.home-vault-btn .home-text { font-size: 0.5rem; font-weight: bold; margin-top: 2px; }
 
-.home-vault-btn i { font-size: 1.4rem; }
-.home-vault-btn .home-text { font-size: 0.6rem; font-weight: bold; margin-top: 4px; }
-
-.home-vault-btn:hover {
-    color: #fff;
-    transform: translateY(-2px);
-}
-
-/* ============================================================
-   3. MAIN CONTENT (Certificazioni & Skills)
-   ============================================================ */
+/* MAIN CONTENT */
 .cert-skills-page {
     padding: 60px 0;
+    flex: 1 0 auto;
 }
 
 .page-title {
     color: #00d4ff;
-    font-family: 'Courier New', monospace;
-    font-size: 1.8rem;
-    margin-bottom: 35px;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
     border-bottom: 1px solid #1a1a1a;
     padding-bottom: 10px;
+    letter-spacing: 2px;
 }
 
-/* Griglia Certificazioni */
+/* CARDS */
 .cert-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .cert-card {
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-left: 3px solid #00d4ff;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: fit-content;
+    opacity: 0;
+    animation: accessData 0.5s ease forwards;
+    animation-delay: calc(var(--order) * 0.1s);
+}
+
+.cert-card-main { display: flex; align-items: center; gap: 15px; }
+.cert-icon { font-size: 1.8rem; color: #00d4ff; opacity: 0.8; }
+.cert-info h3 { font-size: 1rem; color: #fff; margin-bottom: 4px; }
+.cert-info p { color: #666; font-size: 0.8rem; }
+.click-hint { font-size: 0.55rem; color: #00d4ff; opacity: 0.4; margin-top: 4px; display: block; }
+
+/* EXPANSION */
+.cert-skills-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.cert-card.active .cert-skills-details {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #222;
+}
+
+.details-content { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.details-content span { font-size: 0.7rem; color: #00d4ff; font-family: monospace; }
+
+/* SKILLS MATRIX */
+.skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.skill-category h4 { color: #00d4ff; margin-bottom: 15px; font-size: 1rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.glow-tag {
     background: #111;
     border: 1px solid #222;
-    border-left: 4px solid #00d4ff;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    transition: 0.3s;
-}
-
-.cert-card:hover {
-    background: #161616;
-    transform: scale(1.02);
-    border-color: #333;
-}
-
-.cert-icon {
-    font-size: 2rem;
-    color: #00d4ff;
-}
-
-.cert-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    color: #fff;
-}
-
-.cert-info p {
+    padding: 6px 12px;
+    font-size: 0.75rem;
     color: #888;
-    font-size: 0.85rem;
-}
-
-/* Sezione Skills */
-.skills-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.skill-category h4 {
-    color: #00d4ff;
-    margin-bottom: 20px;
-    font-family: 'Courier New', monospace;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.skill-tags span {
-    background: #1a1a1a;
-    color: #ccc;
-    padding: 6px 14px;
-    font-size: 0.85rem;
-    border: 1px solid #333;
-    border-radius: 3px;
     transition: 0.3s;
 }
+.glow-tag:hover { border-color: #00d4ff; color: #00d4ff; box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
 
-.skill-tags span:hover {
-    border-color: #00d4ff;
-    color: #00d4ff;
-    background: rgba(0, 212, 255, 0.05);
+/* FOOTER FIX */
+.terminal-footer {
+    background: #000;
+    border-top: 1px solid #1a1a1a;
+    padding: 20px 0;
+    flex-shrink: 0;
+    margin-top: auto; /* SPINGE IL FOOTER IN FONDO SE IL CONTENUTO È POCO */
+    width: 100%;
 }
 
-/* ============================================================
-   4. RESPONSIVE
-   ============================================================ */
-@media (max-width: 768px) {
-    .header-flex {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    
-    .security-level {
-        border-right: none;
-        border-bottom: 1px solid #333;
-        padding-right: 0;
-        padding-bottom: 10px;
-    }
+.footer-flex-projects { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
 
-    .vault-nav {
-        flex-direction: column;
-        gap: 15px;
-    }
+.stat-item { font-size: 0.7rem; }
+.label { color: #333; }
+.value { color: #00d4ff; }
+.pulse-cyan { animation: blink 2s infinite; color: #00d4ff; }
+
+/* ANIMATIONS */
+@keyframes accessData { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes pulse-cyan-border { 50% { box-shadow: 0 0 10px #00d4ff; border-color: #fff; } }
+@keyframes blink { 50% { opacity: 0.3; } }
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+    .header-grid-fixed { grid-template-columns: 1fr; text-align: center; }
+    .header-section.left, .header-section.right { justify-content: center; }
+    .security-level { border-right: none; padding: 0; margin-bottom: 10px; }
+    .footer-flex-projects { flex-direction: column; gap: 10px; }
+}
+
+/* FIELD CREDENTIALS STYLE */
+.real-life-section .cert-card {
+    border-left-color: #888;
+}
+
+.real-life-section .cert-card.active {
+    border-left-color: #00d4ff;
+}
+
+.real-life-section .page-title {
+    margin-top: 50px;
+    opacity: 0.8;
+}
+.terminal-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    border-top: 1px solid #1a1a1a;
+    z-index: 2000;
+    padding: 15px 0;
+}
+
+/* E aggiungi un po' di spazio in fondo al main per non coprire l'ultimo pezzo */
+.cert-skills-page {
+    padding-bottom: 100px; 
 }

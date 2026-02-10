@@ -5,78 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terminal_Projects | Antonio Ruocco</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="projects.css">
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="styles.css"> <link rel="stylesheet" href="projects.css">
 </head>
 <body class="retro-theme">
-    <header>
-        <div class="container header-flex">
-            <div class="logo">
-                <a href="index.html" class="terminal-text"><h1>>_ Antonio_Ruocco</h1></a>
+    <div class="scanline"></div>
+
+    <header class="project-terminal-header">
+        <div class="container header-flex-custom">
+            <div class="terminal-path">
+                <span class="user-host">a_ruocco@cyberspace:</span>
+                <span class="current-dir">~/projects</span>
+                <span class="cursor-blink">_</span>
             </div>
-            <div class="back-link">
-                <a href="index.html" class="terminal-link">[ BACK_TO_BASE ]</a>
+
+            <div class="terminal-nav-controls">
+                <div class="system-node">NODE_02 // STABLE</div>
+                <a href="index.html" class="exit-btn">
+                    <i class="fas fa-times-circle"></i> [ EXIT_TO_MAIN ]
+                </a>
             </div>
         </div>
     </header>
 
     <main class="projects-page">
         <div class="container">
-            <div class="scanline"></div>
-            <h2 class="terminal-title">REPOSITORY://PROJECTS</h2>
+            <h2 class="terminal-title">REPOSITORY://PROJECT_RESOURCES</h2>
             
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="status-dot"></span>
-                        <span class="project-id">ID: 001</span>
-                    </div>
-                    <div class="project-content">
-                        <h3>ARGUS-EYE</h3>
-                        <p class="project-desc">A specialized tool for security monitoring and reconnaissance. Designed to provide visibility into network assets and potential vulnerabilities.</p>
-                        <div class="project-tech">
-                            <span>#PYTHON</span>
-                            <span>#CYBERSECURITY</span>
-                            <span>#NETWORK_ANALYSIS</span>
-                        </div>
-                        <a href="https://github.com/isilderrr1/argus-eye" target="_blank" class="github-btn">
-                            <i class="fab fa-github"></i> ACCESS_REPOSITORY
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card locked">
-                    <div class="project-header">
-                        <span class="status-dot grey"></span>
-                        <span class="project-id">ID: 002</span>
-                    </div>
-                    <div class="project-content">
-                        <h3>DECRYPT_PROJECT_2</h3>
-                        <p class="project-desc">System analysis in progress... pending deployment. Content currently encrypted or not yet committed to main branch.</p>
-                        <div class="project-tech">
-                            <span>#PENDING</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="project-card">
+        <div class="project-header">
+            <span class="status-dot"></span>
+            <span class="project-id">ID: 001</span>
+        </div>
+        <div class="project-content">
+            <h3>ARGUS-EYE</h3>
+            <p class="project-desc">Specialized tool for security monitoring and reconnaissance. Designed to provide visibility into network assets and potential vulnerabilities.</p>
+            <div class="project-tech">
+                <span>#PYTHON</span>
+                <span>#CYBERSECURITY</span>
+                <span>#RECON</span>
             </div>
+            <a href="https://github.com/isilderrr1/argus-eye" target="_blank" class="github-btn">
+                <i class="fab fa-github"></i> ACCESS_REPOSITORY
+            </a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="project-header">
+            <span class="status-dot"></span>
+            <span class="project-id">ID: 002</span>
+        </div>
+        <div class="project-content">
+            <h3>ANTONIORUOCCO-WEB</h3>
+            <p class="project-desc">Personal cyber-portfolio dashboard. Features custom terminal emulator, real-time IP tracking, and multi-language support architecture.</p>
+            <div class="project-tech">
+                <span>#HTML5</span>
+                <span>#CSS_ARCHITECTURE</span>
+                <span>#VANILLA_JS</span>
+            </div>
+            <a href="https://github.com/isilderrr1/antonioruocco-web" target="_blank" class="github-btn">
+                <i class="fab fa-github"></i> ACCESS_REPOSITORY
+            </a>
+        </div>
+    </div>
+
+    <div class="project-card locked">
+        <div class="project-header">
+            <span class="status-dot grey"></span>
+            <span class="project-id">ID: 00X</span>
+        </div>
+        <div class="project-content">
+            <h3 class="glitch-text">ENCRYPTED_FILE</h3>
+            <p class="project-desc">System analysis in progress... content currently committed to private branch. Awaiting security clearance for public deployment.</p>
+            <div class="project-tech">
+                <span class="pulse-tech">#DECRYPTING...</span>
+            </div>
+            <div class="lock-overlay">
+                <i class="fas fa-lock"></i> ACCESS_DENIED
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </main>
 
-<footer class="terminal-footer">
-    <div class="footer-flex">
-        <div class="system-stats">
-            <span class="stat-item"><span class="label">STATUS:</span> <span class="value pulse-green">OPTIMAL</span></span>
-            <span class="stat-item"><span class="label">ENCRYPTION:</span> <span class="value">AES-256</span></span>
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="footer-flex-projects">
+                <div class="system-stats">
+                    <span class="stat-item"><span class="label">STATUS:</span> <span class="value pulse-green">OPTIMAL</span></span>
+                    <span class="stat-item"><span class="label">ENCRYPTION:</span> <span class="value">AES-256</span></span>
+                </div>
+                <div class="session-info">
+                    <span class="stat-item"><span class="label">USER:</span> <span class="value">A_RUOCCO</span></span>
+                    <span class="stat-item"><span class="label">LOC:</span> <span class="value">00.12.34.89</span></span>
+                </div>
+            </div>
         </div>
-        <div class="session-info">
-            <span class="stat-item" id="live-clock"></span>
-            <span class="stat-item"><span class="label">USER:</span> <span class="value">A_RUOCCO</span></span>
-        </div>
-    </div>
-</footer>
-
-<script src="global.js"></script>
-
-    </body>
+    </footer>
+</body>
 </html>

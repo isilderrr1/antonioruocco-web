@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Antonio Ruocco | Cybersecurity Analyst Portfolio</title>
+    <meta name="title" content="Antonio Ruocco | Cybersecurity Analyst & Ethical Hacker">
+    <meta name="description" content="Professional Cyber-Suite Portfolio. Exploring Cybersecurity, Ethical Hacking, and Geopolitical Analysis.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://antonioruocco.com/">
+    <meta property="og:title" content="Antonio Ruocco | Cybersecurity Portfolio">
+    <meta property="og:description" content="Esplora il mio archivio digitale: certificazioni, progetti e analisi tecnica nel campo della sicurezza informatica.">
+    <meta property="og:image" content="https://antonioruocco.com/img/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://antonioruocco.com/">
+    <meta property="twitter:title" content="Antonio Ruocco | Cybersecurity Portfolio">
+    <meta property="twitter:description" content="Cyber-Suite Portfolio: Security Analysis & Pentesting.">
+    <meta property="twitter:image" content="https://antonioruocco.com/img/social-preview.png">
+
+    <meta name="theme-color" content="#00ff00">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antonio Ruocco | CV</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
+
 <header>
     <div class="container header-flex">
-        <div class="logo">
-            <a href="index.html" style="text-decoration: none; color: inherit;">
+        <div class="header-left">
+            <a href="index.html" class="logo-link">
                 <h1><span class="glitch">></span> Antonio Ruocco</h1>
             </a>
             <p class="subtitle">// Cybersecurity Analyst & Ethical Hacker</p>
         </div>
 
-        <div class="nav-and-lang" style="display: flex; align-items: center; gap: 20px;">
+        <div class="header-center">
+            <div class="visitor-info">
+                <span class="label">VISITOR_IP:</span>
+                <span id="visitor-ip" class="value">STABILIZING...</span>
+            </div>
             
+            <a href="news.html" class="news-link">
+                <span class="pulse-red">●</span> CYBER_NEWS
+            </a>
+
             <a href="contact.html" class="contact-link-header">
                 <span class="blink-terminal">_</span>CONNECT
             </a>
+        </div>
 
+        <div class="header-right">
             <div class="language-buttons">
                 <button id="english" class="lang-btn">EN</button>
                 <button id="italian" class="lang-btn">IT</button>
@@ -36,32 +65,51 @@
 <main> 
     <section class="about">
         <div class="container about-content">
-            <div class="about-image"><img src="img/photo.jpeg" alt="Antonio"></div>
+            <div class="about-image">
+                <img src="img/photo.jpeg" alt="Antonio">
+                <div class="profile-id-box">
+                    <div class="sig-line">
+                        <span class="sig-label">ID_TYPE:</span>
+                        <span class="sig-value">ANALYST_LEVEL_1</span>
+                    </div>
+                    <div class="sig-line">
+                        <span class="sig-label">NODE:</span>
+                        <span class="sig-value">RUOCCO_CORE_01</span>
+                    </div>
+                    <div class="sig-line">
+                        <span class="sig-label">HASH:</span>
+                        <span class="sig-value" id="current-hash">000000000000</span>
+                    </div>
+                    <div class="integrity-bar">
+                        <div class="integrity-fill"></div>
+                    </div>
+                </div>
+            </div>
             <div class="about-text">
-                <h2>About Me</h2>
-                <p>Hello! I'm Antonio Ruocco, a cybersecurity enthusiast with a strong foundation in system administration, ethical hacking, and network security. I love solving complex problems and staying updated with the latest tech trends.</p>
+                <h2 id="about-title">About Me</h2>
+                <p id="about-p"></p>
             </div>
         </div>
     </section>
 
     <section class="cards-section">
-        <div class="container">
+        <div class="container cards-container-flex">
             <div class="cards">
-                <a href="experience.html" class="card" id="experience">
+                <a href="experience.html" class="card" id="experience-card">
                     <img src="img/experience.png" alt="Experience" class="card-image">
-                    <h2>Experience</h2>
+                    <h2 class="card-title">Experience</h2>
                 </a>
-                <a href="certifications.html" class="card" id="certifications">
+                <a href="certifications.html" class="card" id="certifications-card">
                     <img src="img/certifications.png" alt="Certifications" class="card-image">
-                    <h2>Certifications & Skills</h2>
+                    <h2 class="card-title">Certifications & Skills</h2>
                 </a>
-                <a href="projects.html" class="card" id="projects">
+                <a href="projects.html" class="card" id="projects-card">
                     <img src="img/projects.png" alt="Projects" class="card-image">
-                    <h2>Projects</h2>
+                    <h2 class="card-title">Projects</h2>
                 </a>
-                <a href="books.html" class="card" id="books">
+                <a href="books.html" class="card" id="books-card">
                     <img src="img/books.png" alt="Books" class="card-image">
-                    <h2>Books</h2>
+                    <h2 class="card-title">Books</h2>
                 </a>
             </div>
         </div>
@@ -74,20 +122,19 @@
             <h3>Antonio Ruocco</h3>
             <p>&copy; 2026 | All rights reserved.</p>
         </div>
-
         <div class="footer-contact">
             <h4>Contact</h4>
             <a href="mailto:antonio.ruocco2k@hotmail.com"><i class="fas fa-envelope"></i> antonio.ruocco2k@hotmail.com</a>
             <a href="tel:+393349754922"><i class="fas fa-phone"></i> +39 334 975 4922</a>
         </div>
-
         <div class="footer-social">
             <h4>Follow Me</h4>
             <div class="social-icons-wrapper">
-                <a href="https://www.linkedin.com/in/antonio-ruocco" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/antonio-ruocco-81271aa5" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/isilderrr1" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/your_instagram" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/your_facebook" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/_antonio_ruocco_" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/antonionto.ruocco" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/antonioruo7890" target="_blank" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
     </div>
@@ -101,7 +148,7 @@
     <div class="terminal-window">
         <div class="terminal-header">
             <span>root@antonio-ruocco:~</span>
-            <button onclick="closeTerminal()">X</button>
+            <button onclick="closeTerminal()" class="terminal-close">X</button>
         </div>
         <div class="terminal-body" id="terminal-output">
             <p>> SYSTEM LOCKED. ENTER ACCESS CODE TO RETRIEVE SECRET_DATA.TXT</p>
@@ -116,7 +163,4 @@
 </div>
 
 </body>
-
 </html>
-
-  

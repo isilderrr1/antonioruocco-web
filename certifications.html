@@ -5,90 +5,260 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certifications & Skills | Antonio Ruocco</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="certifications.css">
-    <link rel="stylesheet" href="global.css">
 </head>
-<body>
+<body class="vault-theme">
     <header class="vault-header">
-    <div class="container header-flex">
-        <div class="vault-status">
-            <div class="access-badge">ACCESS GRANTED</div>
-            <div class="database-info">
-                <span class="root-path">root@ruocco:~/vault/certs$</span>
-                <span class="typing">ls -la --skills</span>
+        <div class="container header-grid-fixed">
+            <div class="header-section left">
+                <div class="access-badge">ACCESS GRANTED</div>
+                <div class="database-info">
+                    <span class="root-path">root@ruocco:~/vault/certs$</span>
+                    <span class="typing">ls -la --skills</span>
+                </div>
             </div>
-        </div>
 
-        <div class="vault-nav">
-            <div class="security-level">
-                <span class="label">CLEARANCE:</span>
-                <span class="level">LEVEL 3</span>
+            <div class="header-section right">
+                <div class="security-level">
+                    <span class="label">CLEARANCE:</span>
+                    <span class="level">LEVEL 3</span>
+                </div>
+                
+                <a href="Antonio_Ruocco_CV.pdf" download class="export-dossier-btn">
+                    <i class="fas fa-file-download"></i> EXPORT_DOSSIER.PDF
+                </a>
+
+                <a href="index.html" class="home-vault-btn">
+                    <i class="fas fa-home"></i>
+                    <span class="home-text">HOME</span>
+                </a>
             </div>
-            <a href="index.html" class="home-vault-btn" title="Back to Terminal">
-                <i class="fas fa-home"></i>
-                <span class="home-text">HOME</span>
-            </a>
         </div>
-    </div>
-</header>
+    </header>
 
     <main class="cert-skills-page">
         <div class="container">
             <section class="certifications-section">
                 <h2 class="page-title">Certifications</h2>
                 <div class="cert-grid">
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-                        <div class="cert-info">
-                            <h3>CompTIA Security+</h3>
-                            <p>CompTIA | Issued 2024</p>
+                    
+                    <div class="cert-card" style="--order: 1;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-user-graduate"></i></div>
+                            <div class="cert-info">
+                                <h3>Master Cybersecurity & Ethical Hacking</h3>
+                                <p>Epicode | 500 Ore Intensive</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> Pentesting Fundamentals</span>
+                                <span>> Network Exploitation</span>
+                                <span>> Web Security Auditing</span>
+                                <span>> Privilege Escalation</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fas fa-user-secret"></i></div>
-                        <div class="cert-info">
-                            <h3>eJPTv2</h3>
-                            <p>INE Security | Issued 2025</p>
+
+                    <div class="cert-card" style="--order: 2;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-code"></i></div>
+                            <div class="cert-info">
+                                <h3>Full Stack Developer</h3>
+                                <p>Adecco | 450 Ore | 2022</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> React / JS Development</span>
+                                <span>> Node.js / Databases</span>
+                                <span>> REST API Architecture</span>
+                                <span>> Version Control (Git)</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
-                        <div class="cert-info">
-                            <h3>CCNA</h3>
-                            <p>Cisco | Issued 2023</p>
+
+                    <div class="cert-card" style="--order: 3;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="cert-info">
+                                <h3>Blue Team Level 1 (BTL1)</h3>
+                                <p>Security Blue Team | 2026</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> Incident Response</span>
+                                <span>> Phishing Analysis</span>
+                                <span>> SIEM Investigation</span>
+                                <span>> Digital Forensics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" style="--order: 4;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-user-shield"></i></div>
+                            <div class="cert-info">
+                                <h3>Microsoft SC-200</h3>
+                                <p>Security Ops Analyst | 2026</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> Microsoft Sentinel</span>
+                                <span>> Defender for Cloud</span>
+                                <span>> Kusto Query (KQL)</span>
+                                <span>> Threat Hunting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" style="--order: 5;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+                            <div class="cert-info">
+                                <h3>Cisco CyberOps Associate</h3>
+                                <p>Cisco Academy | 2026</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> Security Monitoring</span>
+                                <span>> Host-Based Analysis</span>
+                                <span>> Network Intrusion</span>
+                                <span>> Security Policies</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" style="--order: 6;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="cert-info">
+                                <h3>Microsoft AZ-900</h3>
+                                <p>Azure Fundamentals | 2026</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> Cloud Concepts</span>
+                                <span>> Azure Services</span>
+                                <span>> Security & Compliance</span>
+                                <span>> Pricing & Support</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" style="--order: 7;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-terminal"></i></div>
+                            <div class="cert-info">
+                                <h3>L-PIC 1 (Linux Professional)</h3>
+                                <p>LPI Institute | 2026</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> Bash Scripting</span>
+                                <span>> System Administration</span>
+                                <span>> Kernel Modules</span>
+                                <span>> Storage / Networking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card" style="--order: 8;" onclick="toggleSkills(this)">
+                        <div class="cert-card-main">
+                            <div class="cert-icon"><i class="fas fa-lock"></i></div>
+                            <div class="cert-info">
+                                <h3>CompTIA Security+</h3>
+                                <p>CompTIA | Issued 2026</p>
+                                <span class="click-hint">FETCH_RELEVANT_SKILLS...</span>
+                            </div>
+                        </div>
+                        <div class="cert-skills-details">
+                            <div class="details-content">
+                                <span>> IAM Architectures</span>
+                                <span>> Risk Management</span>
+                                <span>> Cryptography Basics</span>
+                                <span>> Cloud Security</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+<section class="real-life-section">
+    <h2 class="page-title">Field & Operational Credentials</h2>
+    <div class="cert-grid">
+        
+        <div class="cert-card" style="--order: 8.5;" onclick="toggleSkills(this)">
+            <div class="cert-card-main">
+                <div class="cert-icon"><i class="fas fa-id-card"></i></div>
+                <div class="cert-info">
+                    <h3>Personal Functional Licence (PFL)</h3>
+                    <p>UK Gambling Commission | 2020 - 2027</p>
+                    <span class="click-hint">VIEW_CLEARANCE_DETAILS...</span>
+                </div>
+            </div>
+            <div class="cert-skills-details">
+                <div class="details-content">
+                    <span>> High-Level Compliance</span>
+                    <span>> Anti-Money Laundering (AML)</span>
+                    <span>> Asset Protection</span>
+                    <span>> Risk Assessment</span>
+                </div>
+            </div>
+        </div>
 
+        <div class="cert-card" style="--order: 9;">
+            <div class="cert-card-main">
+                <div class="cert-icon"><i class="fas fa-car"></i></div>
+                <div class="cert-info">
+                    <h3>EU Driving Licence (Cat. B)</h3>
+                    <p>Full Mobility | Valid & Active</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
             <section class="skills-section">
-                <h2 class="page-title">Technical Skills</h2>
+                <h2 class="page-title">Technical Skills Matrix</h2>
                 <div class="skills-wrapper">
-                    <div class="skill-category">
-                        <h4><i class="fas fa-terminal"></i> Cybersecurity</h4>
+                    <div class="skill-category" style="--order: 9;">
+                        <h4><i class="fas fa-user-secret"></i> Red Teaming</h4>
                         <div class="skill-tags">
-                            <span>Penetration Testing</span>
-                            <span>Vulnerability Assessment</span>
-                            <span>SIEM/SOC</span>
-                            <span>Ethical Hacking</span>
+                            <span class="glow-tag">Nmap</span>
+                            <span class="glow-tag">Metasploit</span>
+                            <span class="glow-tag">Burp Suite</span>
+                            <span class="glow-tag">Hashcat</span>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h4><i class="fas fa-server"></i> Systems & Cloud</h4>
+                    <div class="skill-category" style="--order: 10;">
+                        <h4><i class="fas fa-shield-virus"></i> Blue Teaming</h4>
                         <div class="skill-tags">
-                            <span>Linux (Debian/RHEL)</span>
-                            <span>Active Directory</span>
-                            <span>Docker</span>
-                            <span>AWS Security</span>
+                            <span class="glow-tag">Splunk</span>
+                            <span class="glow-tag">Wireshark</span>
+                            <span class="glow-tag">Microsoft Sentinel</span>
+                            <span class="glow-tag">KQL</span>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h4><i class="fas fa-code"></i> Scripting</h4>
+                    <div class="skill-category" style="--order: 11;">
+                        <h4><i class="fas fa-server"></i> Cloud & Infrastructure</h4>
                         <div class="skill-tags">
-                            <span>Python</span>
-                            <span>Bash</span>
-                            <span>PowerShell</span>
+                            <span class="glow-tag">Linux</span>
+                            <span class="glow-tag">Active Directory</span>
+                            <span class="glow-tag">Docker</span>
+                            <span class="glow-tag">AWS Security</span>
                         </div>
                     </div>
                 </div>
@@ -96,20 +266,43 @@
         </div>
     </main>
 
-<footer class="terminal-footer">
-    <div class="footer-flex">
-        <div class="system-stats">
-            <span class="stat-item"><span class="label">STATUS:</span> <span class="value pulse-green">OPTIMAL</span></span>
-            <span class="stat-item"><span class="label">ENCRYPTION:</span> <span class="value">AES-256</span></span>
-        </div>
-        <div class="session-info">
-            <span class="stat-item" id="live-clock"></span>
-            <span class="stat-item"><span class="label">USER:</span> <span class="value">A_RUOCCO</span></span>
-        </div>
-    </div>
-</footer>
 
-<script src="global.js"></script>
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="footer-flex-projects"> 
+                <div class="system-stats">
+                    <span class="stat-item"><span class="label">STATUS:</span> <span class="value pulse-cyan">OPTIMAL</span></span>
+                    <span class="stat-item" style="margin-left: 15px;"><span class="label">ENCRYPTION:</span> <span class="value">AES-256</span></span>
+                </div>
+                <div class="session-info">
+                    <span class="stat-item"><span class="label">USER:</span> <span class="value">A_RUOCCO</span></span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    </body>
+    <script>
+        function toggleSkills(card) {
+            if (card.classList.contains('active')) {
+                card.classList.remove('active');
+            } else {
+                document.querySelectorAll('.cert-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
+    <script>
+        function toggleSkills(card) {
+            if (card.classList.contains('active')) {
+                card.classList.remove('active');
+            } else {
+                document.querySelectorAll('.cert-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            }
+        }
+    </script>
+</body>
 </html>

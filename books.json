@@ -1,0 +1,274 @@
+[
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "isbn": "9780451524935",
+    "description_en": "A classic dystopian novel exploring surveillance, state control, and the manipulation of information.",
+    "description_it": "Un classico romanzo distopico che esplora la sorveglianza, il controllo statale e la manipolazione delle informazioni.",
+    "description_es": "Una novela distópica clásica que explora la vigilancia, el control estatal y la manipulación de la información."
+  },
+  {
+    "title": "Guns, Germs, and Steel",
+    "author": "Jared Diamond",
+    "isbn": "9780393354324",
+    "description_en": "An analysis of the environmental and geographical factors that shaped the modern world's power dynamics.",
+    "description_it": "Un'analisi dei fattori ambientali e geografici che hanno plasmato le dinamiche di potere del mondo moderno.",
+    "description_es": "Un análisis de los factores ambientales y geográficos que dieron forma a las dinámicas de poder del mundo moderno."
+  },
+  {
+    "title": "Diplomacy",
+    "author": "Henry Kissinger",
+    "isbn": "9780671510992",
+    "description_en": "A comprehensive history of international relations and the balance of power in global politics.",
+    "description_it": "Una storia completa delle relazioni internazionali e dell'equilibrio di potere nella politica globale.",
+    "description_es": "Una historia exhaustiva de las relaciones internacionales y el equilibrio de poder en la política global."
+  },
+  {
+    "title": "The Art of War",
+    "author": "Sun Tzu",
+    "isbn": "9781590302255",
+    "description_en": "Ancient Chinese military treatise focused on strategy, psychology, and tactical superiority.",
+    "description_it": "Antico trattato militare cinese incentrato sulla strategia, la psicologia e la superiorità tattica.",
+    "description_es": "Antiguo tratado militar chino centrado en la estrategia, la psicología y la superioridad táctica."
+  },
+  {
+    "title": "Eichmann in Jerusalem: A Report on the Banality of Evil",
+    "author": "Hannah Arendt",
+    "isbn": "9780143039884",
+    "description_en": "A philosophical investigation into the nature of evil and its manifestation within bureaucratic systems.",
+    "description_it": "Un'indagine filosofica sulla natura del male e la sua manifestazione all'interno dei sistemi burocratici.",
+    "description_es": "Una investigación filosófica sobre la naturaleza del mal y su manifestación dentro de los sistemas burocráticos."
+  },
+  {
+    "title": "The Age of Surveillance Capitalism",
+    "author": "Shoshana Zuboff",
+    "isbn": "9781610395694",
+    "description_en": "A crucial analysis of how personal data has become a commodity in the modern digital economy.",
+    "description_it": "Un'analisi cruciale di come i dati personali siano diventati una merce nell'economia digitale moderna.",
+    "description_es": "Un análisis crucial de cómo los datos personales se han convertido en una mercancía en la economía digital moderna."
+  },
+  {
+    "title": "Doom: The Politics of Catastrophe",
+    "author": "Niall Ferguson",
+    "isbn": "9780593297377",
+    "description_en": "A study of how human systems respond to disasters, from pandemics to geopolitical collapses.",
+    "description_it": "Uno studio su come i sistemi umani rispondono ai disastri, dalle pandemie ai crolli geopolitici.",
+    "description_es": "Un estudio sobre cómo los sistemas humanos responden a los desastres, desde pandemias hasta colapsos geopolíticos."
+  },
+  {
+    "title": "On China",
+    "author": "Henry Kissinger",
+    "isbn": "9780143121312",
+    "description_en": "A deep dive into Chinese history and its unique approach to foreign policy and strategic thinking.",
+    "description_it": "Un'immersione profonda nella storia cinese e nel suo approccio unico alla politica estera e al pensiero strategico.",
+    "description_es": "Una inmersión profunda en la historia de China y su enfoque único de la política exterior y el pensamiento estratégico."
+  },
+  {
+    "title": "The Quran",
+    "author": "Traditional",
+    "isbn": "9780199535958",
+    "description_en": "The central religious text of Islam, fundamental for understanding global cultural history.",
+    "description_it": "Il testo religioso centrale dell'Islam, fondamentale per la comprensione della storia culturale globale.",
+    "description_es": "El texto religioso central del Islam, fundamental para comprender la historia cultural global."
+  },
+  {
+    "title": "A Brief History of Time",
+    "author": "Stephen Hawking",
+    "isbn": "9780553380163",
+    "description_en": "An exploration of the origins and structure of the universe, from the Big Bang to Black Holes.",
+    "description_it": "Un'esplorazione delle origini e della struttura dell'universo, dal Big Bang ai buchi neri.",
+    "description_es": "Una exploración de los orígenes y la estructura del universo, desde el Big Bang hasta los agujeros negros."
+  },
+  {
+    "title": "The Power of Habit",
+    "author": "Charles Duhigg",
+    "isbn": "9780812981605",
+    "description_en": "An analysis of the science of habit formation and its impact on personal and organizational behavior.",
+    "description_it": "Un'analisi della scienza della formazione delle abitudini e del suo impatto sul comportamento personale e organizzativo.",
+    "description_es": "Un análisis de la ciencia de la formación de hábitos e su impacto en el comportamiento personal y organizacional."
+  },
+  {
+    "title": "Wherever You Go, There You Are",
+    "author": "Jon Kabat-Zinn",
+    "isbn": "9781401307782",
+    "description_en": "A fundamental guide to mindfulness and the psychology of presence in daily life.",
+    "description_it": "Una guida fondamentale alla consapevolezza e alla psicologia della presenza nella vita quotidiana.",
+    "description_es": "Una guía fundamental para la atención plena y la psicología de la presencia en la vida diaria."
+  },
+  {
+    "title": "Permanent Record",
+    "author": "Edward Snowden",
+    "isbn": "9781250237231",
+    "description_en": "The memoir of the whistleblower who revealed the global mass surveillance system.",
+    "description_it": "Le memorie del whistleblower che ha rivelato il sistema di sorveglianza di massa globale.",
+    "description_es": "Las memorias del denunciante que reveló el sistema global de vigilancia masiva."
+  },
+  {
+    "title": "Ghost in the Wires",
+    "author": "Kevin Mitnick",
+    "isbn": "9780316037723",
+    "description_en": "The true story of the world's most famous hacker and his exploits in social engineering.",
+    "description_it": "La vera storia dell'hacker più famoso del mondo e delle sue imprese nell'ingegneria sociale.",
+    "description_es": "La verdadera historia del hacker más famoso del mundo y sus hazañas en la ingeniería social."
+  },
+  {
+    "title": "Tulipomania",
+    "author": "Mike Dash",
+    "isbn": "9780609807651",
+    "description_en": "The history of the first major financial bubble, focusing on market psychology and speculation.",
+    "description_it": "La storia della prima grande bolla finanziaria, focalizzata sulla psicologia del mercato e sulla speculazione.",
+    "description_es": "La historia de la primera gran burbuja financiera, centrada en la psicología del mercado y la especulación."
+  },
+  {
+    "title": "Harry Potter Saga",
+    "author": "J.K. Rowling",
+    "isbn": "9780590353427",
+    "description_en": "A cultural phenomenon exploring themes of power, loyalty, and the struggle against dark forces.",
+    "description_it": "Un fenomeno culturale che esplora i temi del potere, della lealtà e della lotta contro le forze oscure.",
+    "description_es": "Un fenómeno cultural que explora temas de poder, lealtad e la lucha contra las fuerzas oscuras."
+  },
+  {
+    "title": "In a Sunburned Country",
+    "author": "Bill Bryson",
+    "isbn": "9780767903868",
+    "description_en": "A detailed and humorous exploration of Australia's unique history and geography.",
+    "description_it": "Un'esplorazione dettagliata e umoristica della storia e della geografia uniche dell'Australia.",
+    "description_es": "Una exploración detallada y humorística de la geografía e historia únicas de Australia."
+  },
+  {
+    "title": "Mani Pulite: La vera storia",
+    "author": "Barbacetto, Gomez & Travaglio",
+    "isbn": "9788861900530",
+    "description_en": "An investigation into the massive corruption scandal that reshaped Italian politics.",
+    "description_it": "Un'indagine sul massiccio scandalo di corruzione che ha rimodellato la politica italiana.",
+    "description_es": "Una investigación sobre el escándalo de corrupción masiva que remodeló la política italiana."
+  },
+  {
+    "title": "Antico Oriente: storia, società, economia",
+    "author": "Mario Liverani",
+    "isbn": "9788842095880",
+    "description_en": "A historical and sociological analysis of the early civilizations in the Near East.",
+    "description_it": "Un'analisi storica e sociologica delle prime civiltà del Vicino Oriente.",
+    "description_es": "Un análisis histórico y sociológico de las primeras civilizaciones del Cercano Oriente."
+  },
+  {
+    "title": "Das Kapital",
+    "author": "Karl Marx",
+    "isbn": "9780140445688",
+    "description_en": "A foundational critique of political economy and the structure of capitalist society.",
+    "description_it": "Una critica fondamentale dell'economia politica e della struttura della società capitalista.",
+    "description_es": "Una crítica fundamental de la economía política y la estructura de la sociedad capitalista."
+  },
+  {
+    "title": "Atlas Shrugged",
+    "author": "Ayn Rand",
+    "isbn": "9780451191144",
+    "description_en": "A philosophical novel exploring individualism, capitalism, and the role of the mind in society.",
+    "description_it": "Un romanzo filosofico che esplora l'individualismo, il capitalismo e il ruolo della mente nella società.",
+    "description_es": "Una novela filosófica que explora el individualismo, el capitalismo y el papel de la mente en la sociedad."
+  },
+  {
+    "title": "Civilization: The West and the Rest",
+    "author": "Niall Ferguson",
+    "isbn": "9780143122067",
+    "description_en": "An analysis of the six 'killer apps' that allowed Western civilization to dominate globally.",
+    "description_it": "Un'analisi delle sei 'killer app' che hanno permesso alla civiltà occidentale di dominare a livello globale.",
+    "description_es": "Un análisis de las seis 'aplicaciones asesinas' que permitieron a la civilización occidental dominar globalmente."
+  },
+  {
+    "title": "World Order",
+    "author": "Henry Kissinger",
+    "isbn": "9788852063701",
+    "description_en": "A historical analysis of the different concepts of world order throughout history.",
+    "description_it": "Un'analisi storica dei diversi concetti di ordine mondiale nel corso della storia.",
+    "description_es": "Un análisis histórico de los diferentes conceptos de orden mundial a lo largo de la historia."
+  },
+  {
+    "title": "The Prince",
+    "author": "Niccolò Machiavelli",
+    "isbn": "9780140449150",
+    "description_en": "The classic treatise on political power, pragmatism, and statecraft.",
+    "description_it": "Il classico trattato sul potere politico, il pragmatismo e l'arte del governo.",
+    "description_es": "El tratado clásico sobre el poder político, el pragmatismo y el arte de gobernar."
+  },
+  {
+    "title": "Vanished Kingdoms",
+    "author": "Norman Davies",
+    "isbn": "9780143122739",
+    "description_en": "A history of forgotten states and the transience of political entities in Europe.",
+    "description_it": "Una storia degli stati dimenticati e della caducità delle entità politiche in Europa.",
+    "description_es": "Una historia de los estados olvidados y la fugacidad de las entidades políticas en Europa."
+  },
+  {
+    "title": "The Wealth of Nations",
+    "author": "Adam Smith",
+    "isbn": "9780553585971",
+    "description_en": "The foundational work of modern economics and the theory of free market dynamics.",
+    "description_it": "L'opera fondamentale dell'economia moderna e la teoria della dinamica del libero mercato.",
+    "description_es": "La obra fundamental de la economía moderna y la teoría de la dinámica del libre mercado."
+  },
+  {
+    "title": "The Republic",
+    "author": "Plato",
+    "isbn": "9780140449143",
+    "description_en": "A philosophical dialogue concerning justice, order, and the nature of the ideal state.",
+    "description_it": "Un dialogo filosofico riguardante la giustizia, l'ordine e la natura dello stato ideale.",
+    "description_es": "Un diálogo filosófico sobre la justicia, el orden y la naturaleza del estado ideal."
+  },
+  {
+    "title": "The Clash of Civilizations",
+    "author": "Samuel P. Huntington",
+    "isbn": "9788811674993",
+    "description_en": "A theory on how cultural and religious identities will be the primary source of conflict.",
+    "description_it": "Una teoria su come le identità culturali e religiose saranno la principale fonte di conflitto.",
+    "description_es": "Una teoría sobre cómo las identidades culturales y religiosas serán la fuente primaria de conflicto."
+  },
+  {
+    "title": "The Age of Extremes",
+    "author": "Eric Hobsbawm",
+    "isbn": "9780679730057",
+    "description_en": "A history of the 'Short Twentieth Century' (1914–1991) and its global impact.",
+    "description_it": "Una storia del 'secolo breve' (1914-1991) e del suo impatto globale.",
+    "description_es": "Una historia del 'siglo corto' (1914-1991) y su impacto global."
+  },
+  {
+    "title": "World War II: A Military History",
+    "author": "Basil Liddell Hart",
+    "isbn": "9780330501170",
+    "description_en": "A detailed strategic and tactical account of the major conflicts during World War II.",
+    "description_it": "Un resoconto strategico e tattico dettagliato dei principali conflitti durante la seconda guerra mondiale.",
+    "description_es": "Un relato estratégico y táctico detallado de los principales conflictos durante la Segunda Guerra Mundial."
+  },
+  {
+    "title": "Gomorra",
+    "author": "Roberto Saviano",
+    "isbn": "9788804554509",
+    "description_en": "An investigation into the economic and criminal power of the Camorra in Italy and beyond.",
+    "description_it": "Un'indagine sul potere economico e criminale della Camorra in Italia e oltre.",
+    "description_es": "Una investigación sobre el poder económico y criminal de la Camorra en Italia y más allá."
+  },
+  {
+    "title": "On the Road",
+    "author": "Jack Kerouac",
+    "isbn": "9780140283297",
+    "description_en": "A classic of the Beat Generation exploring freedom and the search for identity.",
+    "description_it": "Un classico della Beat Generation che esplora la libertà e la ricerca dell'identità.",
+    "description_es": "Un clásico de la Generación Beat que explora la libertad y la búsqueda de identidad."
+  },
+  {
+    "title": "Seven Pillars of Wisdom",
+    "author": "T.E. Lawrence",
+    "isbn": "9780385418959",
+    "description_en": "An autobiographical account of the Arab Revolt and the complexities of Middle Eastern politics.",
+    "description_it": "Un resoconto autobiografico della rivolta araba e delle complessità della politica mediorientale.",
+    "description_es": "Un relato autobiográfico de la Rebelión Árabe y las complejidades de la política de Oriente Medio."
+  },
+  {
+    "title": "The Elegant Universe",
+    "author": "Brian Greene",
+    "isbn": "9780393058581",
+    "description_en": "An explanation of Superstring Theory and the quest for the ultimate theory of everything.",
+    "description_it": "Una spiegazione della teoria delle superstringhe e la ricerca della teoria del tutto definitiva.",
+    "description_es": "Una explicación de la teoría de las supercuerdas y la búsqueda de la teoría del todo definitiva."
+  }
+]

@@ -1,171 +1,173 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Oggetto con i contenuti per ogni lingua
+/**
+ * Antonio Ruocco Portfolio - Global Logic
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- 1. TRADUZIONE LINGUE ---
     const translations = {
-        en: {
-            header: "Antonio Ruocco",
-            aboutMe: "About Me",
-            aboutText: "Hello! I'm Antonio Ruocco, a cybersecurity enthusiast with a strong foundation in system administration, ethical hacking, and network security. I love solving complex problems and staying updated with the latest tech trends.",
-            experience: "Experience",
-            certifications: "Certifications & Skills",
-            projects: "Projects",
-            books: "Books",
-            contact: "Contact",
-            followMe: "Follow Me",
-            email: "antonio.ruocco2k@hotmail.com",
-            phone: "+39 334 975 4922"
-        },
-        it: {
-            header: "Antonio Ruocco",
-            aboutMe: "Chi Sono",
-            aboutText: "Ciao! Sono Antonio Ruocco, un appassionato di cybersecurity con una solida preparazione nell'amministrazione di sistema, hacking etico e sicurezza delle reti. Amo risolvere problemi complessi e rimanere aggiornato con le ultime tendenze tecnologiche.",
-            experience: "Esperienza",
-            certifications: "Certificazioni & Competenze",
-            projects: "Progetti",
-            books: "Libri",
-            contact: "Contatti",
-            followMe: "Seguimi",
-            email: "antonio.ruocco2k@hotmail.com",
-            phone: "+39 334 975 4922"
-        },
-        es: {
-            header: "Antonio Ruocco",
-            aboutMe: "Sobre mí",
-            aboutText: "¡Hola! Soy Antonio Ruocco, un entusiasta de la ciberseguridad con una sólida base en administración de sistemas, hacking ético y seguridad de redes. Me encanta resolver problemas complejos y mantenerme actualizado con las últimas tendencias tecnológicas.",
-            experience: "Experiencia",
-            certifications: "Certificaciones & Habilidades",
-            projects: "Proyectos",
-            books: "Libros",
-            contact: "Contacto",
-            followMe: "Sígueme",
-            email: "antonio.ruocco2k@hotmail.com",
-            phone: "+39 334 975 4922"
-        }
-    };
-
-    // Funzione per cambiare la lingua
-    function changeLanguage(lang) {
-        document.querySelector('header h1').textContent = translations[lang].header;
-        document.querySelector('.about h2').textContent = translations[lang].aboutMe;
-        document.querySelector('.about-text p').textContent = translations[lang].aboutText;
-        document.querySelector('#experience h2').textContent = translations[lang].experience;
-        document.querySelector('#certifications h2').textContent = translations[lang].certifications;
-        document.querySelector('#projects h2').textContent = translations[lang].projects;
-        document.querySelector('#books h2').textContent = translations[lang].books;
-        document.querySelector('.footer-social h4').textContent = translations[lang].followMe;
-        document.querySelector('.footer-contact a[href^="mailto:"]').textContent = translations[lang].email;
-        document.querySelector('.footer-contact a[href^="tel:"]').textContent = translations[lang].phone;
-        
-        // Non modificare il footer (copyright)
-        // Non cambiare il contenuto di .footer-brand p (copyright)
+    en: {
+        header: "Antonio Ruocco",
+        aboutMe: "About Me",
+        aboutText: "Maker and electronics geek with a background in international gaming operations. I've transitioned from high-stakes risk management as a Croupier to professional Cybersecurity, backing my self-taught foundation with a Master's degree. My focus is on infrastructure defense and technical analysis, bridging the gap between hardware intuition and software security.",
+        experience: "Experience",
+        certifications: "Certifications & Skills",
+        projects: "Projects",
+        books: "Books",
+        followMe: "Follow Me"
+    },
+    it: {
+        header: "Antonio Ruocco",
+        aboutMe: "Chi Sono",
+        aboutText: "Maker e smanettone di elettronica con un passato operativo nel gaming internazionale. Ho convertito la mia esperienza nel risk management come Croupier in una carriera nella Cybersecurity, consolidando anni di studio da autodidatta con un Master di specializzazione. Mi occupo di difesa delle infrastrutture e analisi tecnica, unendo l'intuizione per l'hardware alla sicurezza digitale.",
+        experience: "Esperienza",
+        certifications: "Certificazioni & Competenze",
+        projects: "Progetti",
+        books: "Libri",
+        followMe: "Seguimi"
+    },
+    es: {
+        header: "Antonio Ruocco",
+        aboutMe: "Sobre mí",
+        aboutText: "Maker y apasionado de la electrónica con trayectoria en operaciones de juego internacional. He redirigido mi capacidad de gestión de riesgos como Croupier hacia la Ciberseguridad, uniendo mi base autodidacta con un Máster de especialización. Me enfoco en la defensa de infraestructuras y análisis técnico, combinando la intuición por el hardware con la seguridad digital.",
+        experience: "Experiencia",
+        certifications: "Certificaciones & Habilidades",
+        projects: "Proyectos",
+        books: "Libros",
+        followMe: "Sígueme"
     }
-
-    // Aggiungi eventi ai bottoni della lingua
-    document.getElementById('english').addEventListener('click', () => changeLanguage('en'));
-    document.getElementById('italian').addEventListener('click', () => changeLanguage('it'));
-    document.getElementById('spanish').addEventListener('click', () => changeLanguage('es'));
-
-    // Imposta la lingua di default su inglese
-    changeLanguage('en');
-});
-
-// --- Recruiter Easter Egg ---
-const asciiArt = `
-   _____      _                 _      
-  |  __ \\    | |               | |     
-  | |__) |  _| | ___   ___  ___| |__   
-  |  _  / | | | |/ _ \\ / __|/ __| '_ \\  
-  | | \\ \\ |_| | | (_) | (__| (__| | | |
-  |_|  \\_\\__,_|_|\\___/ \\___|\\___|_| |_|
-`;
-
-console.log(`%c${asciiArt}`, "color: #4CAF50; font-weight: bold;");
-console.log("%c[SYSTEM INFO] Scanning Antonio's Portfolio...", "color: #888; font-family: monospace;");
-console.log("%c[SUCCESS] Integrity check passed. No red flags found.", "color: #00ff41; font-family: monospace;");
-console.log("%c[CONTACT] Ready for recruitment. Protocol: EMAIL", "color: #4CAF50; font-weight: bold; font-family: monospace;");
-console.log("%c>> Type 'contact()' for details.", "color: #ddd; font-style: italic;");
-
-// Funzione bonus: se scrivono contact() nella console, appare la tua mail
-window.contact = function() {
-    console.log("%c[!] Email: antonio.ruocco2k@hotmail.com", "color: #4CAF50; font-size: 16px; font-weight: bold;");
-    return "Looking forward to hearing from you!";
 };
 
-function openTerminal() {
-    document.getElementById('terminal-overlay').style.display = 'flex';
-    document.getElementById('terminal-input').focus();
-}
+    function changeLanguage(lang) {
+        // Selettori con controllo di sicurezza per evitare errori "null"
+        const elements = {
+            'header h1': translations[lang].header,
+            '#about-title': translations[lang].aboutMe,
+            '#about-p': translations[lang].aboutText,
+            '#experience-card h2': translations[lang].experience,
+            '#certifications-card h2': translations[lang].certifications,
+            '#projects-card h2': translations[lang].projects,
+            '#books-card h2': translations[lang].books,
+            '.footer-social h4': translations[lang].followMe
+        };
 
-function closeTerminal() {
-    document.getElementById('terminal-overlay').style.display = 'none';
-}
-
-// 1. Funzioni per l'interfaccia (apertura/chiusura)
-function openTerminal() {
-    const overlay = document.getElementById('terminal-overlay');
-    overlay.style.display = 'flex';
-    document.getElementById('terminal-input').focus();
-}
-
-function closeTerminal() {
-    const overlay = document.getElementById('terminal-overlay');
-    overlay.style.display = 'none';
-}
-
-// 2. Gestione della logica del terminale
-document.addEventListener('DOMContentLoaded', function() {
-    
-    const terminalInput = document.getElementById('terminal-input');
-    const output = document.getElementById('terminal-output');
-
-    if (terminalInput) {
-        terminalInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                const input = terminalInput.value.trim();
-                
-                // Crea la riga del comando digitato
-                const p = document.createElement('p');
-                p.textContent = `$ ${input}`;
-                output.appendChild(p);
-
-                // --- LOGICA DELLA SFIDA ---
-                
-                // Controlliamo se l'utente scrive "Antonio" (maiuscolo o minuscolo)
-                if (input.toLowerCase() === "antonio") {
-                    const success = document.createElement('p');
-                    success.style.color = "#ffff00"; // Giallo
-                    success.innerHTML = `
-                        > DECODING SUCCESSFUL...<br>
-                        > ACCESS GRANTED. WELCOME, CREATOR.<br>
-                        > STATUS: Antonio is currently available for recruitment.
-                    `;
-                    output.appendChild(success);
-                } 
-                // Comando per pulire il terminale
-                else if (input.toLowerCase() === "clear") {
-                    output.innerHTML = "";
-                }
-                // Comando di aiuto
-                else if (input.toLowerCase() === "help") {
-                    const help = document.createElement('p');
-                    help.textContent = "> Try to decode the binary string in the hint.";
-                    output.appendChild(help);
-                }
-                // Risposta per codice errato
-                else {
-                    const error = document.createElement('p');
-                    error.style.color = "#ff5555"; // Rosso
-                    error.textContent = "> ERROR: UNKNOWN COMMAND OR ACCESS DENIED.";
-                    output.appendChild(error);
-                }
-
-                // Svuota l'input e scrolla verso il basso
-                terminalInput.value = "";
-                output.scrollTop = output.scrollHeight;
+        for (let selector in elements) {
+            const el = document.querySelector(selector);
+            if (el) {
+                el.textContent = elements[selector];
             }
-        });
+        }
+
+        // Gestione classe active sui bottoni
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById(lang === 'en' ? 'english' : lang === 'it' ? 'italian' : 'spanish');
+        if (activeBtn) activeBtn.classList.add('active');
     }
 
-    // --- TRADUZIONE LINGUE (Se la avevi nella landing page) ---
-    // Se avevi già dei bottoni per la lingua (EN, IT, ES), aggiungi qui sotto la loro logica
-    // Se non ti servono in questa pagina, puoi ignorare questa parte.
+    // Event Listeners Bottoni Lingua
+    const btnEn = document.getElementById('english');
+    const btnIt = document.getElementById('italian');
+    const btnEs = document.getElementById('spanish');
+
+    if (btnEn) btnEn.addEventListener('click', () => changeLanguage('en'));
+    if (btnIt) btnIt.addEventListener('click', () => changeLanguage('it'));
+    if (btnEs) btnEs.addEventListener('click', () => changeLanguage('es'));
+
+    // --- 2. IP VISITOR & HASH LOGIC ---
+    async function getVisitorIP() {
+        const ipElement = document.getElementById('visitor-ip');
+        if (!ipElement) return;
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            ipElement.innerText = data.ip;
+        } catch (error) {
+            ipElement.innerText = "ANONYMOUS";
+        }
+    }
+
+    const hashElement = document.getElementById('current-hash');
+    if (hashElement) {
+        const randomHash = Array.from({length: 12}, () => 
+            Math.floor(Math.random() * 16).toString(16)).join('');
+        hashElement.innerText = randomHash.toUpperCase();
+    }
+
+    getVisitorIP();
+    changeLanguage('en'); // Default
 });
+
+// --- 3. TERMINAL EASTER EGG LOGIC (Global scope) ---
+function openTerminal() {
+    const overlay = document.getElementById('terminal-overlay');
+    if(overlay) {
+        overlay.style.display = 'flex';
+        document.getElementById('terminal-input').focus();
+    }
+}
+
+function closeTerminal() {
+    const overlay = document.getElementById('terminal-overlay');
+    if(overlay) overlay.style.display = 'none';
+}
+
+document.addEventListener('keypress', function (e) {
+    const terminalInput = document.getElementById('terminal-input');
+    const output = document.getElementById('terminal-output');
+    
+    if (terminalInput === document.activeElement && e.key === 'Enter') {
+        const input = terminalInput.value.trim();
+        const p = document.createElement('p');
+        p.textContent = `$ ${input}`;
+        output.appendChild(p);
+
+        if (input.toLowerCase() === "antonio") {
+            const success = document.createElement('p');
+            success.style.color = "#ffff00";
+            success.innerHTML = "> DECODING SUCCESSFUL...<br>> ACCESS GRANTED. WELCOME, CREATOR.<br>> STATUS: Antonio is currently available for recruitment.";
+            output.appendChild(success);
+        } else if (input.toLowerCase() === "clear") {
+            output.innerHTML = "";
+        } else if (input.toLowerCase() === "help") {
+            const help = document.createElement('p');
+            help.textContent = "> Try to decode the binary string in the hint.";
+            output.appendChild(help);
+        } else {
+            const error = document.createElement('p');
+            error.style.color = "#ff5555";
+            error.textContent = "> ERROR: ACCESS DENIED.";
+            output.appendChild(error);
+        }
+        terminalInput.value = "";
+        output.scrollTop = output.scrollHeight;
+    }
+});
+
+// --- RECRUITER EASTER EGG CON LUCCHETTO ---
+const padlock = `
+     .--------.
+    / .------. \\
+   / /        \\ \\
+   | |        | |
+  _| |________| |_
+.' |_|        |_| '.
+'._____ ____ _____.'
+|     .'____'.     |
+|    |  ____  |    |
+|    | |____| |    |
+|    |   /\\   |    |
+|    |  /  \\  |    |
+'.____'.____.'____.'
+`;
+
+console.log(`%c${padlock}`, "color: #00ff00; font-weight: bold; line-height: 1.2;");
+console.log("%c[SYSTEM INFO] Scanning Antonio's Portfolio...", "color: #888; font-family: monospace;");
+console.log("%c[SUCCESS] Integrity check passed. No red flags found.", "color: #00ff41; font-family: monospace;");
+console.log("%c[CONTACT] Ready for recruitment. Protocol: EMAIL", "color: #00ff00; font-weight: bold; font-family: monospace;");
+console.log("%c>> Type 'contact()' for details.", "color: #ddd; font-style: italic;");
+
+// Funzione bonus per la console
+window.contact = function() {
+    console.log("%c[!] Email: antonio.ruocco2k@hotmail.com", "color: #00ff00; font-size: 16px; font-weight: bold;");
+    return "Looking forward to hearing from you!";
+};

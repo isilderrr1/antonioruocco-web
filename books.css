@@ -96,3 +96,116 @@ body { background-color: #0a0a05; color: #ffb000; font-family: 'Courier New', mo
 @media (max-width: 768px) {
     .header-flex { flex-direction: column; gap: 15px; }
 }
+
+/* SEARCH BAR */
+.search-container {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+    margin: 0 30px;
+}
+
+#bookSearch {
+    width: 100%;
+    background: #000;
+    border: 1px solid #443500;
+    padding: 8px 15px 8px 35px;
+    color: #ffb000;
+    font-family: 'Courier New', monospace;
+    outline: none;
+}
+
+#bookSearch:focus { border-color: #ffb000; box-shadow: 0 0 10px rgba(255, 176, 0, 0.2); }
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #443500;
+}
+
+/* MODAL STYLES */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #111;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #ffb000;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px; top: 10px;
+    color: #ffb000;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modal-body { display: flex; gap: 30px; }
+.modal-body img { width: 250px; height: auto; border: 1px solid #333; }
+.modal-info h2 { color: #fff; margin-bottom: 10px; }
+.modal-info h3 { color: #ffb000; margin-bottom: 20px; font-size: 1rem; }
+.modal-info p { line-height: 1.6; color: #ccc; }
+
+.book-card { cursor: pointer; }
+
+@media (max-width: 600px) {
+    .modal-body { flex-direction: column; align-items: center; text-align: center; }
+}
+
+/* Stile per la copertina mancante (Criptata) */
+.book-cover-wrapper.missing-cover {
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #ffb000;
+    position: relative;
+    color: #ffb000;
+}
+
+.book-cover-wrapper.missing-cover::after {
+    content: '\f023'; /* Icona lucchetto di FontAwesome */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+.book-cover-wrapper.missing-cover span {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#modalDesc {
+    border-left: 2px solid rgba(255, 176, 0, 0.3);
+    padding-left: 15px;
+    min-height: 100px; /* Evita che il modal "saltelli" mentre scrive */
+    position: relative;
+}
+
+#modalDesc::after {
+    content: '_';
+    animation: blink 1s infinite;
+    color: #ffb000;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

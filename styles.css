@@ -1,303 +1,390 @@
-/* RESET */
+/* ============================================================
+   RESET & BASE LAYOUT
+   ============================================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Layout base */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #333;
+    background-color: #0a0a0a;
     color: white;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden; /* No scroll on desktop */
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px; /* Allargato per ospitare meglio i 3 blocchi */
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
 }
 
-/* Layout dell'Header */
+/* ============================================================
+   HEADER & NAVIGATION (Struttura a 3 Blocchi)
+   ============================================================ */
+header {
+    background: #000;
+    border-bottom: 2px solid #00ff00;
+    padding: 10px 0;
+    flex-shrink: 0;
+}
+
 .header-flex {
     display: flex;
-    justify-content: space-between; /* Spinge i due blocchi ai lati opposti */
-    align-items: center; /* Allinea tutto verticalmente al centro */
-    padding: 10px 0;
+    justify-content: space-between; 
+    align-items: center;
 }
 
-header {
-    background: #0a0a0a;
-    border-bottom: 2px solid #00ff00;
-    padding: 15px 0;
+/* --- BLOCCO 1: Estrema Sinistra (Logo) --- */
+.header-left {
+    flex: 1; /* Occupa lo spazio a sinistra */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Stile del Logo/Nome */
-.logo h1 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.8rem;
-    color: #ffffff;
-    margin: 0;
+.logo-link { text-decoration: none; color: inherit; }
+.logo h1 { font-family: 'Courier New', monospace; font-size: 1.5rem; }
+.logo .glitch { color: #00ff00; }
+.subtitle { color: #888; font-size: 0.75rem; font-family: 'Courier New', monospace; }
+
+/* --- BLOCCO 2: Parte Centrale (Info, News, Connect) --- */
+.header-center {
+    flex: 2; /* Prende più spazio per distribuire gli elementi centrali */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Distanza generosa tra gli elementi centrali */
 }
 
-.logo .glitch {
-    color: #00ff00;
-}
-
-.subtitle {
-    color: #888;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    margin-top: 2px;
+.visitor-info {
     font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #555;
+    border-left: 1px solid #222;
+    padding-left: 15px;
+    white-space: nowrap;
 }
 
-/* Stile dei bottoni lingua (a destra) */
+.visitor-info .value { color: #00ff00; font-weight: bold; }
+
+.news-link {
+    text-decoration: none;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.news-link:hover {
+    color: #fff;
+}
+
+/* Il pallino rosso che lampeggia */
+.pulse-red {
+    color: #ff3e3e; /* Rosso Cyber */
+    font-size: 12px;
+    text-shadow: 0 0 8px rgba(255, 62, 62, 0.8);
+    animation: pulse-glow 1.5s infinite ease-in-out;
+}
+
+/* Animazione del bagliore e della scala */
+@keyframes pulse-glow {
+    0% { 
+        opacity: 1; 
+        transform: scale(1); 
+        text-shadow: 0 0 5px rgba(255, 62, 62, 0.5);
+    }
+    50% { 
+        opacity: 0.3; 
+        transform: scale(1.3); 
+        text-shadow: 0 0 15px rgba(255, 62, 62, 1);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1); 
+        text-shadow: 0 0 5px rgba(255, 62, 62, 0.5);
+    }
+}
+
+.contact-link-header {
+    color: #00ff00 !important;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    padding: 5px 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.contact-link-header:hover {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+/* --- BLOCCO 3: Estrema Destra (Lingue) --- */
+.header-right {
+    flex: 1; /* Occupa lo spazio a destra */
+    display: flex;
+    justify-content: flex-end; /* Spinge i bottoni all'estrema destra */
+}
+
 .language-buttons {
     display: flex;
-    gap: 10px; /* Spazio tra i bottoni */
+    gap: 10px;
+    margin-right: 10px; /* Margine ragionevole dal bordo */
 }
 
 .lang-btn {
     background: transparent;
     border: 1px solid #444;
     color: #fff;
-    padding: 6px 12px;
+    padding: 4px 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
-    font-weight: bold;
+    font-size: 0.75rem;
+    transition: 0.3s;
 }
 
-.lang-btn:hover {
+.lang-btn:hover, .lang-btn.active {
     border-color: #00ff00;
     color: #00ff00;
     box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
 }
 
-/* MAIN */
+/* ============================================================
+   MAIN CONTENT & ABOUT
+   ============================================================ */
 main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-/* ABOUT: Foto a sinistra, Testo a destra su PC */
 .about {
-    padding: 60px 0;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/about.png') center/cover no-repeat;
-    border-bottom: 1px solid #444;
+    padding: 40px 0;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('img/about.png') center/cover no-repeat;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
 }
 
 .about-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 50px;
 }
 
 .about-image img {
-    width: 200px;
-    height: 200px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
-    border: 4px solid #4CAF50;
+    border: 3px solid #00ff00;
     object-fit: cover;
-    flex-shrink: 0;
 }
 
-.about-text h2 {
-    color: #4CAF50;
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+.about-text h2 { color: #00ff00; font-size: 2.2rem; margin-bottom: 8px; font-family: 'Courier New', monospace;}
+.about-text p { font-size: 1.05rem; line-height: 1.5; color: #ccc; max-width: 600px; }
+
+/* Signature Box (Digital ID) */
+.profile-id-box {
+    width: 170px;
+    margin-top: 12px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-top: 2px solid #00ff00;
+    font-size: 0.6rem;
+    font-family: monospace;
 }
 
-.about-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #ddd;
+.sig-line { display: flex; justify-content: space-between; margin-bottom: 3px; }
+.sig-label { color: #666; }
+.sig-value { color: #00ff00; }
+
+.integrity-bar { height: 3px; background: #222; margin-top: 6px; width: 100%; }
+.integrity-fill {
+    height: 100%;
+    width: 85%;
+    background: #00ff00;
+    box-shadow: 0 0 5px #00ff00;
+    animation: pulse-integrity 2s infinite;
 }
 
-/* CARDS: 4 colonne su PC */
+/* ============================================================
+   CARDS SECTION
+   ============================================================ */
 .cards-section {
-    padding: 78px 0;
-    background-color: #44444a;
+    flex: 1;
+    background-color: #111;
+    display: flex;
+    align-items: center;
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 35px;
+    gap: 30px;
+    width: 100%;
 }
 
 .card {
     position: relative;
-    height: 300px; /* Altezza ridotta per le card su PC */
-    background-color: #222;
-    border-radius: 15px;
+    height: 50vh; 
+    max-height: 380px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #555;
-    transition: all 0.4s ease;
-    cursor: pointer;
+    border: 1px solid #333;
+    transition: 0.4s;
+    text-decoration: none;
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    border-color: #4CAF50;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+.card:hover { 
+    transform: translateY(-8px); 
+    border-color: #00ff00; 
+    box-shadow: 0 0 20px rgba(0,255,0,0.2); 
 }
 
-.card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: 0.3s;
-}
-
-.card:hover .card-image {
-    opacity: 1;
-}
+.card-image { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.4s; }
+.card:hover .card-image { opacity: 0.8; }
 
 .card h2 {
     position: absolute;
-    bottom: 0;
-    width: 100%;
+    bottom: 0; width: 100%;
     padding: 20px 10px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    background: linear-gradient(transparent, rgba(0,0,0,1));
     text-align: center;
     font-size: 1.2rem;
-    color: white;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
 }
 
-/* FOOTER PROFESSIONALE */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 footer {
-    background-color: #121212; /* Nero profondo per contrasto */
-    padding: 50px 0 30px;
-    border-top: 3px solid #4CAF50; /* Linea distintiva */
-    margin-top: auto;
-    color: #bbb;
+    background-color: #000;
+    padding: 15px 0;
+    border-top: 2px solid #00ff00;
+    flex-shrink: 0;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr; /* Tre colonne: Brand, Contact, Social */
-    gap: 50px;
-    align-items: start;
-}
-
-footer h3, footer h4 {
-    color: #4CAF50;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-footer h3 { font-size: 1.4rem; }
-footer h4 { font-size: 1rem; }
-
-/* Stile contatti */
-.footer-contact a {
-    display: block;
-    color: #ddd;
-    text-decoration: none;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-    transition: 0.3s;
-}
-
-.footer-contact a i {
-    margin-right: 10px;
-    color: #4CAF50;
-    width: 20px;
-}
-
-.footer-contact a:hover {
-    color: #4CAF50;
-    transform: translateX(5px);
-}
-
-/* Stile Social */
-.social-icons-wrapper {
-    display: flex;
+    grid-template-columns: 1fr 1.5fr 1fr;
     gap: 20px;
+    align-items: center;
 }
 
-.social-icon {
-    font-size: 1.8rem;
-    color: #4CAF50;
-    transition: all 0.3s ease;
-}
+footer h3, footer h4 { color: #00ff00; font-size: 0.9rem; margin-bottom: 5px; }
+footer p, footer a { font-size: 0.75rem; color: #888; text-decoration: none; }
+.footer-contact a { display: block; margin-bottom: 2px; }
+.footer-contact a i { color: #00ff00; margin-right: 10px; width: 15px;}
+.social-icons-wrapper { display: flex; gap: 15px; }
+.social-icon { font-size: 1.3rem; color: #00ff00; transition: 0.3s; }
+.social-icon:hover { color: #fff; transform: translateY(-3px); }
 
-.social-icon:hover {
-    color: white;
-    transform: translateY(-5px);
-}
-
-.footer-brand p {
-    font-size: 0.85rem;
-    margin-top: 10px;
-}
-
-/* Il tastino fluttuante */
+/* ============================================================
+   TERMINAL EASTER EGG (FIXED POSITION)
+   ============================================================ */
 #game-trigger {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #1a1a1a;
-    color: #4CAF50;
+    position: fixed; /* Rimane bloccato rispetto allo schermo */
+    bottom: 30px;    /* Leggermente più su per non toccare il bordo */
+    right: 30px;
+    background: #000;
+    color: #00ff00;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #00ff00;
     cursor: pointer;
-    border: 2px solid #4CAF50;
-    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-    z-index: 999;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+    z-index: 99999; /* Numero altissimo per stare SOPRA a tutto */
+    transition: all 0.3s ease;
 }
 
-/* L'overlay del terminale */
+#game-trigger:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+}
+
+#game-trigger i {
+    font-size: 1.2rem;
+}
+
+/* OVERLAY DEL TERMINALE */
 #terminal-overlay {
-    display: none;
+    display: none; /* Gestito da JS */
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    z-index: 100000; /* Ancora più alto del trigger */
     align-items: center;
     justify-content: center;
 }
 
 .terminal-window {
-    width: 80%;
-    max-width: 500px;
-    background: #0d0d0d;
-    border: 1px solid #4CAF50;
-    font-family: 'Courier New', monospace;
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+    width: 90%;
+    max-width: 600px;
+    background: #050505;
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
 }
 
 .terminal-header {
-    background: #4CAF50;
-    color: black;
-    padding: 5px 10px;
+    background: #00ff00;
+    color: #000;
+    padding: 8px 15px;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-close {
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.2rem;
 }
 
 .terminal-body {
     padding: 20px;
-    height: 200px;
+    height: 250px;
     overflow-y: auto;
     color: #00ff41;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
 }
 
 .terminal-input-area {
-    padding: 10px 20px;
+    padding: 10px 15px;
     display: flex;
+    background: #000;
     border-top: 1px solid #222;
 }
 
@@ -311,106 +398,20 @@ footer h4 { font-size: 1rem; }
     font-family: inherit;
 }
 
-/* RESPONSIVE FOOTER */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 900px) {
-    .footer-grid {
-        grid-template-columns: 1fr; /* Una colonna su tablet/mobile */
-        text-align: center;
-        gap: 30px;
-    }
-    
-    .social-icons-wrapper {
-        justify-content: center;
-    }
-
-    .footer-contact a:hover {
-        transform: none;
-    }
+    body { height: auto; overflow-y: auto; }
+    .header-flex { flex-direction: column; gap: 15px; }
+    .header-left, .header-center, .header-right { flex: none; width: 100%; justify-content: center; text-align: center; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .social-icons-wrapper { justify-content: center; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .about-content { flex-direction: column; text-align: center; }
 }
 
-/* --- MEDIA QUERIES --- */
-
-/* Tablet: 2 Card per riga */
-@media (max-width: 1024px) {
-    .about-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .footer-flex {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    .contact-info a {
-        display: block;
-        margin: 5px 0;
-    }
-}
-
-/* Smartphone: 1 Card per riga */
 @media (max-width: 600px) {
-    header {
-        padding: 20px 0;
-    }
-    .header-flex {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .cards {
-        grid-template-columns: 1fr;
-    }
-    .about-text h2 {
-        font-size: 2rem;
-    }
-    .about-text p {
-        font-size: 1rem;
-    }
-}
-
-
-/* Stile del tasto CONNECT nell'header della Home */
-.contact-link-header {
-    color: #27c93f !important; /* Verde Signal */
-    text-decoration: none;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 0.85rem;
-    border: 1px solid rgba(39, 201, 63, 0.4);
-    padding: 6px 15px;
-    border-radius: 4px;
-    transition: 0.3s all ease;
-}
-
-.contact-link-header:hover {
-    background: rgba(39, 201, 63, 0.1);
-    box-shadow: 0 0 10px rgba(39, 201, 63, 0.3);
-    border-color: #27c93f;
-    transform: translateY(-1px);
-}
-
-.blink-terminal {
-    animation: blink-animation 1s step-end infinite;
-    margin-right: 5px;
-}
-
-@keyframes blink-animation {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Assicurati che l'header gestisca bene il nuovo elemento */
-.header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-and-lang {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    .cards { grid-template-columns: 1fr; }
+    .card { height: 200px; }
 }
