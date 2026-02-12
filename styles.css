@@ -666,3 +666,52 @@ footer p, footer a { font-size: 0.75rem; color: #888; text-decoration: none; }
 .sim-terminal::-webkit-scrollbar-thumb:hover {
     background: #bc13fe;
 }
+/* ============================================================
+   RESPONSIVE LAB TERMINAL (Mobile & Tablet)
+   ============================================================ */
+@media (max-width: 900px) {
+    /* Trasformiamo la split-view in una colonna verticale */
+    .panels-container {
+        flex-direction: column;
+        overflow-y: auto; /* Permette lo scroll tra i due pannelli */
+    }
+
+    .modal-content.split-view {
+        width: 98%;
+        height: 90vh; /* Quasi tutta l'altezza dello schermo */
+        max-height: none;
+    }
+
+    .sim-terminal {
+        flex: none;
+        height: 400px; /* Altezza fissa per il terminale su mobile */
+        border-right: none;
+        border-bottom: 1px solid #222; /* Separatore orizzontale */
+    }
+
+    .visual-monitor {
+        flex: none;
+        height: auto;
+        min-height: 250px;
+        padding-bottom: 40px; /* Spazio extra per non coprire la barra di carico */
+    }
+
+    /* Ottimizziamo i font per schermi piccoli */
+    .sim-terminal, .monitor-content {
+        font-size: 0.8rem;
+    }
+
+    .modal-header {
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sim-terminal {
+        height: 300px; /* Ancora più basso sui telefoni piccoli */
+    }
+    
+    .prompt {
+        font-size: 0.7rem; /* Riduce il prompt per dare spazio all'input */
+    }
+}

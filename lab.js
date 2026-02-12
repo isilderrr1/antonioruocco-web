@@ -194,6 +194,7 @@ function handlePatching(cmd) {
 
 function printToTerm(text) {
     history.innerHTML += `<div>${text}</div>`;
+    // Forza lo scroll sia del terminale che della finestra modale se necessario
     terminal.scrollTop = terminal.scrollHeight;
 }
 
