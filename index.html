@@ -28,6 +28,83 @@
 </head>
 <body>
 
+<nav class="payload-sidebar-left">
+    <div class="sidebar-tab-left">
+        <i class="fas fa-flask"></i>
+        <span>LAB</span>
+    </div>
+    
+    <div class="sidebar-inner">
+        <div class="sidebar-title">SYSTEM_EXPLOITS</div>
+        
+        <div class="payload-section">
+    <small>OFFENSIVE_OPERATIONS</small>
+    <button class="payload-btn red" onclick="triggerSim('bruteforce')">
+        <i class="fas fa-unlock"></i> SSH_BRUTE
+    </button>
+    <button class="payload-btn red" onclick="triggerSim('sql')">
+        <i class="fas fa-database"></i> SQL_INJECT
+    </button>
+    <button class="payload-btn red" onclick="triggerSim('xss')">
+        <i class="fas fa-code"></i> XSS_ATTACK
+    </button>
+    <button class="payload-btn red" onclick="triggerSim('ransomware')">
+        <i class="fas fa-biohazard"></i> RANSOM_SIM
+    </button>
+</div>
+
+<div class="payload-section">
+    <small>DEFENSIVE_MANEUVERS</small>
+    <button class="payload-btn blue" onclick="triggerSim('mitigation')">
+        <i class="fas fa-shield-virus"></i> DDOS_FILTER
+    </button>
+    <button class="payload-btn blue" onclick="triggerSim('forensics')">
+        <i class="fas fa-search"></i> DIGITAL_FORENSICS
+    </button>
+    <button class="payload-btn blue" onclick="triggerSim('patching')">
+    <i class="fas fa-medkit"></i> VULN_PATCHING
+</button>
+</div>
+
+        <div class="sidebar-footer">
+            <p>ACCESS_LEVEL: 3</p>
+            <p>ENCRYPTION: AES-256</p>
+        </div>
+    </div>
+</nav>
+
+<div id="sim-modal" class="sim-modal">
+    <div class="modal-content split-view">
+        <div class="modal-header">
+            <span id="modal-title">CYBER_RANGE_V3.0</span>
+            <button onclick="closeSim()" class="close-sim">X</button>
+        </div>
+        
+        <div class="panels-container">
+            <div class="sim-terminal" id="sim-terminal">
+                <div id="terminal-history"></div>
+                <div class="terminal-input-line">
+                    <span class="prompt">root@vault:~#</span>
+                    <input type="text" id="user-input" autofocus autocomplete="off">
+                </div>
+            </div>
+
+            <div class="visual-monitor" id="visual-monitor">
+                <div class="monitor-header">REAL_TIME_ANALYSIS</div>
+                <div id="monitor-content" class="monitor-content">
+                    <div class="idle-msg">WAITING_FOR_DATA_STREAM...</div>
+                </div>
+                <div class="monitor-footer">
+                    <span class="status-label">SYS_LOAD:</span>
+                    <div class="load-bar"><div id="load-fill" class="load-fill"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="lab.js"></script>
+
 <header>
     <div class="container header-flex">
         <div class="header-left">

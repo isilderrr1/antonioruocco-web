@@ -415,3 +415,254 @@ footer p, footer a { font-size: 0.75rem; color: #888; text-decoration: none; }
     .cards { grid-template-columns: 1fr; }
     .card { height: 200px; }
 }
+
+/* SIDEBAR LEFT LOGIC */
+.payload-sidebar-left {
+    position: fixed;
+    left: -250px; 
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(5, 5, 5, 0.98);
+    border-right: 2px solid #bc13fe;
+    /* 0.8s lo rende molto graduale*/
+    transition: left 0.8s ease-in-out; 
+    z-index: 9999;
+    display: flex;
+}
+
+.payload-sidebar-left {
+    /* ... altre proprietà ... */
+    transition: left 0.8s ease-in-out 0.2s; /* L'ultimo valore (0.2s) è il ritardo prima che parta */
+}
+
+.payload-sidebar-left:hover {
+    left: 0; /* Esce verso destra */
+}
+
+/* Linguetta sulla destra della sidebar */
+.sidebar-tab-left {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #bc13fe;
+    color: #000;
+    width: 40px;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 5px 5px 0;
+    font-weight: bold;
+    font-size: 0.7rem;
+    cursor: pointer;
+    box-shadow: 5px 0 15px rgba(188, 19, 254, 0.3);
+}
+
+.sidebar-inner { padding: 25px; width: 100%; }
+.sidebar-title { color: #bc13fe; font-size: 1rem; margin-bottom: 30px; border-bottom: 1px solid #222; letter-spacing: 2px; }
+
+.payload-section { margin-bottom: 25px; }
+.payload-section small { color: #444; display: block; margin-bottom: 10px; font-size: 0.6rem; letter-spacing: 1px; }
+
+.payload-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #222;
+    color: #888;
+    padding: 10px;
+    text-align: left;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    transition: 0.3s;
+}
+
+.payload-btn:hover { border-color: #bc13fe; color: #fff; background: rgba(188, 19, 254, 0.05); }
+.payload-btn.red:hover { border-color: #ff0000; color: #ff0000; }
+.payload-btn.blue:hover { border-color: #00d4ff; color: #00d4ff; }
+
+/* ... (Mantieni tutto il tuo CSS precedente fino a .sim-modal) ... */
+
+/* ============================================================
+   MODAL TERMINAL - ENHANCED SPLIT VIEW v3.1
+   ============================================================ */
+
+.sim-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 10000;
+    justify-content: center; align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content.split-view {
+    width: 95%; 
+    max-width: 1150px;
+    height: 650px;
+    background: #000;
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(188, 19, 254, 0.15);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- TERMINAL HEADER (Window Bar) --- */
+.modal-header {
+    background: #111; 
+    padding: 12px 20px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    border-bottom: 1px solid #222;
+    color: #bc13fe; 
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.close-sim { 
+    background: #222; 
+    border: 1px solid #333;
+    color: #666; 
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.close-sim:hover { 
+    background: #ff0000; 
+    color: white; 
+    border-color: #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* --- PANELS LAYOUT --- */
+.panels-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* --- LEFT PANEL: REAL TERMINAL LOOK --- */
+.sim-terminal {
+    flex: 1.3;
+    padding: 25px;
+    overflow-y: auto;
+    background: #000;
+    color: #00ff41; /* CRT Green */
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-right: 1px solid #111;
+    /* Scanline effect */
+    background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 255, 0.02));
+    background-size: 100% 3px, 3px 100%;
+    box-shadow: inset 0 0 40px rgba(0,0,0,1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* INPUT LINE ENHANCEMENT */
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+#user-input {
+    background: transparent;
+    border: none;
+    color: #00ff41;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    flex: 1;
+    caret-color: #bc13fe; /* Purple blinking cursor */
+}
+
+.prompt {
+    color: #bc13fe;
+    font-weight: bold;
+}
+
+/* --- RIGHT PANEL: VISUAL MONITOR --- */
+.visual-monitor {
+    flex: 0.7;
+    background: #050505;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', monospace;
+}
+
+.monitor-header {
+    color: #bc13fe;
+    font-size: 0.65rem;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.monitor-header::after {
+    content: "[LIVE_STREAM]";
+    color: #444;
+}
+
+.monitor-content {
+    flex: 1;
+    color: #bc13fe;
+    font-size: 0.8rem;
+    overflow-y: auto;
+}
+
+.monitor-footer {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.status-label { font-size: 0.6rem; color: #333; letter-spacing: 1px; }
+
+.load-bar {
+    width: 100%;
+    height: 2px;
+    background: #111;
+    margin-top: 8px;
+}
+
+.load-fill {
+    width: 0%;
+    height: 100%;
+    background: #bc13fe;
+    box-shadow: 0 0 15px #bc13fe;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* SCROLLBAR CUSTOMIZATION */
+.sim-terminal::-webkit-scrollbar, .monitor-content::-webkit-scrollbar {
+    width: 4px;
+}
+.sim-terminal::-webkit-scrollbar-thumb, .monitor-content::-webkit-scrollbar-thumb {
+    background: #222;
+}
+.sim-terminal::-webkit-scrollbar-thumb:hover {
+    background: #bc13fe;
+}
