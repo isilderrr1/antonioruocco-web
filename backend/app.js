@@ -6,9 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- CONNESSIONE DATABASE ---
-// Ho inserito la tua stringa reale corretta
-const mongoURI = "mongodb+srv://antonio:cyber2026@cyber-portfolio-db.pixll6z.mongodb.net/cyber_portfolio?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGO_URI;
 
 mongoose.connect(mongoURI)
     .then(() => console.log("✅ Connesso al Database MongoDB Atlas!"))
@@ -102,4 +100,5 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`);
+
 });
