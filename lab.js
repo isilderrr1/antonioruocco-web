@@ -141,23 +141,27 @@ function processCommand(cmd) {
 // --- HANDLERS (LOCALE) ---
 function handleBruteForce(cmd) {
     if (currentStep === 0 && cmd.includes("nmap")) {
-        printToTerm("[+] Port 22/SSH found on 192.168.1.104.");
-        currentStep++;
-    } else if (currentStep === 1 && cmd.startsWith("hydra")) {
-        printToTerm("[!] Testing: root... <span style='color:#0f0'>SUCCESS</span> (Pass: password123)");
-        currentStep++;
-    } else if (currentStep === 2 && cmd.includes("ssh root")) {
-        printToTerm("<span style='color:#0f0'>[ACCESS GRANTED] Shell established. Mission complete.</span>");
+        // Il backend restituirà la lista nomi, noi diamo l'istruzione generica
+        printToTerm("[TASK] Enumeration complete. Multiple targets identified in the database.");
+        printToTerm("Select a user from the list and attack. Example: <b style='color:white'>hydra -l m_rossi -P pass.txt</b>");
+        currentStep;
+    } else if (currentStep === 1 && cmd.includes("hydra")) {
+        // Controlliamo se il comando hydra contiene un nome (se l'utente ha scritto solo "hydra" senza parametri)
+        if (cmd.includes("-l")) {
+            printToTerm("<span style='color:#0f0'>[SUCCESS] Brute-force simulation completed for the selected target.</span>");
+            printToTerm("<span style='color:#555'>You can try to attack another discovered user or type 'exit'.</span>");
+        } else {
+            printToTerm("<span style='color:#ff4444'>[ERROR] Syntax error. Usage: hydra -l [user] -P [wordlist]</span>");
+        }
     }
 }
 
 function handleSQL(cmd) {
     if (currentStep === 0 && cmd.includes("sqlmap")) {
-        printToTerm("[!] Vulnerable parameter detected: 'id'.");
+        printToTerm("[TASK] Exploitation module loaded. Type: <b style='color:white'>--dump</b> to extract users.");
         currentStep++;
     } else if (currentStep === 1 && cmd === "--dump") {
-        printToTerm("[+] admin | 5f4dcc3b5aa765d61d8327deb882cf99");
-        printToTerm("<span style='color:#0f0'>[SUCCESS] Database exfiltration complete.</span>");
+        printToTerm("<span style='color:#0f0'>[SUCCESS] Real-time data received from MongoDB Cloud.</span>");
     }
 }
 
@@ -169,34 +173,39 @@ function handleXSS(cmd) {
 
 function handleRansomware(cmd) {
     if (cmd.includes("encrypt")) {
-        printToTerm("[INFO] Initializing RSA-2048 encryption...");
+        printToTerm("<span style='color:red'>[CRITICAL] Filesystem is being encrypted. Key stored on C2 server. Simulation complete.</span>");
     }
 }
 
 function handleMitigation(cmd) {
     if (currentStep === 0 && cmd.includes("tcpdump")) {
-        printToTerm("[WARN] High SYN packet rate detected from 1.2.3.4");
-        currentStep++;
+        printToTerm("[TASK] Attack identified. Block the source IP: <b style='color:white'>iptables -A INPUT -s 1.2.3.4 -j DROP</b>");
+        currentStep = 1;
     } else if (currentStep === 1 && cmd.includes("iptables")) {
-        printToTerm("[+] IP 1.2.3.4 successfully blocked.");
+        printToTerm("<span style='color:#0f0'>[SUCCESS] IP 1.2.3.4 blacklisted. System traffic stabilized.</span>");
     }
 }
 
 function handleForensics(cmd) {
-    if (currentStep === 0 && cmd.includes("grep 'failed'")) {
-        printToTerm("[FOUND] Brute force detected from IP 203.0.113.5");
+    if (currentStep === 0 && cmd.includes("grep")) {
+        printToTerm("[TASK] Suspicious IP found. Trace it: <b style='color:white'>whois [IP]</b>");
         currentStep++;
     } else if (currentStep === 1 && cmd.includes("whois")) {
-        printToTerm("[INFO] Source: EvilHost VPN. Location: EU.");
+        printToTerm("<span style='color:#0f0'>[SUCCESS] Attack source traced. Investigation report generated.</span>");
     }
 }
 
 function handlePatching(cmd) {
-    if (currentStep === 0 && (cmd.includes("apt list") || cmd === "apt")) {
-        printToTerm("[WARN] Vulnerable package found: <b>openssl-v1.1.1</b>");
-        currentStep++;
-    } else if (currentStep === 1 && cmd.includes("install")) {
-        printToTerm("[+] Patch applied. OpenSSL updated.");
+    // PASSO 0: L'utente cerca pacchetti vulnerabili
+    if (currentStep === 0 && (cmd.includes("apt") || cmd.includes("list"))) {
+        printToTerm("[TASK] Vulnerability found in OpenSSL. Apply patch: <b style='color:white'>sudo apt upgrade openssl</b>");
+        currentStep = 1; // Forza il passaggio al passo 1
+    } 
+    // PASSO 1: L'utente applica la patch
+    else if (currentStep === 1 && (cmd.includes("upgrade") || cmd.includes("install"))) {
+        printToTerm("<span style='color:#0f0'>[SUCCESS] Security update applied. System status: SECURE.</span>");
+        printToTerm("Simulation complete. Type 'exit' to close the lab.");
+        currentStep = 2; // Lab finito
     }
 }
 
