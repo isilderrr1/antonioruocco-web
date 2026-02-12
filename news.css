@@ -1,0 +1,201 @@
+/* --- SYSTEM ARCHITECTURE --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body.vault-theme {
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    background: #020202; /* Nero ancora più profondo */
+    color: #fff;
+    font-family: 'Courier New', monospace;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+/* --- HEADER: INTELLIGENCE STATION --- */
+.intel-header-station {
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #000 0%, #050505 100%);
+    border-bottom: 2px solid #ff0000;
+    padding: 15px 0;
+    z-index: 100;
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.15);
+}
+
+.station-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr;
+    align-items: center;
+}
+
+.alert-box { 
+    font-size: 0.85rem; 
+    font-weight: 900; 
+    color: #ff0000; 
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+}
+
+.coord-info { font-size: 0.65rem; color: #555; margin-top: 4px; font-weight: bold; }
+.cyan { color: #00d4ff; text-shadow: 0 0 5px #00d4ff; }
+
+.glitch-text { 
+    font-size: 1.8rem; 
+    letter-spacing: 6px; 
+    color: #fff; 
+    text-align: center;
+    font-weight: 900;
+}
+
+.encryption-status { 
+    font-size: 0.6rem; 
+    color: #444; 
+    text-align: center; 
+    margin-top: 4px;
+    letter-spacing: 1px;
+}
+
+/* SIGNAL HUD */
+.station-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.signal-bars { display: flex; gap: 4px; height: 12px; }
+.bar { width: 4px; background: #1a1a1a; }
+.bar.active { background: #00d4ff; box-shadow: 0 0 8px #00d4ff; }
+.bar:nth-child(1) { height: 30%; } 
+.bar:nth-child(2) { height: 60%; } 
+.bar:nth-child(3) { height: 85%; } 
+.bar:nth-child(4) { height: 100%; }
+
+.exit-btn {
+    text-decoration: none;
+    color: #ff0000;
+    font-size: 0.7rem;
+    border: 1px solid #ff0000;
+    padding: 5px 12px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: transparent;
+}
+
+.exit-btn:hover { 
+    background: #ff0000; 
+    color: #000; 
+    box-shadow: 0 0 15px #ff0000;
+    transform: scale(1.05);
+}
+
+/* --- MAIN NEWS HUB (SCROLLABLE) --- */
+.news-container {
+    flex: 1;
+    overflow-y: overlay; /* Permette alla scrollbar di non rubare spazio */
+    padding: 50px 0;
+    background-image: radial-gradient(circle at center, #0a0a0a 0%, #020202 100%);
+}
+
+/* Custom Cyber Scrollbar */
+.news-container::-webkit-scrollbar { width: 4px; }
+.news-container::-webkit-scrollbar-track { background: transparent; }
+.news-container::-webkit-scrollbar-thumb { background: #ff0000; box-shadow: 0 0 10px #ff0000; }
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+}
+
+/* --- INTEL CARDS UPGRADE --- */
+.intel-card {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid #1a1a1a;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Scanline Effect on Card */
+.intel-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 255, 0.03));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
+
+.intel-card:hover {
+    border-color: #00d4ff;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+}
+
+.intel-content { padding: 30px; z-index: 1; }
+.card-edge { width: 100%; height: 2px; background: #1a1a1a; transition: 0.3s; }
+.intel-card:hover .card-edge { background: #00d4ff; box-shadow: 0 0 10px #00d4ff; }
+
+.category { font-size: 0.65rem; font-weight: 900; margin-bottom: 12px; display: block; letter-spacing: 2px; }
+.category.red { color: #ff0000; }
+.category.gold { color: #ffcc00; text-shadow: 0 0 8px rgba(255, 204, 0, 0.4); }
+
+.intel-card h3 { 
+    font-size: 1rem; 
+    color: #fff; 
+    margin-bottom: 15px; 
+    line-height: 1.4; 
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.intel-card p { 
+    font-size: 0.82rem; 
+    color: #888; 
+    line-height: 1.6; 
+    margin-bottom: 20px; 
+}
+
+.read-link { 
+    color: #00d4ff; 
+    font-size: 0.75rem; 
+    text-decoration: none; 
+    font-weight: bold; 
+    letter-spacing: 1px;
+    margin-top: auto;
+}
+
+.read-link:hover { text-decoration: underline; color: #fff; }
+
+/* --- FOOTER: SYSTEM STATUS --- */
+.terminal-footer {
+    flex-shrink: 0;
+    background: #000;
+    border-top: 1px solid #1a1a1a;
+    padding: 15px 0;
+}
+
+.system-stats, .session-info { font-size: 0.7rem; }
+.label { color: #444; margin-right: 5px; }
+.value { color: #00d4ff; font-weight: bold; }
+
+/* --- ANIMATIONS & RESPONSIVE --- */
+.pulse-red { animation: blink 1.2s infinite; color: #ff0000; margin-right: 8px; }
+
+@keyframes blink { 50% { opacity: 0.2; transform: scale(0.8); } }
+
+@media (max-width: 850px) {
+    body.vault-theme { overflow-y: auto; height: auto; }
+    .station-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+    .station-right { align-items: center; }
+    .glitch-text { font-size: 1.4rem; }
+}

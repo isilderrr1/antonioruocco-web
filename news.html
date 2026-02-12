@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global_Intel_Stream | Antonio Ruocco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="news.css">
+</head>
+<body class="vault-theme">
+    <header class="intel-header-station">
+        <div class="container station-grid">
+            <div class="station-left">
+                <div class="alert-box">
+                    <span class="pulse-red">●</span> MULTI_SOURCE_FEED: ACTIVE
+                </div>
+                <div class="coord-info">
+                    S-1: CS360.IT | S-2: THEHACKERNEWS.COM
+                </div>
+            </div>
+
+            <div class="station-center">
+                <h1 class="glitch-text">GLOBAL_INTEL</h1>
+                <div class="encryption-status">REAL_TIME_THREAT_MONITORING</div>
+            </div>
+
+            <div class="station-right">
+                <div class="signal-bars">
+                    <div class="bar active"></div><div class="bar active"></div><div class="bar active"></div><div class="bar active"></div>
+                </div>
+                <a href="index.html" class="exit-btn">[ DISCONNECT ]</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="news-container container">
+        <div id="news-feed" class="news-grid">
+            <div class="loading-text">INTERCEPTING_GLOBAL_PACKETS...</div>
+        </div>
+    </main>
+
+    <footer class="terminal-footer">
+        <div class="container footer-flex-projects">
+            <div class="system-stats">
+                <span class="stat-item"><span class="label">NODES:</span> <span class="value">ROME // NEW_YORK</span></span>
+            </div>
+            <div class="session-info">
+                <span class="stat-item"><span class="label">UPTIME:</span> <span class="value">99.9%</span></span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function fetchMultiNews() {
+            const sources = [
+                { name: 'CS360', url: 'https://www.cybersecurity360.it/feed/' },
+                { name: 'THN_GLOBAL', url: 'https://feeds.feedburner.com/TheHackersNews' }
+            ];
+            
+            const container = document.getElementById('news-feed');
+            let allArticles = [];
+
+            try {
+                // Eseguiamo le chiamate a tutte le fonti contemporaneamente
+                const requests = sources.map(source => 
+                    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.status === 'ok') {
+                            return data.items.map(item => ({ ...item, sourceName: source.name }));
+                        }
+                        return [];
+                    })
+                );
+
+                const results = await Promise.all(requests);
+                allArticles = results.flat(); // Uniamo gli array di news
+
+                // Ordiniamo per data (più recenti in alto)
+                allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                if (allArticles.length > 0) {
+                    container.innerHTML = ''; 
+                    allArticles.forEach(item => { 
+                        const article = document.createElement('article');
+                        article.className = 'intel-card';
+                        
+                        const category = item.sourceName;
+                        const cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 140);
+                        
+                        article.innerHTML = `
+                            <div class="card-edge"></div>
+                            <div class="intel-content">
+                                <span class="category ${category === 'THN_GLOBAL' ? 'gold' : 'red'}">${category}</span>
+                                <h3>${item.title}</h3>
+                                <p>${cleanDesc}...</p>
+                                <a href="${item.link}" target="_blank" class="read-link">DECRYPT_REPORT ></a>
+                            </div>
+                        `;
+                        container.appendChild(article);
+                    });
+                }
+            } catch (error) {
+                container.innerHTML = '<div class="error-text">CONNECTION_ERROR: GLOBAL_LINK_FAILED</div>';
+            }
+        }
+        window.onload = fetchMultiNews;
+    </script>
+</body>
+</html>
