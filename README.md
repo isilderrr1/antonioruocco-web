@@ -50,8 +50,19 @@ Implementation of "Heads-Up Display" elements, including **Laser Input Scanning*
 
 ### 🔐 Secure Backend Architecture
 * **RESTful API:** Clean communication between the frontend terminal and the cloud logic.
-* **Security First:** Database credentials are never exposed in the code; loro sono gestiti via **Environment Variables** (ENV) su Render.
-* **Command Logging:** Ogni passo della simulazione è registrato in un database per scopi di audit.
+* **Security First:** Database credentials are never exposed in the code; anaged via Environment Variables (ENV) on Render for maximum credential isolation."
+* **Command Logging:** Every simulation step is logged in a dedicated database for audit and forensics purposes.
+
+---
+
+🔍 Search Engine Optimization & Web Presence
+The platform is optimized for deep-indexing and professional visibility through a dedicated SEO & Metadata layer:
+
+Dynamic Metadata: Implementation of Open Graph (OG) and Twitter Card protocols for high-impact social media sharing (LinkedIn/X).
+
+Search Engine Indexing: Deployment of a custom sitemap.xml and robots.txt architecture to streamline Google Crawler efficiency.
+
+UX Consistency: Integration of a custom-designed Vector Favicon (v5.0) with alpha-channel transparency, ensuring a seamless visual experience across modern browsers and mobile HUDs.
 
 ---
 
