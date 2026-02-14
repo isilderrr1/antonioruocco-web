@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="./favicon.png?v=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Reports | Antonio Ruocco Archive</title>
+    <link rel="stylesheet" href="reports.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="reports-page">
+
+    <div id="loading-overlay">
+        <div class="loader-text">INITIALIZING_SECURE_CONNECTION...</div>
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+
+    <header class="reports-header">
+    <div class="container header-flex">
+        <div class="header-left">
+            <div class="secure-badge"><i class="fas fa-shield-alt"></i> SECURE_ACCESS</div>
+            <h1 class="archive-title">RUOCCO_<span>INTEL</span>_ARCHIVE</h1>
+        </div>
+
+        <div class="header-center">
+            <div class="connection-status">
+                <span class="pulse-blue"></span> 
+                <span class="status-text">TUNNEL_STABLE // 256-BIT_ENC</span>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <span class="separator">|</span>
+                <button class="lang-btn" data-lang="it">IT</button>
+                <span class="separator">|</span>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+            <a href="index.html" class="exit-btn" data-key="exit_btn">DISCONNECT</a>
+        </div>
+    </div>
+</header>
+
+    <main class="reports-archive">
+        <div class="container">
+            <div class="archive-header">
+    <h2 data-key="archive_title">> DECLASSIFIED_INTELLIGENCE_ARCHIVE</h2>
+    <p class="status-line" data-key="status_line">ACCESS_LEVEL: LEVEL_4 | STATUS: ENCRYPTED_LINK_ACTIVE</p>
+    
+    <p class="archive-desc" data-key="archive_desc">
+        This database contains declassified technical analyses of high-profile cyber threats, Advanced Persistent Threats (APTs), and critical vulnerabilities. All data has been verified and sanitized for educational and research purposes.
+    </p>
+</div>
+
+            <div class="intel-filters">
+                <button class="filter-btn active" data-key="filter_all">ALL_THREATS</button>
+                <button class="filter-btn" data-key="filter_apt">APT_GROUPS</button>
+                <button class="filter-btn" data-key="filter_vuln">VULNERABILITIES</button>
+            </div>
+
+            <div class="reports-grid">
+                <article class="intel-card" data-category="apt_groups" id="case-1">
+                    <div class="card-edge"></div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="case-id">CASE: #LZ-01</span>
+                            <span class="threat-level high">HIGH_THREAT</span>
+                        </div>
+                        <h3 data-key="case1_title">APT: LAZARUS GROUP</h3>
+                        <p class="summary" data-key="case1_summary">Analysis of state-sponsored cyber-espionage and financial heist operations linked to North Korea.</p>
+                        <div class="redacted-preview">
+                            Vector: <span class="blur">Spear-Phishing</span>. Target: <span class="blur">Defense & Crypto</span>.
+                        </div>
+                        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+                    </div>
+                </article>
+
+                <article class="intel-card" data-category="vulnerabilities" id="case-2">
+                    <div class="card-edge"></div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="case-id">CASE: #WCRY-17</span>
+                            <span class="threat-level critical">CRITICAL</span>
+                        </div>
+                        <h3 data-key="case2_title">WANNACRY RANSOMWARE</h3>
+                        <p class="summary" data-key="case2_summary">Technical breakdown of the global worm exploiting the EternalBlue (MS17-010) vulnerability.</p>
+                        <div class="redacted-preview">
+                            Exploit: <span class="blur">SMBv1 Protocol</span>. Encryption: <span class="blur">AES-128</span> + RSA.
+                        </div>
+                        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+                    </div>
+                </article>
+
+                <article class="intel-card" data-category="vulnerabilities" id="case-3">
+                    <div class="card-edge"></div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="case-id">CASE: #MOVE-23</span>
+                            <span class="threat-level high">HIGH_THREAT</span>
+                        </div>
+                        <h3 data-key="case3_title">MOVEit ZERO-DAY</h3>
+                        <p class="summary" data-key="case3_summary">Analysis of the massive SQL injection (CVE-2023-34362) used for large-scale data exfiltration.</p>
+                        <div class="redacted-preview">
+                            Actor: <span class="blur">CL0P Ransomware</span>. Impact: <span class="blur">60M+ Records</span>.
+                        </div>
+                        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+                    </div>
+                </article>
+
+                <article class="intel-card" data-category="apt_groups" id="case-4">
+                    <div class="card-edge"></div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="case-id">CASE: #STX-10</span>
+                            <span class="threat-level critical">CRITICAL</span>
+                        </div>
+                        <h3 data-key="case4_title">STUXNET WORM</h3>
+                        <p class="summary" data-key="case4_summary">Deconstruction of the most sophisticated cyber-weapon designed for industrial sabotage.</p>
+                        <div class="redacted-preview">
+                            Target: <span class="blur">PLC Controllers</span>. Zero-days: <span class="blur">Four (4)</span>.
+                        </div>
+                        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+                    </div>
+                </article>
+
+                <article class="intel-card" data-category="apt_groups" id="case-5">
+                    <div class="card-edge"></div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="case-id">CASE: #RVL-21</span>
+                            <span class="threat-level high">HIGH_THREAT</span>
+                        </div>
+                        <h3 data-key="case5_title">REvil RANSOMWARE</h3>
+                        <p class="summary" data-key="case5_summary">Analysis of the RaaS model and the supply chain attack against Kaseya VSA.</p>
+                        <div class="redacted-preview">
+                            Method: <span class="blur">Supply Chain Injection</span>. Demand: <span class="blur">$70 Million</span>.
+                        </div>
+                        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+                    </div>
+                </article>
+
+                <article class="intel-card" data-category="vulnerabilities" id="case-6">
+                    <div class="card-edge"></div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="case-id">CASE: #CS-24</span>
+                            <span class="threat-level critical">CRITICAL</span>
+                        </div>
+                        <h3 data-key="case6_title">CROWDSTRIKE INCIDENT</h3>
+                        <p class="summary" data-key="case6_summary">Technical post-mortem of the logic error in Channel File 291 that crashed 8.5M devices.</p>
+                        <div class="redacted-preview">
+                            Root Cause: <span class="blur">Logic Error</span>. Result: <span class="blur">Global BSOD Loop</span>.
+                        </div>
+                        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="reports-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-item">
+                <span class="label">SYSTEM_TIME</span>
+                <p class="timestamp">2026.02.14_16:38_UTC</p>
+            </div>
+            <div class="footer-item center">
+                <p class="copyright">&copy; 2026 ANTONIO RUOCCO // DATA_INTEGRITY_VERIFIED</p>
+                <div class="footer-line"></div>
+            </div>
+            <div class="footer-item right">
+                <span class="label">CLEARANCE_LEVEL</span>
+                <div class="security-clearance">LEVEL_04</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<div id="report-modal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-case-info">
+                <span class="modal-label">DATA_EXTRACT_ID:</span>
+                <span id="modal-case-id" class="modal-value">#0000</span>
+            </div>
+            <button class="modal-close">&times; CLOSE_ENCRYPTED_FILE</button>
+        </div>
+        <div class="modal-body">
+            <h2 id="modal-title">REPORT_TITLE</h2>
+            <div class="modal-divider"></div>
+            <div id="modal-content" class="modal-text">
+                </div>
+        </div>
+        <div class="modal-footer">
+            <span class="blink-text">CONFIDENTIAL_INFORMATION // DO_NOT_DISTRIBUTE</span>
+        </div>
+    </div>
+</div>
+
+    <script src="reports.js"></script>
+</body>
+</html>
