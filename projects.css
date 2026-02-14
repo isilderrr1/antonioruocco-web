@@ -84,12 +84,15 @@
     gap: 30px;
 }
 
+/* Fix Layout Card per allineamento bottoni */
 .project-card {
     background: rgba(10, 10, 10, 0.8);
     border: 1px solid #1a1a1a;
     border-top: 3px solid #00ff41;
     padding: 25px;
     transition: 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Rende la card una colonna flex */
 }
 
 .project-card:hover {
@@ -114,6 +117,12 @@
 
 .project-id { color: #333; font-size: 0.7rem; }
 
+.project-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Permette al contenuto di espandersi */
+}
+
 .project-content h3 {
     margin: 0 0 15px 0;
     font-size: 1.25rem;
@@ -124,7 +133,41 @@
     color: #888;
     font-size: 0.85rem;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    flex: 1; /* Spinge verso il basso tag e bottoni */
+}
+
+/* --- GITHUB TELEMETRY --- */
+.repo-stats {
+    background: rgba(0, 0, 0, 0.6);
+    border-left: 2px solid #0088ff; /* Azzurro per distaccare dal verde */
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.t-label { color: #666; }
+.t-val { color: #0088ff; font-weight: bold; }
+.t-separator { color: #333; }
+
+.stat-loading { 
+    color: #888; 
+    animation: pulse-gray 1.5s infinite; 
+}
+
+.t-error { color: #ff3e3e; }
+/* ------------------------ */
+
+/* Container flessibile per i tag */
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .project-tech span {
@@ -133,11 +176,11 @@
     background: rgba(0, 255, 65, 0.05);
     border: 1px solid rgba(0, 255, 65, 0.2);
     padding: 3px 8px;
-    margin-right: 5px;
 }
 
 .github-btn {
-    display: inline-block;
+    display: block; /* Modificato da inline-block */
+    text-align: center;
     padding: 10px 20px;
     border: 1px solid #00ff41;
     color: #00ff41;
@@ -145,6 +188,7 @@
     font-size: 0.75rem;
     font-weight: bold;
     transition: 0.3s;
+    margin-top: auto; /* Mantiene il bottone ancorato sul fondo */
 }
 
 .github-btn:hover {
@@ -180,21 +224,6 @@
     animation: scanline-move 6s linear infinite;
 }
 
-@keyframes scanline-move {
-    0% { top: 0; }
-    100% { top: 100%; }
-}
-
-@keyframes blink-cursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-@media (max-width: 600px) {
-    .header-flex-custom { flex-direction: column; gap: 10px; }
-    .projects-grid { grid-template-columns: 1fr; }
-}
-
 /* Progetto Bloccato */
 .project-card.locked {
     opacity: 0.5;
@@ -212,48 +241,32 @@
     border-color: #333;
 }
 
-/* Testo Glitch per il titolo bloccato */
-.glitch-text {
-    color: #444 !important;
-    font-family: 'Courier New', monospace;
-}
+.glitch-text { color: #444 !important; font-family: 'Courier New', monospace; }
+.pulse-tech { animation: pulse-gray 2s infinite; color: #555 !important; border-color: #222 !important; }
 
-/* Animazione per il tag #DECRYPTING */
-.pulse-tech {
-    animation: pulse-gray 2s infinite;
-    color: #555 !important;
-    border-color: #222 !important;
-}
-
-@keyframes pulse-gray {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-}
-
-/* Overlay con lucchetto */
 .lock-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
-    color: #333;
-    font-weight: bold;
-    font-size: 0.8rem;
-    pointer-events: none;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.4); color: #333; font-weight: bold; font-size: 0.8rem; pointer-events: none;
 }
+.lock-overlay i { font-size: 2rem; margin-bottom: 10px; }
+.status-dot.grey { background: #222; box-shadow: none; }
 
-.lock-overlay i {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
+/* Animations & Media Queries */
+@keyframes scanline-move { 0% { top: 0; } 100% { top: 100%; } }
+@keyframes blink-cursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes pulse-gray { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-.status-dot.grey {
-    background: #222;
-    box-shadow: none;
+@media (max-width: 768px) {
+    .header-flex-custom { flex-direction: column; gap: 15px; text-align: center; }
+    .projects-grid { grid-template-columns: 1fr; }
+    
+    /* Centra il footer su mobile */
+    .footer-flex-projects {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+    }
+    .stat-item { margin-right: 0; margin-bottom: 5px; display: block; }
 }
