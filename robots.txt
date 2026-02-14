@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Indica a Google dove si trova la mappa del sito
+Sitemap: https://antonioruocco.com/sitemap.xml
+
+
+# Benvenuto curioso. Non c'è nessuna vulnerabilità qui, 
+# solo un portfolio ben protetto. ;)
