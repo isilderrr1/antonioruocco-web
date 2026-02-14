@@ -20,13 +20,14 @@ The portfolio is organized into chromatic and functional "modules" to provide im
 
 | Module | Color | Visual Theme | Path |
 | :--- | :--- | :--- | :--- |
-| **Experience** | Green | Terminal Log / System Journal | `/experience.html` |
-| **Certifications** | Cyan | Expandable Encrypted Vault | `/certifications.html` |
-| **Projects** | Green | Git Clone / OSINT Repository | `/projects.html` |
-| **Cyber News** | Red | Global Intel / SOC Dashboard | `/news.html` |
-| **Interactive Lab** | Purple | **Full-Stack Command Line** | `/index.html` |
-| **Library** | Amber | Digital Forensics / Archive | `/books.html` |
-| **Contact** | Cyan/Red | Secure Transmission Protocol | `/contact.html` |
+| Experience | Green | Terminal Log / System Journal | `/experience.html` |
+| Certifications | Cyan | Expandable Encrypted Vault | `/certifications.html` |
+| Projects | Green | Git Clone / OSINT Repository | `/projects.html` |
+| Cyber News | Red | Global Intel / SOC Dashboard | `/news.html` |
+| Interactive Lab | Purple | Full-Stack Command Line | `/index.html` |
+| Library | Amber | Digital Forensics / Archive | `/books.html` |
+| **Intel Reports** | **Blue** | **Declassified Threat Archive / HUD** | **`/reports.html`** |
+| Contact | Cyan/Red | Secure Transmission Protocol | `/contact.html` |
 
 ---
 
