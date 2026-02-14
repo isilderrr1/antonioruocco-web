@@ -199,3 +199,16 @@ body.vault-theme {
     .station-right { align-items: center; }
     .glitch-text { font-size: 1.4rem; }
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.blink-red {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}

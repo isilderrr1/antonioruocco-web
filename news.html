@@ -35,6 +35,16 @@
     </header>
 
     <main class="news-container container">
+
+<div class="threat-monitor-box" style="background:#050505; border:1px solid #ff0000; padding:15px; margin-bottom:30px; font-family:monospace;">
+    <div style="color:#ff0000; font-size:0.8rem; border-bottom:1px solid #222; padding-bottom:8px; margin-bottom:10px; font-weight:bold;">
+        <span class="blink-red">●</span> LIVE_THREAT_FEED
+    </div>
+    <div id="threat-list" style="height:120px; overflow:hidden; font-size:0.75rem;">
+        <div class="threat-item" style="color:#444;">[SYSTEM] ESTABLISHING_SECURE_NODE...</div>
+    </div>
+</div>
+
         <div id="news-feed" class="news-grid">
             <div class="loading-text">INTERCEPTING_GLOBAL_PACKETS...</div>
         </div>
@@ -106,6 +116,47 @@
             }
         }
         window.onload = fetchMultiNews;
+
+// Monitor degli attacchi indipendente
+const threatScenarios = [
+    { t: "DDoS Attempt", l: "Russia", s: "BLOCKED" },
+    { t: "SQLi Probe", l: "China", s: "MITIGATED" },
+    { t: "Zero-Day Exploit", l: "Unknown", status: "CRITICAL" },
+    { t: "Brute Force", l: "Germany", s: "REJECTED" },
+    { t: "SSH Scan", l: "USA", s: "BLOCKED" },
+    { t: "Ransomware Activity", l: "East Europe", status: "ISOLATED" },
+    { t: "XSS Injection", l: "Ukraine", s: "FILTERED" }
+];
+
+function updateThreatFeed() {
+    const list = document.getElementById('threat-list');
+    if(!list) return;
+
+    const entry = threatScenarios[Math.floor(Math.random() * threatScenarios.length)];
+    const ip = `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.X.X`;
+    const time = new Date().toLocaleTimeString();
+
+    const row = document.createElement('div');
+    row.style.cssText = "padding:4px 0; border-bottom:1px solid #111; animation: fadeIn 0.5s;";
+    row.innerHTML = `
+        <span style="color:#555">[${time}]</span> 
+        <span style="color:${entry.s === 'BLOCKED' ? '#ff4444' : '#00d4ff'}">[${entry.s}]</span> 
+        <span style="color:#fff">${entry.t}</span> from ${ip} 
+        (<span style="color:#ff4444">${entry.l}</span>)
+    `;
+
+    // Inserisce in alto
+    list.insertBefore(row, list.firstChild);
+
+    // Rimuove i vecchi se sono più di 5
+    if (list.children.length > 5) {
+        list.removeChild(list.lastChild);
+    }
+}
+
+// Avvia il monitor ogni 3 secondi senza interferire con window.onload
+setInterval(updateThreatFeed, 3000);
+        
     </script>
 </body>
 </html>
