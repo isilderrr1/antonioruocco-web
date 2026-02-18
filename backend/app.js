@@ -42,47 +42,52 @@ const Config = mongoose.model('Config', new mongoose.Schema({
 }), 'vulnerable_configs');
 
 
+// --- CONFIGURAZIONE IA (FUORI DALLE ROTTE) ---
+// Inizializziamo l'istanza e il modello una volta sola all'avvio
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+
 // ==========================================
 // 🧠 ROTTA 1: WINTERMUTE (Terminale Home Page)
 // ==========================================
 app.post('/api/ai-terminal', async (req, res) => {
     try {
-        // Ora il server riceve il comando E la lingua dell'utente (es. "it-IT", "en-US", "es-ES")
         const { command, userLanguage = "en-US" } = req.body; 
 
-        // 1. Manteniamo il tuo Easter Egg Originale
-        const secretBinary = "01000001 01101110 01110100 01101111 01101110 01101001 01101111"; // "Antonio" in binario
+        // 1. Easter Egg Originale (Priorità Massima)
+        const secretBinary = "01000001 01101110 01110100 01101111 01101110 01101001 01101111";
         if (command.trim() === secretBinary) {
             return res.json({ 
                 response: "[ SYSTEM_UNLOCK ] BENVENUTO, CREATORE. ACCESSO ROOT GARANTITO. FILE_SEGRETO.TXT DECRIPTATO." 
             });
         }
 
-        // 2. Il Cervello di WINTERMUTE
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        
+        // 2. Definizione del Prompt
         const prompt = `Sei WINTERMUTE, l'intelligenza artificiale di sistema del portfolio di Antonio Ruocco (Cybersecurity Analyst & Ethical Hacker). 
         Un utente ospite ha digitato nel terminale questo comando: "${command}". 
         La lingua del sistema dell'utente ospite è: ${userLanguage}. 
         
         REGOLE FONDAMENTALI: 
-        1. Devi rispondere ESCLUSIVAMENTE nella lingua rilevata dell'utente (${userLanguage}), a meno che l'utente non scriva in un'altra lingua.
-        2. Se l'utente ti saluta (es. "ciao", "hello") o ti chiede chi sei, presentati esplicitamente come WINTERMUTE, il costrutto IA a guardia del terminale SOC di Antonio.
+        1. Rispondi SEMPRE nella lingua dell'utente (${userLanguage}).
+        2. Se l'utente ti saluta o chiede chi sei, presentati come WINTERMUTE, l'IA di sorveglianza SOC di Antonio.
+        3. Tono: Freddo, tecnico, professionale, stile terminale hacker. No emozioni.
+        4. Formattazione: Solo testo puro. Niente grassetti, niente asterischi (*), niente titoli (#). Usa i "trattini" per le liste.
         
-        Rispondi in modo conciso, tecnico, freddo e professionale, simulando l'output di un terminale di sicurezza SOC. Nessuna emozione.
-        NON usare formattazioni markdown (niente asterischi, grassetti o titoli), usa solo testo puro o trattini per gli elenchi.
+        DATABASE ANTONIO RUOCCO:
+        - COMPETENZE: Linux, Bash, Python, Node.js, Network Security, SIEM (Wazuh), IDS (Argus), Cloud Security.
+        - BACKGROUND: Ex Croupier professionista (Risk Management & Fraud Detection).
+        - INTERESSI: Hardware hacking, Maker, Reverse Engineering, SOC Lab fisici.
         
-        DATABASE CLASSIFICATO SU ANTONIO RUOCCO:
-        - COMPETENZE TECNICHE: Ottima padronanza di sistemi Linux e Bash scripting. Sviluppo in Python e Node.js. Esperienza in Network Security, gestione SIEM (Wazuh), IDS (Argus) e Web/Cloud Security.
-        - PERCORSO PROFESSIONALE: Ex Croupier professionista. Ha trasferito le sue abilità di risk management ad alto livello, calcolo rapido, analisi comportamentale e rilevamento frodi nel campo della Cybersecurity.
-        - HOBBY E INTERESSI: Appassionato di elettronica (maker), hardware hacking, reverse engineering e progettazione di laboratori di rete fisici (SOC Lab).
-        
-        Esegui l'output adesso.`;
+        Esegui l'output.`;
 
+        // 3. Chiamata all'IA (Usiamo l'oggetto 'model' definito fuori)
         const result = await model.generateContent(prompt);
-        const aiResponse = result.response.text();
+        const responseText = result.response.text();
 
-        res.json({ response: aiResponse });
+        // Pulizia simboli markdown residui
+        const cleanResponse = responseText.replace(/[*#_]/g, '');
+
+        res.json({ response: cleanResponse });
 
     } catch (error) {
         console.error("Errore WINTERMUTE:", error);
@@ -91,7 +96,6 @@ app.post('/api/ai-terminal', async (req, res) => {
         });
     }
 });
-
 
 // ==========================================
 // 🛡️ ROTTA 2: CYBER RANGE (Terminale Laboratorio)
@@ -227,3 +231,4 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
