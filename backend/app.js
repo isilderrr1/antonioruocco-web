@@ -43,10 +43,8 @@ const Config = mongoose.model('Config', new mongoose.Schema({
 
 
 // --- CONFIGURAZIONE IA (VERSIONE HARDENED) ---
-const model = genAI.getGenerativeModel({ 
-    model: "gemini-2.0-flash", 
-});
 
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // ==========================================
 // 🧠 ROTTA 1: WINTERMUTE (Terminale Home Page)
@@ -232,6 +230,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
