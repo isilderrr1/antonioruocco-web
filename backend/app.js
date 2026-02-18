@@ -42,9 +42,11 @@ const Config = mongoose.model('Config', new mongoose.Schema({
 }), 'vulnerable_configs');
 
 
-// --- CONFIGURAZIONE IA (VERSIONE HARDENED) ---
-
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+// --- CONFIGURAZIONE IA (VERSIONE HARDENED V1) ---
+const model = genAI.getGenerativeModel(
+    { model: "gemini-1.5-flash" },
+    { apiVersion: 'v1' } // <--- QUESTO FORZA L'URL STABILE SENZA 404
+);
 
 // ==========================================
 // 🧠 ROTTA 1: WINTERMUTE (Terminale Home Page)
@@ -230,7 +232,6 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
-
 
 
 
