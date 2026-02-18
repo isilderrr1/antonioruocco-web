@@ -12,8 +12,8 @@ app.use(express.json());
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const model = genAI.getGenerativeModel(
-    { model: "gemini-1.5-flash" }, // NOME SEMPLICE (la libreria aggiunge "models/" da sola)
-    { apiVersion: 'v1' }            // FORZA IL TUBO STABILE
+    { model: "gemini-1.0-pro" }, // Proviamo il modello Pro, più stabile su v1
+    { apiVersion: 'v1' }
 );
 
 // --- CONNESSIONE DATABASE ---
@@ -229,6 +229,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
