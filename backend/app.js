@@ -11,6 +11,20 @@ app.use(express.json());
 // --- CONFIGURAZIONE IA (OVERRIDE DEFINITIVO) ---
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+
+async function debugModels() {
+    try {
+        const result = await genAI.listModels();
+        console.log("--- MODELLI DISPONIBILI PER QUESTA CHIAVE ---");
+        result.models.forEach(m => console.log(m.name));
+        console.log("---------------------------------------------");
+    } catch (e) {
+        console.error("ERRORE LISTA MODELLI:", e.message);
+    }
+}
+debugModels();
+// --- FINE BLOCCO DI DEBUG ---
+
 const model = genAI.getGenerativeModel(
     { model: "gemini-1.0-pro" }, // Proviamo il modello Pro, più stabile su v1
     { apiVersion: 'v1' }
@@ -229,6 +243,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
