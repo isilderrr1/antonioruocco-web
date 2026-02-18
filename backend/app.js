@@ -1,14 +1,18 @@
+require('dotenv').config(); // <-- Aggiunto per leggere il file .env
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const app = express();
+const { GoogleGenerativeAI } = require("@google/generative-ai"); // <-- Aggiunta libreria IA
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 
+// --- CONFIGURAZIONE IA ---
+// Inizializza Gemini con la chiave segreta salvata nel file .env
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
 // --- CONNESSIONE DATABASE ---
-// Il server prenderà la stringa ESCLUSIVAMENTE dalle variabili d'ambiente (ENV)
-// Questo rende il codice sicuro per GitHub.
 const mongoURI = process.env.MONGO_URI;
 
 if (!mongoURI) {
@@ -37,7 +41,62 @@ const Config = mongoose.model('Config', new mongoose.Schema({
     fix: String, event: String, ip: String, user: String, location: String
 }), 'vulnerable_configs');
 
-// --- ROTTA PRINCIPALE ---
+
+// ==========================================
+// 🧠 ROTTA 1: WINTERMUTE (Terminale Home Page)
+// ==========================================
+app.post('/api/ai-terminal', async (req, res) => {
+    try {
+        // Ora il server riceve il comando E la lingua dell'utente (es. "it-IT", "en-US", "es-ES")
+        const { command, userLanguage = "en-US" } = req.body; 
+
+        // 1. Manteniamo il tuo Easter Egg Originale
+        const secretBinary = "01000001 01101110 01110100 01101111 01101110 01101001 01101111"; // "Antonio" in binario
+        if (command.trim() === secretBinary) {
+            return res.json({ 
+                response: "[ SYSTEM_UNLOCK ] BENVENUTO, CREATORE. ACCESSO ROOT GARANTITO. FILE_SEGRETO.TXT DECRIPTATO." 
+            });
+        }
+
+        // 2. Il Cervello di WINTERMUTE
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        
+        const prompt = `Sei WINTERMUTE, l'intelligenza artificiale di sistema del portfolio di Antonio Ruocco (Cybersecurity Analyst & Ethical Hacker). 
+        Un utente ospite ha digitato nel terminale questo comando: "${command}". 
+        La lingua del sistema dell'utente ospite è: ${userLanguage}. 
+        
+        REGOLE FONDAMENTALI: 
+        1. Devi rispondere ESCLUSIVAMENTE nella lingua rilevata dell'utente (${userLanguage}), a meno che l'utente non scriva in un'altra lingua.
+        2. Se l'utente ti saluta (es. "ciao", "hello") o ti chiede chi sei, presentati esplicitamente come WINTERMUTE, il costrutto IA a guardia del terminale SOC di Antonio.
+        
+        Rispondi in modo conciso, tecnico, freddo e professionale, simulando l'output di un terminale di sicurezza SOC. Nessuna emozione.
+        NON usare formattazioni markdown (niente asterischi, grassetti o titoli), usa solo testo puro o trattini per gli elenchi.
+        
+        DATABASE CLASSIFICATO SU ANTONIO RUOCCO:
+        - COMPETENZE TECNICHE: Ottima padronanza di sistemi Linux e Bash scripting. Sviluppo in Python e Node.js. Esperienza in Network Security, gestione SIEM (Wazuh), IDS (Argus) e Web/Cloud Security.
+        - PERCORSO PROFESSIONALE: Ex Croupier professionista. Ha trasferito le sue abilità di risk management ad alto livello, calcolo rapido, analisi comportamentale e rilevamento frodi nel campo della Cybersecurity.
+        - HOBBY E INTERESSI: Appassionato di elettronica (maker), hardware hacking, reverse engineering e progettazione di laboratori di rete fisici (SOC Lab).
+        
+        Esegui l'output adesso.`;
+
+        const result = await model.generateContent(prompt);
+        const aiResponse = result.response.text();
+
+        res.json({ response: aiResponse });
+
+    } catch (error) {
+        console.error("Errore WINTERMUTE:", error);
+        res.status(500).json({ 
+            response: "[ ERROR_CRITICAL ] COLLEGAMENTO CON WINTERMUTE INTERROTTO. MAINFRAME OFFLINE." 
+        });
+    }
+});
+
+
+// ==========================================
+// 🛡️ ROTTA 2: CYBER RANGE (Terminale Laboratorio)
+// ==========================================
+// Questa è la tua rotta originale, intatta!
 app.post('/api/terminal', async (req, res) => {
     const { command, module } = req.body;
     
@@ -165,5 +224,5 @@ app.post('/api/terminal', async (req, res) => {
     res.json(response);
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
