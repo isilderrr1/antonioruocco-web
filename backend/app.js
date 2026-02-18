@@ -43,10 +43,13 @@ const Config = mongoose.model('Config', new mongoose.Schema({
 
 
 // --- CONFIGURAZIONE IA (VERSIONE DEFINITIVA) ---
-const model = genAI.getGenerativeModel(
-    { model: "models/gemini-1.5-flash" }, // <--- AGGIUNGI "models/" DAVANTI
-    { apiVersion: 'v1' }
-);
+const model = genAI.getGenerativeModel({ 
+    model: "gemini-1.5-flash",
+    generationConfig: {
+        maxOutputTokens: 800, // Evita che l'IA scriva papiri che bloccano Render
+        temperature: 0.7
+    }
+});
 
 // ==========================================
 // 🧠 ROTTA 1: WINTERMUTE (Terminale Home Page)
@@ -232,6 +235,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
