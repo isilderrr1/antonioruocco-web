@@ -11,20 +11,9 @@ app.use(express.json());
 // --- CONFIGURAZIONE IA (LA MIGLIORE PER RENDER) ---
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-const model = genAI.getGenerativeModel(
-    { 
-        model: "gemini-1.5-flash" // Più veloce della 1.0 per evitare i timeout sul 9x9
-    },
-    { 
-        apiVersion: 'v1' // Forza l'endpoint stabile che non scade come la beta
-    }
-);
-
-// Aggiungiamo questa protezione per il 9x9
-const generationConfig = {
-    maxOutputTokens: 1000, // Limita la risposta per non far crashare il server Free
-    temperature: 0.7,
-};
+const model = genAI.getGenerativeModel({ 
+    model: "gemini-2.0-flash" 
+});
 
 // --- CONNESSIONE DATABASE ---
 const mongoURI = process.env.MONGO_URI;
@@ -239,6 +228,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
