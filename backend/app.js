@@ -8,31 +8,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- CONFIGURAZIONE IA (DIAGNOSTICA AVANZATA) ---
-console.log("DEBUG: Avvio inizializzazione IA...");
-console.log("DEBUG: Chiave API presente?", process.env.GEMINI_API_KEY ? "SÌ (inizia con " + process.env.GEMINI_API_KEY.substring(0, 4) + ")" : "NO");
-
+// --- CONFIGURAZIONE IA (LA MIGLIORE PER RENDER) ---
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-async function debugModels() {
-    try {
-        console.log("--- TENTATIVO RECUPERO LISTA MODELLI ---");
-        const result = await genAI.listModels();
-        if (!result.models || result.models.length === 0) {
-            console.log("ATTENZIONE: Nessun modello disponibile per questa chiave.");
-        } else {
-            console.log("--- MODELLI TROVATI ---");
-            result.models.forEach(m => console.log("Modello:", m.name));
-        }
-        console.log("---------------------------------------");
-    } catch (e) {
-        console.error("ERRORE CRITICO LISTA MODELLI:", e.message);
+const model = genAI.getGenerativeModel(
+    { 
+        model: "gemini-1.5-flash" // Più veloce della 1.0 per evitare i timeout sul 9x9
+    },
+    { 
+        apiVersion: 'v1' // Forza l'endpoint stabile che non scade come la beta
     }
-}
-debugModels();
+);
 
-// USA IL MODELLO STANDARD (Senza forzare v1, lasciamo fare alla libreria)
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+// Aggiungiamo questa protezione per il 9x9
+const generationConfig = {
+    maxOutputTokens: 1000, // Limita la risposta per non far crashare il server Free
+    temperature: 0.7,
+};
 
 // --- CONNESSIONE DATABASE ---
 const mongoURI = process.env.MONGO_URI;
@@ -247,6 +239,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
