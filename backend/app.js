@@ -8,27 +8,31 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- CONFIGURAZIONE IA (OVERRIDE DEFINITIVO) ---
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// --- CONFIGURAZIONE IA (DIAGNOSTICA AVANZATA) ---
+console.log("DEBUG: Avvio inizializzazione IA...");
+console.log("DEBUG: Chiave API presente?", process.env.GEMINI_API_KEY ? "SÌ (inizia con " + process.env.GEMINI_API_KEY.substring(0, 4) + ")" : "NO");
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function debugModels() {
     try {
+        console.log("--- TENTATIVO RECUPERO LISTA MODELLI ---");
         const result = await genAI.listModels();
-        console.log("--- MODELLI DISPONIBILI PER QUESTA CHIAVE ---");
-        result.models.forEach(m => console.log(m.name));
-        console.log("---------------------------------------------");
+        if (!result.models || result.models.length === 0) {
+            console.log("ATTENZIONE: Nessun modello disponibile per questa chiave.");
+        } else {
+            console.log("--- MODELLI TROVATI ---");
+            result.models.forEach(m => console.log("Modello:", m.name));
+        }
+        console.log("---------------------------------------");
     } catch (e) {
-        console.error("ERRORE LISTA MODELLI:", e.message);
+        console.error("ERRORE CRITICO LISTA MODELLI:", e.message);
     }
 }
 debugModels();
-// --- FINE BLOCCO DI DEBUG ---
 
-const model = genAI.getGenerativeModel(
-    { model: "gemini-1.0-pro" }, // Proviamo il modello Pro, più stabile su v1
-    { apiVersion: 'v1' }
-);
+// USA IL MODELLO STANDARD (Senza forzare v1, lasciamo fare alla libreria)
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // --- CONNESSIONE DATABASE ---
 const mongoURI = process.env.MONGO_URI;
@@ -243,6 +247,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
