@@ -45,10 +45,9 @@ const Config = mongoose.model('Config', new mongoose.Schema({
 // --- CONFIGURAZIONE IA (VERSIONE HARDENED) ---
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Forziamo l'uso del modello senza passare per v1beta se possibile
-// Usiamo il nome completo del modello per evitare ambiguità
+// Cambiamo in 2.0-flash per superare il problema del 404 su v1beta
 const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
+    model: "gemini-2.0-flash", 
 });
 
 
@@ -236,5 +235,6 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
