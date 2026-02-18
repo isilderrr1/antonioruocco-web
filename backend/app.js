@@ -59,7 +59,7 @@ app.post('/api/ai-terminal', async (req, res) => {
         }
 
         // 2. Il Cervello di WINTERMUTE
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         
         const prompt = `Sei WINTERMUTE, l'intelligenza artificiale di sistema del portfolio di Antonio Ruocco (Cybersecurity Analyst & Ethical Hacker). 
         Un utente ospite ha digitato nel terminale questo comando: "${command}". 
@@ -225,4 +225,5 @@ app.post('/api/terminal', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
