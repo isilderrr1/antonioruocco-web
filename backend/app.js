@@ -42,10 +42,10 @@ const Config = mongoose.model('Config', new mongoose.Schema({
 }), 'vulnerable_configs');
 
 
-// --- CONFIGURAZIONE IA (VERSIONE HARDENED V1) ---
+// --- CONFIGURAZIONE IA (VERSIONE DEFINITIVA) ---
 const model = genAI.getGenerativeModel(
-    { model: "gemini-1.5-flash" },
-    { apiVersion: 'v1' } // <--- QUESTO FORZA L'URL STABILE SENZA 404
+    { model: "models/gemini-1.5-flash" }, // <--- AGGIUNGI "models/" DAVANTI
+    { apiVersion: 'v1' }
 );
 
 // ==========================================
@@ -232,6 +232,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
