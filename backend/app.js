@@ -8,14 +8,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- CONFIGURAZIONE IA (OVERRIDE MANUALE) ---
+// --- CONFIGURAZIONE IA (OVERRIDE DEFINITIVO) ---
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Forziamo il modello a usare la versione stabile 'v1'
-// Questo sovrascrive qualsiasi impostazione predefinita della libreria
 const model = genAI.getGenerativeModel(
-    { model: "gemini-1.5-flash" },
-    { apiVersion: 'v1' } 
+    { model: "gemini-1.5-flash" }, // NOME SEMPLICE (la libreria aggiunge "models/" da sola)
+    { apiVersion: 'v1' }            // FORZA IL TUBO STABILE
 );
 
 // --- CONNESSIONE DATABASE ---
@@ -231,6 +229,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
