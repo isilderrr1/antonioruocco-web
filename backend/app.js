@@ -8,9 +8,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- CONFIGURAZIONE IA ---
-// Inizializza Gemini con la chiave segreta salvata nel file .env
+// --- CONFIGURAZIONE IA (OVERRIDE MANUALE) ---
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+// Forziamo il modello a usare la versione stabile 'v1'
+// Questo sovrascrive qualsiasi impostazione predefinita della libreria
+const model = genAI.getGenerativeModel(
+    { model: "gemini-1.5-flash" },
+    { apiVersion: 'v1' } 
+);
 
 // --- CONNESSIONE DATABASE ---
 const mongoURI = process.env.MONGO_URI;
@@ -40,16 +46,6 @@ const Config = mongoose.model('Config', new mongoose.Schema({
     service: String, version: String, status: String, cve: String,
     fix: String, event: String, ip: String, user: String, location: String
 }), 'vulnerable_configs');
-
-
-// --- CONFIGURAZIONE IA (VERSIONE DEFINITIVA) ---
-const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
-    generationConfig: {
-        maxOutputTokens: 800, // Evita che l'IA scriva papiri che bloccano Render
-        temperature: 0.7
-    }
-});
 
 // ==========================================
 // 🧠 ROTTA 1: WINTERMUTE (Terminale Home Page)
@@ -235,6 +231,7 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
+
 
 
 
