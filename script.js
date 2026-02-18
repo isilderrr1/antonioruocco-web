@@ -97,12 +97,28 @@ document.addEventListener('DOMContentLoaded', () => {
     changeLanguage('en'); // Default
 });
 
-// --- 3. TERMINAL EASTER EGG LOGIC (Global scope) ---
+// --- 3. TERMINAL EASTER EGG LOGIC & WINTERMUTE AI ---
+let terminalInitialized = false;
+
 function openTerminal() {
     const overlay = document.getElementById('terminal-overlay');
+    const output = document.getElementById('terminal-output');
+    
     if(overlay) {
         overlay.style.display = 'flex';
         document.getElementById('terminal-input').focus();
+
+        // Messaggio di presentazione di Wintermute (solo la prima volta che si apre)
+        if (!terminalInitialized) {
+            const greeting = document.createElement('p');
+            greeting.style.color = "#00d4ff"; // Colore azzurro olografico per Wintermute
+            greeting.innerHTML = "<br>> [SYSTEM] CONNESSIONE NEURALE STABILITA...<br>> [WINTERMUTE] MAINFRAME ONLINE. IN ATTESA DI INPUT...<br>";
+            output.appendChild(greeting);
+            
+            // Auto-scroll e flag
+            output.scrollTop = output.scrollHeight;
+            terminalInitialized = true;
+        }
     }
 }
 
@@ -111,34 +127,88 @@ function closeTerminal() {
     if(overlay) overlay.style.display = 'none';
 }
 
-document.addEventListener('keypress', function (e) {
+document.addEventListener('keypress', async function (e) {
     const terminalInput = document.getElementById('terminal-input');
     const output = document.getElementById('terminal-output');
     
     if (terminalInput === document.activeElement && e.key === 'Enter') {
         const input = terminalInput.value.trim();
-        const p = document.createElement('p');
-        p.textContent = `$ ${input}`;
-        output.appendChild(p);
+        if (!input) return; // Non fa nulla se premi invio a vuoto
 
-        if (input.toLowerCase() === "antonio") {
-            const success = document.createElement('p');
-            success.style.color = "#ffff00";
-            success.innerHTML = "> DECODING SUCCESSFUL...<br>> ACCESS GRANTED. WELCOME, CREATOR.<br>> STATUS: Antonio is currently available for recruitment.";
-            output.appendChild(success);
-        } else if (input.toLowerCase() === "clear") {
+        // 1. Stampa il comando dell'utente a schermo
+        const pUser = document.createElement('p');
+        pUser.style.color = "#fff";
+        pUser.textContent = `$ ${input}`;
+        output.appendChild(pUser);
+
+        // Pulisci l'input
+        terminalInput.value = "";
+        output.scrollTop = output.scrollHeight;
+
+        // 2. Comandi Locali Rapidi (non passano per l'IA)
+        if (input.toLowerCase() === "clear") {
             output.innerHTML = "";
+            return;
         } else if (input.toLowerCase() === "help") {
             const help = document.createElement('p');
-            help.textContent = "> Try to decode the binary string in the hint.";
+            help.textContent = "> COMANDI DI SISTEMA: 'clear' (pulisce lo schermo), 'help' (aiuto). Qualsiasi altra query sarà processata da WINTERMUTE. Easter Egg: Inserisci il binario corretto.";
             output.appendChild(help);
-        } else {
-            const error = document.createElement('p');
-            error.style.color = "#ff5555";
-            error.textContent = "> ERROR: ACCESS DENIED.";
-            output.appendChild(error);
+            output.scrollTop = output.scrollHeight;
+            return;
         }
-        terminalInput.value = "";
+
+        // 3. Mostra lo stato di "Elaborazione" di Wintermute
+        const pLoad = document.createElement('p');
+        pLoad.style.color = "#888";
+        pLoad.textContent = "> WINTERMUTE STA ELABORANDO LA RICHIESTA...";
+        pLoad.classList.add('blink-terminal'); // Usa la tua classe CSS per far lampeggiare il testo
+        output.appendChild(pLoad);
+        output.scrollTop = output.scrollHeight;
+
+        // 4. Cattura la lingua del browser dell'utente (es. "it-IT", "en-US")
+        const browserLanguage = navigator.language || navigator.userLanguage || "en-US";
+
+        // 5. Invia al Backend
+        try {
+            // Logica dinamica: se sei sul tuo PC usa localhost, se sei online usa Render
+            const BACKEND_DOMAIN = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" 
+                ? "http://localhost:3000" 
+                : "https://antonio-cyber-backend.onrender.com";
+
+            const API_URL = `${BACKEND_DOMAIN}/api/ai-terminal`; 
+            
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    command: input,
+                    userLanguage: browserLanguage // Inviamo la lingua all'IA!
+                })
+            });
+
+            const data = await response.json();
+
+            // Rimuovi il messaggio di "Elaborazione..."
+            output.removeChild(pLoad);
+
+            // Stampa la risposta di Wintermute
+            const pAI = document.createElement('p');
+            pAI.style.color = "#00ff41"; 
+            
+            // Sostituiamo gli eventuali "a capo" dell'IA con <br> per l'HTML
+            const formattedResponse = data.response.replace(/\n/g, '<br>');
+            pAI.innerHTML = `> ${formattedResponse}`;
+            
+            output.appendChild(pAI);
+
+        } catch (error) {
+            output.removeChild(pLoad);
+            const errorMsg = document.createElement('p');
+            errorMsg.style.color = "#ff5555";
+            errorMsg.textContent = "> ERROR: COLLEGAMENTO AL MAINFRAME INTERROTTO. SERVER OFFLINE.";
+            output.appendChild(errorMsg);
+        }
+
         output.scrollTop = output.scrollHeight;
     }
 });
