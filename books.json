@@ -104,6 +104,22 @@
     "description_es": "Las memorias del denunciante que reveló el sistema global de vigilancia masiva."
   },
   {
+    "title": "Neuromancer",
+    "author": "William Gibson",
+    "isbn": "9780441569595",
+    "description_en": "The definitive cyberpunk novel. A washed-up computer hacker is hired by a mysterious employer to pull off the ultimate hack.",
+    "description_it": "Il romanzo cyberpunk definitivo. Un hacker caduto in disgrazia viene ingaggiato da un misterioso datore di lavoro per compiere l'ultimo grande colpo.",
+    "description_es": "La novela cyberpunk definitiva. Un hacker informático arruinado es contratado por un misterioso empleador para realizar el hackeo final."
+  },
+  {
+    "title": "Snow Crash",
+    "author": "Neal Stephenson",
+    "isbn": "9780553380958",
+    "description_en": "A high-speed dive into a future where the Metaverse is the new frontier and a computer virus is threatening the real world.",
+    "description_it": "Un tuffo ad alta velocità in un futuro dove il Metaverso è la nuova frontiera e un virus informatico minaccia il mondo reale.",
+    "description_es": "Una inmersión a alta velocidad en un futuro donde el Metaverso es la nueva frontera y un virus informático amenaza el mundo real."
+  },
+  {
     "title": "Ghost in the Wires",
     "author": "Kevin Mitnick",
     "isbn": "9780316037723",
@@ -271,4 +287,5 @@
     "description_it": "Una spiegazione della teoria delle superstringhe e la ricerca della teoria del tutto definitiva.",
     "description_es": "Una explicación de la teoría de las supercuerdas y la búsqueda de la teoría del todo definitiva."
   }
+
 ]
