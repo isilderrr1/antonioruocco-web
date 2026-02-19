@@ -49,6 +49,10 @@ A real-time threat intelligence dashboard that merges international feeds (The H
 ### 📟 Active HUD Interface
 Implementation of "Heads-Up Display" elements, including **Laser Input Scanning**, a real-time **Data Integrity Bar**, and a soft **Scanline Overlay** simulating vintage CRT monitors.
 
+### 🧠 WINTERMUTE AI Core
+
+An interactive SOC assistant integrated directly into the custom terminal emulator. Powered by the Google Gemini 2.0 Flash API via a secure Node.js backend, it provides zero-latency, context-aware responses and dynamic language detection for a highly immersive experience.
+
 ### 🔐 Secure Backend Architecture
 * **RESTful API:** Clean communication between the frontend terminal and the cloud logic.
 * **Security First:** Database credentials are never exposed in the code; anaged via Environment Variables (ENV) on Render for maximum credential isolation."
