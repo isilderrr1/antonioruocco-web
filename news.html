@@ -3,13 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="./favicon.png?v=5.0">
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M5Z9HP7J');</script>
-<!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global_Intel_Stream | Antonio Ruocco</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -17,10 +10,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="news.css">
 </head>
 <body class="vault-theme">
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5Z9HP7J"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
     <header class="intel-header-station">
         <div class="container station-grid">
             <div class="station-left">
@@ -48,6 +37,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <main class="news-container container">
 
+<div id="market-monitor-wrap" style="margin-bottom: 25px; font-family: monospace; font-size: 0.7rem; letter-spacing: 0.5px;">
+    
+    <div class="ticker-row" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 8px 15px; background: #080808; border: 1px solid #1a1a1a; border-left: 3px solid #00d4ff; margin-bottom: 5px; align-items: center;">
+        <span style="color: #444; font-weight: bold; border-right: 1px solid #222; padding-right: 10px;">[ CRYPTO_STREAM ]</span>
+        <span id="btc-val">BTC: <span style="color: #fff;">---</span></span>
+        <span id="eth-val">ETH: <span style="color: #fff;">---</span></span>
+        <span id="sol-val">SOL: <span style="color: #fff;">---</span></span>
+        <span id="xrp-val">XRP: <span style="color: #fff;">---</span></span>
+        <span id="ada-val">ADA: <span style="color: #fff;">---</span></span>
+        <span id="dot-val">DOT: <span style="color: #fff;">---</span></span>
+        <span id="link-val">LINK: <span style="color: #fff;">---</span></span>
+    </div>
+
+    <div class="ticker-row" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 8px 15px; background: #080808; border: 1px solid #1a1a1a; border-left: 3px solid #ffcc00; align-items: center;">
+        <span style="color: #444; font-weight: bold; border-right: 1px solid #222; padding-right: 10px;">[ COMMODITIES ]</span>
+        <span id="gold-val">GOLD: <span style="color: #fff;">---</span></span>
+        <span id="silver-val">SILVER: <span style="color: #fff;">---</span></span>
+        <span id="oil-val">CRUDE_OIL: <span style="color: #fff;">---</span></span>
+        <span id="gas-val">NAT_GAS: <span style="color: #fff;">---</span></span>
+        <span id="copper-val">COPPER: <span style="color: #fff;">---</span></span>
+        <span id="plat-val">PLATINUM: <span style="color: #fff;">---</span></span>
+        <span id="palla-val">PALLADIUM: <span style="color: #fff;">---</span></span>
+    </div>
+</div>
+
 <div class="threat-monitor-box" style="background:#050505; border:1px solid #ff0000; padding:15px; margin-bottom:30px; font-family:monospace;">
     <div style="color:#ff0000; font-size:0.8rem; border-bottom:1px solid #222; padding-bottom:8px; margin-bottom:10px; font-weight:bold;">
         <span class="blink-red">●</span> LIVE_THREAT_FEED
@@ -74,69 +88,105 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </footer>
 
     <script>
-        async function fetchMultiNews() {
-            const sources = [
-                { name: 'CS360', url: 'https://www.cybersecurity360.it/feed/' },
-                { name: 'THN_GLOBAL', url: 'https://feeds.feedburner.com/TheHackersNews' }
-            ];
-            
-            const container = document.getElementById('news-feed');
-            let allArticles = [];
+       // --- 1. CONFIGURAZIONE NEWS ---
+async function fetchMultiNews() {
+    const sources = [
+        { name: 'CS360', url: 'https://www.cybersecurity360.it/feed/' },
+        { name: 'THN_GLOBAL', url: 'https://feeds.feedburner.com/TheHackersNews' }
+    ];
+    
+    const container = document.getElementById('news-feed');
+    let allArticles = [];
 
-            try {
-                // Eseguiamo le chiamate a tutte le fonti contemporaneamente
-                const requests = sources.map(source => 
-                    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        if(data.status === 'ok') {
-                            return data.items.map(item => ({ ...item, sourceName: source.name }));
-                        }
-                        return [];
-                    })
-                );
-
-                const results = await Promise.all(requests);
-                allArticles = results.flat(); // Uniamo gli array di news
-
-                // Ordiniamo per data (più recenti in alto)
-                allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-
-                if (allArticles.length > 0) {
-                    container.innerHTML = ''; 
-                    allArticles.forEach(item => { 
-                        const article = document.createElement('article');
-                        article.className = 'intel-card';
-                        
-                        const category = item.sourceName;
-                        const cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 140);
-                        
-                        article.innerHTML = `
-                            <div class="card-edge"></div>
-                            <div class="intel-content">
-                                <span class="category ${category === 'THN_GLOBAL' ? 'gold' : 'red'}">${category}</span>
-                                <h3>${item.title}</h3>
-                                <p>${cleanDesc}...</p>
-                                <a href="${item.link}" target="_blank" class="read-link">DECRYPT_REPORT ></a>
-                            </div>
-                        `;
-                        container.appendChild(article);
-                    });
+    try {
+        const requests = sources.map(source => 
+            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`)
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === 'ok') {
+                    return data.items.map(item => ({ ...item, sourceName: source.name }));
                 }
-            } catch (error) {
-                container.innerHTML = '<div class="error-text">CONNECTION_ERROR: GLOBAL_LINK_FAILED</div>';
-            }
-        }
-        window.onload = fetchMultiNews;
+                return [];
+            })
+        );
 
-// Monitor degli attacchi indipendente
+        const results = await Promise.all(requests);
+        allArticles = results.flat();
+        allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+        if (allArticles.length > 0) {
+            container.innerHTML = ''; 
+            allArticles.forEach(item => { 
+                const article = document.createElement('article');
+                article.className = 'intel-card';
+                const category = item.sourceName;
+                const cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 140);
+                
+                article.innerHTML = `
+                    <div class="card-edge"></div>
+                    <div class="intel-content">
+                        <span class="category ${category === 'THN_GLOBAL' ? 'gold' : 'red'}">${category}</span>
+                        <h3>${item.title}</h3>
+                        <p>${cleanDesc}...</p>
+                        <a href="${item.link}" target="_blank" class="read-link">DECRYPT_REPORT ></a>
+                    </div>
+                `;
+                container.appendChild(article);
+            });
+        }
+    } catch (error) {
+        container.innerHTML = '<div class="error-text">CONNECTION_ERROR: GLOBAL_LINK_FAILED</div>';
+    }
+}
+
+// --- 2. CONFIGURAZIONE MERCATI (CRYPTO & COMMODITIES) ---
+async function fetchMarketData() {
+    try {
+        // Recupero Crypto
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,polkadot,chainlink&vs_currencies=usd');
+        const d = await response.json();
+        
+        // Helper per aggiornare i valori crypto se esistono gli ID
+        const updateCrypto = (id, val) => {
+            const el = document.getElementById(id);
+            if(el && val) el.querySelector('span').innerText = `$${val.toLocaleString()}`;
+        };
+
+        updateCrypto('btc-val', d.bitcoin?.usd);
+        updateCrypto('eth-val', d.ethereum?.usd);
+        updateCrypto('sol-val', d.solana?.usd);
+        updateCrypto('xrp-val', d.ripple?.usd);
+        updateCrypto('ada-val', d.cardano?.usd);
+        updateCrypto('dot-val', d.polkadot?.usd);
+        updateCrypto('link-val', d.chainlink?.usd);
+
+        // Aggiornamento Materie Prime (Valori simulati aggiornati)
+        const updateComm = (id, val) => {
+            const el = document.getElementById(id);
+            if(el) el.querySelector('span').innerText = val;
+        };
+
+        updateComm('gold-val', '$2,412.30');
+        updateComm('silver-val', '$29.45');
+        updateComm('oil-val', '$82.10');
+        updateComm('gas-val', '$2.85');
+        updateComm('copper-val', '$4.22');
+        updateComm('plat-val', '$1,055.00');
+        updateComm('palla-val', '$1,120.50');
+
+    } catch (error) {
+        console.error("Market Feed Error:", error);
+    }
+}
+
+// --- 3. MONITOR MINACCE ---
 const threatScenarios = [
     { t: "DDoS Attempt", l: "Russia", s: "BLOCKED" },
     { t: "SQLi Probe", l: "China", s: "MITIGATED" },
-    { t: "Zero-Day Exploit", l: "Unknown", status: "CRITICAL" },
+    { t: "Zero-Day Exploit", l: "Unknown", s: "CRITICAL" },
     { t: "Brute Force", l: "Germany", s: "REJECTED" },
     { t: "SSH Scan", l: "USA", s: "BLOCKED" },
-    { t: "Ransomware Activity", l: "East Europe", status: "ISOLATED" },
+    { t: "Ransomware Activity", l: "East Europe", s: "ISOLATED" },
     { t: "XSS Injection", l: "Ukraine", s: "FILTERED" }
 ];
 
@@ -152,26 +202,24 @@ function updateThreatFeed() {
     row.style.cssText = "padding:4px 0; border-bottom:1px solid #111; animation: fadeIn 0.5s;";
     row.innerHTML = `
         <span style="color:#555">[${time}]</span> 
-        <span style="color:${entry.s === 'BLOCKED' ? '#ff4444' : '#00d4ff'}">[${entry.s}]</span> 
+        <span style="color:${entry.s === 'CRITICAL' || entry.s === 'BLOCKED' ? '#ff4444' : '#00d4ff'}">[${entry.s}]</span> 
         <span style="color:#fff">${entry.t}</span> from ${ip} 
         (<span style="color:#ff4444">${entry.l}</span>)
     `;
 
-    // Inserisce in alto
     list.insertBefore(row, list.firstChild);
-
-    // Rimuove i vecchi se sono più di 5
-    if (list.children.length > 5) {
-        list.removeChild(list.lastChild);
-    }
+    if (list.children.length > 5) list.removeChild(list.lastChild);
 }
 
-// Avvia il monitor ogni 3 secondi senza interferire con window.onload
-setInterval(updateThreatFeed, 3000);
-        
+// --- 4. AVVIO SISTEMA ---
+window.addEventListener('load', () => {
+    fetchMultiNews();    // Carica News
+    fetchMarketData();   // Carica Crypto e Commodities
+    
+    // Timer
+    setInterval(fetchMarketData, 60000); // Aggiorna mercati ogni minuto
+    setInterval(updateThreatFeed, 3000); // Aggiorna minacce ogni 3 sec
+});
     </script>
 </body>
-
 </html>
-
-

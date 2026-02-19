@@ -212,3 +212,53 @@ body.vault-theme {
 @keyframes blinker {
     50% { opacity: 0; }
 }
+
+/* Colora i nomi delle Crypto in Ciano (tranne il valore dentro lo span) */
+.ticker-row[style*="border-left: 3px solid #00d4ff"] > span:not(.ticker-label) {
+    color: #00d4ff !important;
+    font-weight: bold;
+}
+
+/* Colora i nomi delle Commodities in Oro/Ambra (tranne il valore dentro lo span) */
+.ticker-row[style*="border-left: 3px solid #ffcc00"] > span:not(.ticker-label) {
+    color: #ffcc00 !important;
+    font-weight: bold;
+}
+
+/* Assicura che i valori numerici dentro gli span rimangano bianchi e puliti */
+.ticker-row span span {
+    color: #ffffff !important;
+    font-weight: normal;
+    margin-left: 4px;
+}
+@media (max-width: 850px) {
+    /* Trasforma la riga in una griglia a due colonne */
+    .ticker-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px !important;
+        padding: 15px !important;
+    }
+
+    /* Fa sì che l'intestazione [ CRYPTO ] o [ COMMODITIES ] occupi tutta la riga in alto */
+    .ticker-row span:first-child {
+        grid-column: span 2;
+        border-right: none !important;
+        border-bottom: 1px solid #222;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        display: block;
+        width: 100%;
+    }
+
+    /* Ottimizza la dimensione del testo per non farlo andare a capo */
+    .ticker-row span {
+        font-size: 0.65rem;
+        white-space: nowrap;
+    }
+
+    /* Riduciamo il margine del main su mobile per guadagnare spazio */
+    .news-container {
+        padding: 20px 0 !important;
+    }
+}
