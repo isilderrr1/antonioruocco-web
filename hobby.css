@@ -225,3 +225,22 @@
     color: #222;
 }
 
+.project-credits {
+    font-size: 0.7rem;
+    margin: 10px 0;
+    color: #666;
+    font-family: 'Courier New', monospace;
+}
+
+.author-link {
+    color: var(--ice-white);
+    text-decoration: none;
+    border-bottom: 1px dashed #444;
+    transition: 0.3s;
+}
+
+.author-link:hover {
+    color: #fff;
+    border-bottom: 1px solid var(--ice-white);
+    text-shadow: 0 0 5px var(--ice-white);
+}
