@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="./favicon.png?v=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKER_ARCHIVE | Antonio Ruocco</title>
+    <link rel="stylesheet" href="hobby.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="maker-body">
+
+    <header class="maker-header">
+    <div class="header-blueprint-line"></div>
+    <div class="header-content wrapper">
+        <div class="header-section left">
+            <div class="status-indicator">
+                <span class="blink-dot"></span>
+                <span class="status-text">SYSTEM_ACTIVE</span>
+            </div>
+            <div class="coord-info">LOC: 40.8522° N, 14.2681° E</div>
+        
+        </div>
+
+        <div class="header-section center">
+            <h1 class="glitch-title" data-text="LAB_FILES_2026">LAB_FILES_2026</h1>
+            <div class="sub-line">// HARDWARE_ARCHIVE_STORAGE</div>
+        </div>
+<div class="lang-selector">
+    <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">ENG</button>
+    <span class="separator">|</span>
+    <button onclick="setLanguage('it')" id="btn-it" class="lang-btn">ITA</button>
+    <span class="separator">|</span>
+    <button onclick="setLanguage('es')" id="btn-es" class="lang-btn">ESP</button>
+</div>
+        <div class="header-section right">
+            <nav class="maker-nav">
+                <a href="index.html" class="nav-btn">
+                    <i class="fas fa-terminal"></i> 
+                    <span>RETURN_TO_BASE</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <main class="maker-main">
+        <div class="wrapper">
+            
+            <section class="lab-section">
+                <h2 class="section-label">01 // HARDWARE_STATION_MAP</h2>
+                
+                <div class="lab-layout">
+                    <div class="lab-zone dev-core">
+    <div class="zone-tag">ZONE_ALPHA // DEV_&_FAB</div>
+    <div class="visual-engine">
+        
+        <div class="main-desk-setup">
+            <div class="monitor-setup">
+                <div class="screen vertical"><span>VERT_LOG</span></div>
+                <div class="screen main-curved"><span>PRIMARY_CORE</span></div>
+                <div class="screen"><span>SUB_02</span></div>
+            </div>
+
+            <div class="printer-3d-model">
+                <div class="ams-unit">Bambu_P1S</div>
+                <div class="print-chamber"></div>
+            </div>
+        </div>
+
+        <div class="under-pc">
+            <div class="led-fans"></div>
+            <span class="pc-label">MASTER_PC</span>
+        </div>
+    </div>
+</div>
+                    <div class="lab-zone fab-core">
+                        <div class="zone-tag">ZONE_BETA // ELECTRONICS</div>
+                        <div class="visual-engine">
+                            <div class="tool-wall">
+                                <div class="peg-grid"></div>
+                                <span class="wall-desc">PEG_BOARD // TOOLS_WALL</span>
+                            </div>
+                            
+                            <div class="electronics-bench">
+                                <div class="tool-box">PWR_STATION</div>
+                                <div class="tool-box">SOLDER_STATION</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<section class="projects-section">
+    <h2 class="section-label">02 // PROJECTS_AND_PROTOTYPES</h2>
+    <div class="projects-container">
+        
+        <a href="#project1" class="project-block">
+            <div class="block-num">ID_01</div>
+            <div class="block-info">
+                <h3>YARH.IO_MKI_TERMINAL</h3>
+                <p id="proj1-short-desc">Hackable handheld computer // Raspberry Pi 3B+ // Modded Keyboard</p>
+                <span class="view-details" id="proj1-details-btn">CLICK_FOR_SPECS [+]</span>
+            </div>
+        </a>
+
+        <div id="project1" class="modal-overlay">
+            <div class="modal-content">
+                <a href="#" class="close-modal" id="modal-close-btn">&times; CLOSE_SYSTEM</a>
+                
+                <div class="modal-grid">
+                    <div class="modal-image">
+                        <img src="img/cyberdeck.png" alt="YARH.IO MKI" style="width:100%; border:1px solid #333;">
+                    </div>
+                    
+                    <div class="modal-text">
+                        <div class="status-tag" id="proj1-status">STATUS: UNDER_CONSTRUCTION</div>
+                        
+                        <h2>YARH.IO_MKI</h2>
+                        
+                        <ul class="specs-list">
+                            <li><span id="spec-core">CORE:</span> Raspberry Pi 3 Model B+</li>
+                            <li><span id="spec-disp">DISPLAY:</span> 5" TFT LCD (HDMI interface)</li>
+                            <li><span id="spec-kbd">KEYBOARD:</span> Modded Bluetooth Keyboard (Integrated)</li>
+                            <li><span id="spec-pwr">POWER:</span> 3.7V Li-Ion + Boost Module</li>
+                            <li><span id="spec-enc">ENCLOSURE:</span> 3D Printed Modular Design</li>
+                        </ul>
+
+                        <p class="project-desc" id="proj1-long-desc">
+                            A modular handheld computer pushing the DIY concept to the limit. The core is a Raspberry Pi 3B+, with input handled by a disassembled Bluetooth keyboard integrated into a 3D printed frame. The design allows for hardware modules to be added or removed via external bolts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        </div>
+    </main>
+
+    <footer class="maker-footer">
+        <div class="footer-wrap wrapper">
+            <span>© 2026 ARCHIVE_01 // ANTONIO RUOCCO</span>
+            <span class="pulse-point">SYSTEM_READY</span>
+        </div>
+    </footer>
+
+<script>
+const translations = {
+    it: {
+        "proj1-short-desc": "Computer palmare hackerabile // Raspberry Pi 3B+ // Tastiera Moddata",
+        "proj1-details-btn": "DETTAGLI [+]",
+        "modal-close-btn": "× CHIUDI_SISTEMA",
+        "proj1-status": "STATO: IN_COSTRUZIONE",
+        "spec-core": "CUORE:",
+        "spec-disp": "DISPLAY:",
+        "spec-kbd": "TASTIERA:",
+        "spec-pwr": "ALIMENTAZIONE:",
+        "spec-enc": "CASE:",
+        "proj1-long-desc": "Un computer portatile modulare che spinge al massimo il concetto di DIY. Il cuore del sistema è un Raspberry Pi 3B+, mentre l'input è affidato a una tastiera Bluetooth smontata e integrata in un telaio stampato in 3D."
+    },
+    en: {
+        "proj1-short-desc": "Hackable handheld computer // Raspberry Pi 3B+ // Modded Keyboard",
+        "proj1-details-btn": "CLICK_FOR_SPECS [+]",
+        "modal-close-btn": "× CLOSE_SYSTEM",
+        "proj1-status": "STATUS: UNDER_CONSTRUCTION",
+        "spec-core": "CORE:",
+        "spec-disp": "DISPLAY:",
+        "spec-kbd": "KEYBOARD:",
+        "spec-pwr": "POWER:",
+        "spec-enc": "ENCLOSURE:",
+        "proj1-long-desc": "A modular handheld computer pushing the DIY concept to the limit. The core is a Raspberry Pi 3B+, with input handled by a disassembled Bluetooth keyboard integrated into a 3D printed frame."
+    },
+    es: {
+        "proj1-short-desc": "Ordenador de mano hackeable // Raspberry Pi 3B+ // Teclado modificado",
+        "proj1-details-btn": "DETALLES [+]",
+        "modal-close-btn": "× CERRAR_SISTEMA",
+        "proj1-status": "ESTADO: EN_CONSTRUCCIÓN",
+        "spec-core": "NÚCLEO:",
+        "spec-disp": "PANTALLA:",
+        "spec-kbd": "TECLADO:",
+        "spec-pwr": "ALIMENTACIÓN:",
+        "spec-enc": "CARCASA:",
+        "proj1-long-desc": "Un ordenador portátil modular que lleva el concepto DIY al límite. El corazón del sistema es una Raspberry Pi 3B+, mientras que la entrada corre a cargo de un teclado Bluetooth desmontado e integrado en un chasis impreso en 3D."
+    }
+};
+
+function setLanguage(lang) {
+    const data = translations[lang];
+    for (let id in data) {
+        const element = document.getElementById(id);
+        if (element) {
+            // Se è il tasto chiudi, usiamo innerHTML per mantenere la '×'
+            if (id === 'modal-close-btn') element.innerHTML = data[id];
+            else element.innerText = data[id];
+        }
+    }
+    
+    // Aggiorna stile bottoni
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById(`btn-${lang}`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    localStorage.setItem('projectLang', lang);
+}
+
+window.onload = () => {
+    const savedLang = localStorage.getItem('projectLang') || 'en';
+    setLanguage(savedLang);
+};
+</script>
+
+</body>
+</html>
