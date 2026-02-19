@@ -6,40 +6,46 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. TRADUZIONE LINGUE ---
     const translations = {
-    en: {
-        header: "Antonio Ruocco",
-        aboutMe: "About Me",
-        aboutText: "Maker and electronics geek with a background in international gaming operations. I've transitioned from high-stakes risk management as a Croupier to professional Cybersecurity, backing my self-taught foundation with a Master's degree. My focus is on infrastructure defense and technical analysis, bridging the gap between hardware intuition and software security.",
-        experience: "Experience",
-        certifications: "Certifications & Skills",
-        projects: "Projects",
-        books: "Books",
-        followMe: "Follow Me"
-    },
-    it: {
-        header: "Antonio Ruocco",
-        aboutMe: "Chi Sono",
-        aboutText: "Maker e smanettone di elettronica con un passato operativo nel gaming internazionale. Ho convertito la mia esperienza nel risk management come Croupier in una carriera nella Cybersecurity, consolidando anni di studio da autodidatta con un Master di specializzazione. Mi occupo di difesa delle infrastrutture e analisi tecnica, unendo l'intuizione per l'hardware alla sicurezza digitale.",
-        experience: "Esperienza",
-        certifications: "Certificazioni & Competenze",
-        projects: "Progetti",
-        books: "Libri",
-        followMe: "Seguimi"
-    },
-    es: {
-        header: "Antonio Ruocco",
-        aboutMe: "Sobre mí",
-        aboutText: "Maker y apasionado de la electrónica con trayectoria en operaciones de juego internacional. He redirigido mi capacidad de gestión de riesgos como Croupier hacia la Ciberseguridad, uniendo mi base autodidacta con un Máster de especialización. Me enfoco en la defensa de infraestructuras y análisis técnico, combinando la intuición por el hardware con la seguridad digital.",
-        experience: "Experiencia",
-        certifications: "Certificaciones & Habilidades",
-        projects: "Proyectos",
-        books: "Libros",
-        followMe: "Sígueme"
-    }
-};
+        en: {
+            header: "Antonio Ruocco",
+            aboutMe: "About Me",
+            aboutText: "Maker and electronics geek with a background in international gaming operations. I've transitioned from high-stakes risk management as a Croupier to professional Cybersecurity, backing my self-taught foundation with a Master's degree. My focus is on infrastructure defense and technical analysis, bridging the gap between hardware intuition and software security.",
+            experience: "Experience",
+            certifications: "Certifications & Skills",
+            projects: "Projects",
+            books: "Books",
+            hobbyTitle: "Maker & Electronics",
+            hobbySub: "Hardware hacking, 3D printing and retro-electronics restoration.",
+            followMe: "Follow Me"
+        },
+        it: {
+            header: "Antonio Ruocco",
+            aboutMe: "Chi Sono",
+            aboutText: "Maker e smanettone di elettronica con un passato operativo nel gaming internazionale. Ho convertito la mia esperienza nel risk management come Croupier in una carriera nella Cybersecurity, consolidando anni di studio da autodidatta con un Master di specializzazione. Mi occupo di difesa delle infrastrutture e analisi tecnica, unendo l'intuizione per l'hardware alla sicurezza digitale.",
+            experience: "Esperienza",
+            certifications: "Certificazioni & Competenze",
+            projects: "Progetti",
+            books: "Libri",
+            hobbyTitle: "Maker ed Elettronica",
+            hobbySub: "Hardware hacking, stampa 3D e restauro di elettronica vintage.",
+            followMe: "Seguimi"
+        },
+        es: {
+            header: "Antonio Ruocco",
+            aboutMe: "Sobre mí",
+            aboutText: "Maker y apasionado de la electrónica con trayectoria en operaciones de juego internacional. He redirigido mi capacidad de gestión de riesgos como Croupier hacia la Ciberseguridad, uniendo mi base autodidacta con un Máster de especialización. Me enfoco en la defensa de infraestructuras y análisis técnico, combinando la intuición por el hardware con la seguridad digital.",
+            experience: "Experiencia",
+            certifications: "Certificaciones & Habilidades",
+            projects: "Proyectos",
+            books: "Libros",
+            hobbyTitle: "Maker y Electrónica",
+            hobbySub: "Hardware hacking, impresión 3D y restauración de electrónica antigua.",
+            followMe: "Sígueme"
+        }
+    };
 
     function changeLanguage(lang) {
-        // Selettori con controllo di sicurezza per evitare errori "null"
+        // Mappa dei selettori aggiornata con la card Hobby
         const elements = {
             'header h1': translations[lang].header,
             '#about-title': translations[lang].aboutMe,
@@ -48,9 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
             '#certifications-card h2': translations[lang].certifications,
             '#projects-card h2': translations[lang].projects,
             '#books-card h2': translations[lang].books,
+            '#hobby-card .card-title': translations[lang].hobbyTitle,
+            '#hobby-card .hobby-subtitle': translations[lang].hobbySub,
             '.footer-social h4': translations[lang].followMe
         };
 
+        // Ciclo per aggiornare i testi
         for (let selector in elements) {
             const el = document.querySelector(selector);
             if (el) {
@@ -58,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Gestione classe active sui bottoni
+        // Gestione classe active sui bottoni lingua
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
         const activeBtn = document.getElementById(lang === 'en' ? 'english' : lang === 'it' ? 'italian' : 'spanish');
         if (activeBtn) activeBtn.classList.add('active');
@@ -72,6 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnEn) btnEn.addEventListener('click', () => changeLanguage('en'));
     if (btnIt) btnIt.addEventListener('click', () => changeLanguage('it'));
     if (btnEs) btnEs.addEventListener('click', () => changeLanguage('es'));
+
+    // Inizializzazione (Default English)
+    changeLanguage('en');
 
     // --- 2. IP VISITOR & HASH LOGIC ---
     async function getVisitorIP() {
@@ -100,24 +112,48 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- 3. TERMINAL EASTER EGG LOGIC & WINTERMUTE AI ---
 let terminalInitialized = false;
 
-function openTerminal() {
+// Utility per creare pause in millisecondi (effetto caricamento)
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+async function openTerminal() {
     const overlay = document.getElementById('terminal-overlay');
     const output = document.getElementById('terminal-output');
+    const inputField = document.getElementById('terminal-input');
     
     if(overlay) {
         overlay.style.display = 'flex';
-        document.getElementById('terminal-input').focus();
 
-        // Messaggio di presentazione di Wintermute (solo la prima volta che si apre)
+        // Esegue l'animazione solo la prima volta
         if (!terminalInitialized) {
-            const greeting = document.createElement('p');
-            greeting.style.color = "#00d4ff"; // Colore azzurro olografico per Wintermute
-            greeting.innerHTML = "<br>> [SYSTEM] CONNESSIONE NEURALE STABILITA...<br>> [WINTERMUTE] MAINFRAME ONLINE. IN ATTESA DI INPUT...<br>";
-            output.appendChild(greeting);
-            
-            // Auto-scroll e flag
-            output.scrollTop = output.scrollHeight;
             terminalInitialized = true;
+            inputField.disabled = true; // Blocca la tastiera durante il boot
+
+            // Helper per stampare testo nel terminale con ritardo
+            const printLine = async (text, delay, color = "#00ff00") => {
+                await sleep(delay);
+                const p = document.createElement('p');
+                p.style.color = color;
+                p.innerHTML = text;
+                output.appendChild(p);
+                output.scrollTop = output.scrollHeight;
+            };
+
+            // --- SEQUENZA DI BOOT CINEMATOGRAFICA ---
+            await printLine("> [INIT] TENTATIVO DI ACCESSO AL MAINFRAME SOC...", 0);
+            await printLine("> AUTENTICAZIONE RICHIESTA.", 400);
+            await printLine("> INSERIRE CHIAVE DI DECRIPTAZIONE AMMINISTRATORE:", 400);
+            await printLine("$ *********", 600, "#fff"); 
+            await printLine("> VERIFICA CHIAVE IN CORSO...", 1500, "#888"); 
+            await printLine("> HASH ACCETTATO: <span style='font-size: 0.8rem; color: #888;'>01000001 01101110 01110100 01101111 01101110 01101001 01101111</span> (ANTONIO)", 200);
+            await printLine("> [SYSTEM] PROTOCOLLI DI SICUREZZA DISATTIVATI.", 300);
+            await printLine("> [SYSTEM] CONNESSIONE NEURALE STABILITA...", 300, "#00d4ff");
+            await printLine("> [WINTERMUTE] MAINFRAME ONLINE. IN ATTESA DI INPUT...", 500, "#00d4ff");
+
+            inputField.disabled = false; // Sblocca la tastiera
+            inputField.focus(); 
+        } else {
+            // Se già inizializzato, dà solo il focus all'input
+            inputField.focus();
         }
     }
 }
@@ -133,44 +169,42 @@ document.addEventListener('keypress', async function (e) {
     
     if (terminalInput === document.activeElement && e.key === 'Enter') {
         const input = terminalInput.value.trim();
-        if (!input) return; // Non fa nulla se premi invio a vuoto
+        if (!input) return;
 
-        // 1. Stampa il comando dell'utente a schermo
+        // 1. Stampa comando utente
         const pUser = document.createElement('p');
         pUser.style.color = "#fff";
         pUser.textContent = `$ ${input}`;
         output.appendChild(pUser);
 
-        // Pulisci l'input
         terminalInput.value = "";
         output.scrollTop = output.scrollHeight;
 
-        // 2. Comandi Locali Rapidi (non passano per l'IA)
+        // 2. Comandi Locali Rapidi
         if (input.toLowerCase() === "clear") {
             output.innerHTML = "";
             return;
         } else if (input.toLowerCase() === "help") {
             const help = document.createElement('p');
-            help.textContent = "> COMANDI DI SISTEMA: 'clear' (pulisce lo schermo), 'help' (aiuto). Qualsiasi altra query sarà processata da WINTERMUTE. Easter Egg: Inserisci il binario corretto.";
+            help.textContent = "> COMANDI DI SISTEMA: 'clear' (pulisce schermo), 'help' (aiuto). Tutte le altre query passano a WINTERMUTE.";
             output.appendChild(help);
             output.scrollTop = output.scrollHeight;
             return;
         }
 
-        // 3. Mostra lo stato di "Elaborazione" di Wintermute
+        // 3. Elaborazione Wintermute
         const pLoad = document.createElement('p');
         pLoad.style.color = "#888";
         pLoad.textContent = "> WINTERMUTE STA ELABORANDO LA RICHIESTA...";
-        pLoad.classList.add('blink-terminal'); // Usa la tua classe CSS per far lampeggiare il testo
+        pLoad.classList.add('blink-terminal'); 
         output.appendChild(pLoad);
         output.scrollTop = output.scrollHeight;
 
-        // 4. Cattura la lingua del browser dell'utente (es. "it-IT", "en-US")
+        // 4. Cattura lingua utente
         const browserLanguage = navigator.language || navigator.userLanguage || "en-US";
 
         // 5. Invia al Backend
         try {
-            // Logica dinamica: se sei sul tuo PC usa localhost, se sei online usa Render
             const BACKEND_DOMAIN = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" 
                 ? "http://localhost:3000" 
                 : "https://antonio-cyber-backend.onrender.com";
@@ -182,30 +216,29 @@ document.addEventListener('keypress', async function (e) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     command: input,
-                    userLanguage: browserLanguage // Inviamo la lingua all'IA!
+                    userLanguage: browserLanguage 
                 })
             });
 
             const data = await response.json();
 
-            // Rimuovi il messaggio di "Elaborazione..."
-            output.removeChild(pLoad);
+            // Rimuovi "Elaborazione..."
+            if (output.contains(pLoad)) output.removeChild(pLoad);
 
-            // Stampa la risposta di Wintermute
+            // Stampa risposta AI
             const pAI = document.createElement('p');
             pAI.style.color = "#00ff41"; 
             
-            // Sostituiamo gli eventuali "a capo" dell'IA con <br> per l'HTML
             const formattedResponse = data.response.replace(/\n/g, '<br>');
             pAI.innerHTML = `> ${formattedResponse}`;
             
             output.appendChild(pAI);
 
         } catch (error) {
-            output.removeChild(pLoad);
+            if (output.contains(pLoad)) output.removeChild(pLoad);
             const errorMsg = document.createElement('p');
             errorMsg.style.color = "#ff5555";
-            errorMsg.textContent = "> ERROR: COLLEGAMENTO AL MAINFRAME INTERROTTO. SERVER OFFLINE.";
+            errorMsg.textContent = "> [ERROR] COLLEGAMENTO AL MAINFRAME INTERROTTO. SERVER OFFLINE.";
             output.appendChild(errorMsg);
         }
 

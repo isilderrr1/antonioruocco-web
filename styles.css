@@ -213,10 +213,22 @@ main {
 }
 
 .about {
-    padding: 40px 0;
-    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('img/about.png') center/cover no-repeat;
-    border-bottom: 1px solid #333;
-    flex-shrink: 0;
+    padding: 60px 0;
+    background-color: #050505;
+    background-image: 
+        linear-gradient(rgba(0, 255, 65, 0.015) 1px, transparent 1px), /* Ridotta opacità */
+        linear-gradient(90deg, rgba(0, 255, 65, 0.015) 1px, transparent 1px);
+    background-size: 45px 45px;
+    border-bottom: 1px solid #222;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    pointer-events: none; /* Non blocca i click */
 }
 
 .about-content {
@@ -224,18 +236,73 @@ main {
     align-items: center;
     justify-content: center;
     gap: 50px;
+    position: relative;
+    z-index: 1; /* Tiene il testo sopra le scanline */
 }
 
+/* Effetto pulito e professionale sulla foto profilo */
 .about-image img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: 3px solid #00ff00;
+    width: 150px;
+    height: 150px;
+    border-radius: 5%; 
+    border: 1px solid #00ff41;
     object-fit: cover;
+    /* Nessun filtro strano, solo la tua foto naturale */
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    transition: all 0.3s ease; /* 'all' permette di animare anche il transform */
 }
 
-.about-text h2 { color: #00ff00; font-size: 2.2rem; margin-bottom: 8px; font-family: 'Courier New', monospace;}
-.about-text p { font-size: 1.05rem; line-height: 1.5; color: #ccc; max-width: 600px; }
+.about-image img:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.7);
+    transform: scale(1.05); /* Leggero zoom in avanti al passaggio del mouse */
+    border: 1px solid #fff; /* Il bordo diventa bianco per far risaltare il focus */
+}
+
+/* Titolo con prefisso di sistema */
+.about-text h2 { 
+    color: #00ff00; 
+    font-size: 2.2rem; 
+    margin-bottom: 8px; 
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Aggiungiamo un simbolo prima del nome */
+.about-text h2::before {
+    content: "[ID_OVR]";
+    font-size: 0.8rem;
+    color: rgba(0, 255, 0, 0.5);
+    background: rgba(0, 255, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+/* Paragrafo stile "Report" - Versione Bilanciata */
+.about-text p { 
+    font-family: 'Courier New', monospace;
+    font-size: 1rem; 
+    line-height: 1.6; 
+    /* Cambiato da verde a grigio chiaro per leggibilità */
+    color: #cbd5e0; 
+    max-width: 650px; 
+    border-left: 2px solid rgba(0, 255, 0, 0.5); 
+    padding-left: 20px;
+    /* Rimosso lo shadow forte per non sfocare le lettere */
+    text-shadow: none;
+}
+
+/* Effetto evidenziatore cyber per parole chiave */
+.about-text p span.highlight {
+    background: rgba(0, 255, 0, 0.15);
+    color: #fff;
+    padding: 0 4px;
+    border-radius: 2px;
+}
 
 /* Signature Box (Digital ID) */
 .profile-id-box {
@@ -263,11 +330,12 @@ main {
 }
 
 /* ============================================================
-    CARDS SECTION
-    ============================================================ */
+    CARDS SECTION - CYBER HUD REDESIGN
+   ============================================================ */
 .cards-section {
     flex: 1;
-    background-color: #111;
+    background-color: #050505; /* Nero profondo come l'About */
+    padding: 40px 0;
     display: flex;
     align-items: center;
 }
@@ -275,40 +343,120 @@ main {
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 25px;
     width: 100%;
 }
 
 .card {
     position: relative;
-    height: 50vh; 
-    max-height: 380px;
-    background-color: #1a1a1a;
-    border-radius: 12px;
+    height: 320px; 
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(0, 255, 65, 0.2); /* Bordo verde spento */
+    border-radius: 4px; /* Più squadrate sono più "pro" */
     overflow: hidden;
-    border: 1px solid #333;
-    transition: 0.4s;
     text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.card:hover { 
-    transform: translateY(-8px); 
-    border-color: #00ff00; 
-    box-shadow: 0 0 20px rgba(0,255,0,0.2); 
+/* Effetto Scanline interno alla card */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(transparent 50%, rgba(0, 255, 65, 0.02) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
 }
 
-.card-image { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.4s; }
-.card:hover .card-image { opacity: 0.8; }
+/* Icona centrale */
+.card-icon {
+    font-size: 3.5rem;
+    color: rgba(0, 255, 65, 0.4);
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.card-id {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: #444;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
 
 .card h2 {
-    position: absolute;
-    bottom: 0; width: 100%;
-    padding: 20px 10px;
-    background: linear-gradient(transparent, rgba(0,0,0,1));
-    text-align: center;
-    font-size: 1.2rem;
-    color: #00ff00;
+    position: static; /* Rimuoviamo il vecchio posizionamento assoluto */
+    background: none;
+    padding: 0;
+    color: #00ff41;
+    font-size: 1.1rem;
     font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+}
+
+.card-status {
+    margin-top: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #666;
+}
+
+/* Pallino che pulsa nello status */
+.pulse-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #00ff41;
+    border-radius: 50%;
+    margin-right: 5px;
+    box-shadow: 0 0 5px #00ff41;
+    animation: pulse-glow-green 1.5s infinite;
+}
+
+/* --- HOVER EFFECTS --- */
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+    background: rgba(0, 255, 65, 0.03);
+}
+
+/* --- Colori Specifici per Card --- */
+
+/* Experience - Green */
+#experience-card:hover { border-color: #00ff41; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
+#experience-card .card-icon { color: #00ff41; }
+
+/* Certifications - Cyan */
+#certifications-card:hover { border-color: #00f2ff; box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+#certifications-card .card-icon { color: #00f2ff; }
+#certifications-card .card-title { color: #00f2ff; }
+#certifications-card .pulse-dot { background-color: #00f2ff; box-shadow: 0 0 5px #00f2ff; }
+
+/* Projects - Green (già standard, ma lo isoliamo) */
+#projects-card:hover { border-color: #39ff14; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
+#projects-card .card-icon { color: #39ff14; }
+
+/* Books - Amber */
+#books-card:hover { border-color: #ffb400; box-shadow: 0 0 20px rgba(255, 180, 0, 0.2); }
+#books-card .card-icon { color: #ffb400; }
+#books-card .card-title { color: #ffb400; }
+#books-card .pulse-dot { background-color: #ffb400; box-shadow: 0 0 5px #ffb400; }
+
+.card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.02); /* Uno schiarimento leggero neutro */
+    /* Rimuovi il border-color fisso da qui, ora è gestito dagli ID sopra */
+}
+
+@keyframes pulse-glow-green {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
 }
 
 /* ============================================================
@@ -795,5 +943,179 @@ footer p, footer a { font-size: 0.75rem; color: #888; text-decoration: none; }
     /* Logo più piccolo per non occupare tutto lo schermo */
     .logo-link h1 {
         font-size: 1.2rem;
+    }
+}
+
+/* Contenitore per allineare nuvola e bottone */
+#ai-trigger-container {
+    position: fixed;
+    bottom: 20px; /* Distanza dal fondo */
+    right: 20px;  /* Distanza da destra */
+    z-index: 1000;
+    /* Non serve più flex qui, useremo il posizionamento assoluto */
+}
+
+/* Stile della nuvoletta Cyber */
+.cyber-tooltip {
+    position: absolute; /* Posizionamento assoluto rispetto al contenitore */
+    bottom: 80px; /* La posiziona sopra il bottone (assumendo che il bottone sia alto circa 60px + spazio) */
+    right: 10px; /* La sposta leggermente a sinistra rispetto al bottone */
+    
+    background: rgba(0, 15, 0, 0.95); /* Leggermente più opaco per coprire meglio */
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 12px 18px; /* Un po' più di spazio interno */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3); /* Ombra più marcata */
+    white-space: nowrap; /* Evita che il testo vada a capo in modo strano */
+
+    opacity: 0; /* Parte invisibile */
+    transform: translateY(10px);
+    /* Entra dopo 2 secondi, e poi pulsa all'infinito */
+    animation: floatIn 0.8s forwards 2s, pulseGlow 2s infinite 3s;
+    cursor: pointer;
+}
+
+/* La freccina che punta verso il bottone del terminale */
+.cyber-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Sporge un po' di più verso il basso */
+    right: 25px; /* Posizione orizzontale della freccia */
+    width: 12px;
+    height: 12px;
+    background: rgba(0, 15, 0, 0.95); /* Stesso sfondo della nuvola */
+    border-bottom: 1px solid #00ff41;
+    border-right: 1px solid #00ff41;
+    transform: rotate(45deg); /* Ruota il quadrato per farne una freccia */
+}
+
+/* Animazioni */
+@keyframes floatIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px rgba(0, 255, 65, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.6); }
+    100% { box-shadow: 0 0 5px rgba(0, 255, 65, 0.2); }
+}
+
+/* ============================================================
+    HOBBY CARD WIDE - THEME: ICE WHITE
+   ============================================================ */
+
+.hobby-card-wide {
+    width: 100%;
+    margin-top: 25px;
+    box-sizing: border-box;
+}
+
+.hobby-card-wide a {
+    display: block;
+    text-decoration: none;
+    background: rgba(10, 10, 10, 0.8);
+    /* Bordo Bianco Ghiaccio Opaco */
+    border: 1px solid rgba(240, 248, 255, 0.2); 
+    border-radius: 4px;
+    padding: 15px 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.hobby-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px;
+}
+
+/* --- TITOLO E TESTI --- */
+#hobby-card .card-title {
+    color: #f0f8ff; /* Ice White */
+    margin: 0;
+    font-size: 1.2rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(240, 248, 255, 0.3);
+}
+
+.hobby-subtitle {
+    color: #888;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+    margin: 5px 0 0 0;
+}
+
+/* --- ICONE E STATO --- */
+.hobby-left, .hobby-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hobby-left i {
+    font-size: 1.5rem;
+    color: rgba(240, 248, 255, 0.5); /* Icona ghiaccio soft */
+}
+
+.hobby-right i {
+    color: #444;
+    transition: transform 0.3s ease;
+}
+
+#hobby-card .pulse-dot {
+    background-color: #f0f8ff;
+    box-shadow: 0 0 8px #f0f8ff;
+}
+
+/* --- HOVER EFFECT: ICE GLOW --- */
+.hobby-card-wide a:hover {
+    border-color: #f0f8ff;
+    box-shadow: 0 0 20px rgba(240, 248, 255, 0.15);
+    background: rgba(240, 248, 255, 0.05);
+    transform: translateY(-3px); /* Leggera elevazione invece dello scale */
+}
+
+.hobby-card-wide a:hover .hobby-right i {
+    transform: translateX(8px);
+    color: #f0f8ff;
+}
+
+/* --- RESPONSIVE FIX --- */
+@media (max-width: 768px) {
+    .hobby-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 10px 0;
+    }
+    
+    .hobby-left {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .hobby-right i {
+        display: none; /* Rimuove la freccia su mobile per pulizia */
+    }
+}
+/* Forza l'apertura quando la classe .active viene aggiunta via JS */
+.payload-sidebar-left.active {
+    left: 0 !important;
+}
+
+/* Miglioria per mobile: la linguetta deve essere ben visibile */
+@media (max-width: 900px) {
+    .sidebar-tab-left {
+        right: -45px; /* Leggermente più larga per il touch */
+        width: 45px;
     }
 }

@@ -3,13 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M5Z9HP7J');</script>
-<!-- End Google Tag Manager -->
     <title>Antonio Ruocco | Cybersecurity Analyst Portfolio</title>
     
     <meta name="robots" content="index, follow">
@@ -39,11 +32,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="script.js" defer></script>
 </head>
 <body>
-
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5Z9HP7J"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <nav class="payload-sidebar-left">
     <div class="sidebar-tab-left">
@@ -190,28 +178,93 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
-    <section class="cards-section">
-        <div class="container cards-container-flex">
-            <div class="cards">
-                <a href="experience.html" class="card" id="experience-card">
-                    <img src="img/experience.png" alt="Experience" class="card-image">
+   <section class="cards-section">
+    <div class="container cards-container-flex">
+        <div class="cards">
+            
+            <a href="experience.html" class="card" id="experience-card">
+                <div class="card-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-id">SEC_CORE_01</span>
                     <h2 class="card-title">Experience</h2>
-                </a>
-                <a href="certifications.html" class="card" id="certifications-card">
-                    <img src="img/certifications.png" alt="Certifications" class="card-image">
+                    <div class="card-status">
+                        <span class="pulse-dot"></span> 
+                        <span class="status-label">STATUS</span>: 
+                        <span class="status-value">OPERATIONAL</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="certifications.html" class="card" id="certifications-card">
+                <div class="card-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-id">CRED_VERIFY_02</span>
                     <h2 class="card-title">Certifications & Skills</h2>
-                </a>
-                <a href="projects.html" class="card" id="projects-card">
-                    <img src="img/projects.png" alt="Projects" class="card-image">
+                    <div class="card-status">
+                        <span class="pulse-dot"></span> 
+                        <span class="status-label">STATUS</span>: 
+                        <span class="status-value">VERIFIED</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="projects.html" class="card" id="projects-card">
+                <div class="card-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-id">LAB_EXEC_03</span>
                     <h2 class="card-title">Projects</h2>
-                </a>
-                <a href="books.html" class="card" id="books-card">
-                    <img src="img/books.png" alt="Books" class="card-image">
+                    <div class="card-status">
+                        <span class="pulse-dot"></span> 
+                        <span class="status-label">STATUS</span>: 
+                        <span class="status-value">ACTIVE</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="books.html" class="card" id="books-card">
+                <div class="card-icon">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-id">INTEL_DB_04</span>
                     <h2 class="card-title">Books</h2>
-                </a>
+                    <div class="card-status">
+                        <span class="pulse-dot"></span> 
+                        <span class="status-label">STATUS</span>: 
+                        <span class="status-value">INDEXED</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <div class="hobby-card-wide">
+    <a href="hobby.html" id="hobby-card">
+        <div class="hobby-content">
+            <div class="hobby-left">
+                <i class="fas fa-microchip"></i>
+                <span class="card-id">HUMAN_INTERFACE_05</span>
+            </div>
+            <div class="hobby-center">
+                <h2 class="card-title">Maker & Electronics</h2>
+                <p class="hobby-subtitle">Hardware hacking, 3D printing and retro-electronics restoration.</p>
+            </div>
+            <div class="hobby-right">
+                <div class="card-status">
+                    <span class="pulse-dot"></span> STATUS: IDLE
+                </div>
+                <i class="fas fa-chevron-right"></i>
             </div>
         </div>
-    </section>
+    </a>
+</div>
+    </div>
+</section>
 </main>
 
 <footer>
@@ -238,8 +291,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </footer>
 
-<div id="game-trigger" onclick="openTerminal()" title="System Access">
-    <i class="fas fa-terminal"></i>
+<div id="ai-trigger-container">
+    <div id="ai-tooltip" class="cyber-tooltip">
+        <span>> WINTERMUTE_AI_</span><br>
+        <span style="font-size: 0.8rem; color: #888;">Online. Initiate analysis?</span>
+    </div>
+    
+    <div id="game-trigger" onclick="openTerminal()" title="System Access">
+        <i class="fas fa-terminal"></i>
+    </div>
 </div>
 
 <div id="terminal-overlay">
@@ -248,11 +308,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span>root@antonio-ruocco:~</span>
             <button onclick="closeTerminal()" class="terminal-close">X</button>
         </div>
+        
         <div class="terminal-body" id="terminal-output">
-            <p>> SYSTEM LOCKED. ENTER ACCESS CODE TO RETRIEVE SECRET_DATA.TXT</p>
-            <p>> HINT: Name of the creator in binary (ASCII - 7 bytes)</p>
-            <p style="font-size: 0.8rem; color: #888;">01000001 01101110 01110100 01101111 01101110 01101001 01101111</p>
         </div>
+        
         <div class="terminal-input-area">
             <span>$</span>
             <input type="text" id="terminal-input" autofocus autocomplete="off">
@@ -261,5 +320,4 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 </body>
-
 </html>
