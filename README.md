@@ -28,6 +28,8 @@ The portfolio is organized into chromatic and functional "modules" to provide im
 | Library | Amber | Digital Forensics / Archive | `/books.html` |
 | **Intel Reports** | **Blue** | **Declassified Threat Archive / HUD** | **`/reports.html`** |
 | Contact | Cyan/Red | Secure Transmission Protocol | `/contact.html` |
+| Maker Lab | Ice/White | Hardware Prototype / DIY Workshop | `/hobby.html` |
+
 
 ---
 
