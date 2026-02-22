@@ -1,246 +1,895 @@
-/* --- 1. VARIABILI E RESET --- */
 :root {
-    --ice-white: #f0faff;
-    --ice-glow: rgba(240, 250, 255, 0.4);
-    --dark-bg: #050505;
-    --panel-bg: #0a0a0c;
-    --border-color: #333;
+    --ice: #f0faff;
+    --ice-low: rgba(240, 250, 255, 0.1);
+    --bg: #050505;
+    --accent: #222;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-.maker-body {
-    background: var(--dark-bg);
-    color: var(--ice-white);
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+    color: var(--ice);
     font-family: 'Courier New', monospace;
-    line-height: 1.6;
-    overflow-x: hidden;
+    overflow: hidden; /* Blocca lo scroll */
+}
+
+/* Layout principale */
+.maker-interface {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
 }
 
-.wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+/* Griglia di sfondo */
+.tech-grid-overlay {
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(var(--ice-low) 1px, transparent 1px),
+        linear-gradient(90deg, var(--ice-low) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
 
-
-
-/* --- 2. HEADER & NAV --- */
-.maker-header {
-    background: #000;
-    border-bottom: 1px solid var(--border-color);
-    padding: 20px 0;
+.main-header {
+    height: 80px; /* Leggermente più alto per i dettagli */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    background: linear-gradient(to bottom, rgba(15, 15, 15, 0.9) 0%, transparent 100%);
+    border-bottom: 1px solid var(--ice-low);
     position: relative;
-    z-index: 100;
+    overflow: hidden;
 }
 
-.header-blueprint-line {
+/* Decorazione sopra l'header */
+.main-header::before {
+    content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--ice-white) 20%, var(--ice-white) 80%, transparent 100%);
+    background: var(--ice);
+    box-shadow: 0 0 10px var(--ice);
     opacity: 0.3;
 }
 
-.header-content { display: flex; justify-content: space-between; align-items: center; }
-.header-section { flex: 1; display: flex; flex-direction: column; }
-.header-section.center { align-items: center; flex: 2; text-align: center; }
-.header-section.right { align-items: flex-end; }
-
-.glitch-title { font-size: 1.6rem; font-weight: 900; letter-spacing: 8px; color: var(--ice-white); }
-.status-indicator { display: flex; align-items: center; gap: 8px; font-size: 0.6rem; }
-.blink-dot { width: 6px; height: 6px; background: var(--ice-white); border-radius: 50%; animation: blink 1.5s infinite; }
-.coord-info, .sub-line { font-size: 0.55rem; color: #444; margin-top: 4px; letter-spacing: 2px; }
-
-.nav-btn {
-    text-decoration: none;
-    color: var(--ice-white);
-    border: 1px solid #333;
-    padding: 10px 20px;
-    font-size: 0.65rem;
+.header-section {
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: 0.4s;
-    background: rgba(255, 255, 255, 0.02);
+    gap: 30px;
+}
+
+/* Scatole dei dati (Status e Net Link) */
+.system-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.5rem;
+    color: #555;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+}
+
+.value {
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.system-ready {
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* Titolo Centrale */
+.header-center {
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+}
+
+.header-center h1 {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sub-title {
+    font-size: 0.6rem;
+    color: var(--ice-low);
+    letter-spacing: 4px;
+}
+
+/* Barre del segnale a destra */
+.signal-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 15px;
+}
+
+.bar {
+    width: 3px;
+    background: #333;
+}
+.bar.active { background: var(--ice); box-shadow: 0 0 5px var(--ice); }
+.bar:nth-child(1) { height: 30%; }
+.bar:nth-child(2) { height: 60%; }
+.bar:nth-child(3) { height: 85%; }
+.bar:nth-child(4) { height: 100%; }
+
+/* Animazione linea scanner nell'header */
+.scanner-line {
+    position: absolute;
+    width: 150%;
+    height: 1px;
+    background: rgba(240, 250, 255, 0.1);
+    top: 50%;
+    animation: header-scan 3s ease-in-out infinite;
+}
+
+/* Tasto Home configurato per la parte destra */
+.home-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.home-button:hover {
+    background: rgba(240, 250, 255, 0.05);
+    border: 1px solid var(--ice-low);
+}
+
+.home-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ice-low);
+    border: 1px solid var(--ice-low);
+    color: var(--ice);
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-button:hover .home-icon {
+    background: var(--ice);
+    color: var(--bg);
+    box-shadow: 0 0 15px var(--ice);
+    transform: rotate(-90deg); /* Effetto rotazione all'uscita */
+}
+
+.separator-v {
+    width: 1px;
+    height: 25px;
+    background: var(--ice-low);
+    margin: 0 10px;
+}
+
+/* Allineamento testi a destra */
+.header-right .system-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+@keyframes header-scan {
+    0% { transform: translateY(-20px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(20px); opacity: 0; }
+}
+
+
+.main-footer {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    background: linear-gradient(to top, rgba(15, 15, 15, 0.9) 0%, transparent 100%);
+    border-top: 1px solid var(--ice-low);
+    z-index: 10;
+}
+
+.footer-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Unità di Log a sinistra */
+.log-unit {
+    display: flex;
+    flex-direction: column;
+}
+
+.separator {
+    width: 1px;
+    height: 30px;
+    background: var(--ice-low);
+}
+
+/* Barra di caricamento centrale */
+.footer-center {
+    width: 300px;
+}
+
+.loading-bar-container {
+    width: 100%;
+}
+
+.loading-label {
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    color: var(--ice-low);
+}
+
+.loading-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 40%;
+    height: 100%;
+    background: var(--ice);
+    box-shadow: 0 0 10px var(--ice);
+    animation: loading-ping 3s ease-in-out infinite;
+}
+
+@keyframes loading-ping {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(150%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Stats a destra */
+.terminal-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 0.6rem;
+    color: #666;
+}
+
+.stat-item i {
+    margin-right: 5px;
+    font-size: 0.7rem;
+}
+
+/* Indicatore LIVE pulsante */
+.pulse-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-radius: 4px;
+}
+
+.pulse-text {
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: #00ff00;
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: #00ff00;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff00;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Area centrale */
+.content-viewport {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* --- IL RADAR BASE --- */
+.radar-base {
+    position: relative;
+    width: 700px; 
+    height: 700px;
+    border-radius: 50%;
+    border: 2px solid rgba(240, 250, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(15, 15, 20, 0.9) 0%, rgba(0, 0, 0, 1) 100%);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 1), inset 0 0 100px rgba(240, 250, 255, 0.02);
+}
+
+.radar-ring {
+    position: absolute;
+    border: 1px solid rgba(240, 250, 255, 0.05);
+    border-radius: 50%;
+}
+.ring-1 { width: 150px; height: 150px; }
+.ring-2 { width: 350px; height: 350px; }
+.ring-3 { width: 550px; height: 550px; }
+.ring-4 { width: 700px; height: 700px; opacity: 0.3; }
+
+/* --- IL RAGGIO DI SCANSIONE (SWEEP) --- */
+/* Rimuovi 'animation' da qui */
+.radar-sweep {
+    position: absolute;
+    width: 700px; 
+    height: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg); /* Inizia da 0 */
+    background: conic-gradient(
+        from 0deg at 50% 50%,
+        rgba(240, 250, 255, 1) 0deg,      
+        rgba(240, 250, 255, 0.3) 2deg,    
+        rgba(240, 250, 255, 0.05) 60deg,  
+        transparent 90deg                 
+    );
+    border-radius: 50%;
+    transform-origin: center; 
+    pointer-events: none;
+    z-index: 5;
+    /* L'animazione è stata rimossa, la gestirà JS */
+}
+
+@keyframes sweep-rotation {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- I NODI (ANCORAGGIO AL CENTRO FIX) --- */
+.radar-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Correzione: translate(-50%, -50%) garantisce che il punto di rotazione sia il centro del radar */
+    transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--dist)) rotate(calc(-1 * var(--angle)));
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+.node-clickable, .node-point {
+    width: 12px;
+    height: 12px;
+    background: var(--ice);
+    box-shadow: 0 0 15px var(--ice);
+    display: block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lab-unit .node-point {
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--ice);
+}
+
+.node-label {
+    position: absolute;
+    left: 20px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.9); /* Più opaco per leggibilità */
+    border-left: 2px solid var(--ice);
+    white-space: nowrap;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.node-label .id {
+    font-size: 0.5rem;
+    color: #666;
+    display: block;
+    letter-spacing: 1px;
+}
+
+.node-label .title {
+    font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
 }
 
-.nav-btn:hover {
-    border-color: var(--ice-white);
-    background: var(--ice-white);
-    color: #000;
-    box-shadow: 0 0 25px var(--ice-glow);
-}
+.radar-node:hover .node-label { opacity: 1; }
+.radar-node:hover .node-clickable { transform: scale(1.5); box-shadow: 0 0 30px var(--ice); }
 
-/* --- 3. LAB LAYOUT & VISUALS --- */
-.lab-layout { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 25px; margin-top: 20px; }
-
-.lab-zone {
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid #1a1a1a;
-    padding: 40px 20px;
-    position: relative;
-    min-height: 380px;
+/* --- PANNELLI LATERALI (FIX LARGHEZZA E CENTRATURA) --- */
+.side-panel {
+    position: absolute;
+    width: 300px; /* Allargato per le specifiche PC */
+    top: 50%;
+    transform: translateY(-50%); /* Centratura verticale perfetta */
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+}
+
+.left-panel { left: 40px; }
+.right-panel { right: 40px; }
+
+.panel-title {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--ice);
+    border-bottom: 1px solid var(--ice-low);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.inventory-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: rgba(240, 250, 255, 0.02);
+    border-left: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.inventory-item:hover {
+    background: rgba(240, 250, 255, 0.05);
+    border-left: 2px solid var(--ice);
+    transform: translateX(5px);
+}
+
+.item-name {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.item-spec {
+    font-size: 0.55rem;
+    color: #666;
+    letter-spacing: 1px;
+    white-space: nowrap; /* Evita ritorno a capo */
+    text-transform: uppercase;
+}
+
+/* Puntino di stato attivo */
+.status-on {
+    width: 6px;
+    height: 6px;
+    background: #00ff00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+/* --- IL NUCLEO CENTRALE --- */
+.radar-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    width: 50px;
+    height: 50px;
+    background: #000;
+    border: 1px solid var(--ice);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.zone-tag { position: absolute; top: 0; left: 0; background: var(--ice-white); color: #000; font-size: 0.6rem; padding: 2px 10px; font-weight: bold; }
-
-.main-desk-setup { display: flex; align-items: flex-end; gap: 30px; justify-content: center; width: 100%; flex-wrap: wrap; }
-
-.monitor-setup { display: flex; align-items: flex-end; gap: 10px; }
-.screen { border: 1px solid var(--border-color); background: rgba(0, 0, 0, 0.8); display: flex; align-items: center; justify-content: center; font-size: 0.4rem; color: #444; transition: 0.5s; }
-.screen.vertical { width: 40px; height: 100px; border-left: 3px solid var(--ice-white); }
-.screen.main-curved { width: 180px; height: 75px; border: 2px solid var(--ice-white); border-radius: 5px 5px 35px 35px; box-shadow: 0 0 20px var(--ice-glow); color: var(--ice-white); }
-.screen:not(.vertical):not(.main-curved) { width: 80px; height: 55px; }
-
-.printer-3d-model { width: 85px; height: 100px; border: 2px solid #222; border-top: 4px solid var(--ice-white); background: rgba(255,255,255,0.02); position: relative; }
-.ams-unit { height: 22px; background: var(--ice-white); color: #000; font-size: 0.5rem; font-weight: 900; display: flex; align-items: center; justify-content: center; }
-
-.under-pc { margin-top: 20px; width: 45px; height: 75px; border: 1px solid #222; background: #000; position: relative; }
-.led-fans { position: absolute; left: 8px; top: 0; bottom: 0; width: 3px; background: repeating-linear-gradient(0deg, #00ff41 0px, #00ff41 10px, transparent 10px, transparent 15px); box-shadow: 0 0 8px rgba(0, 255, 65, 0.5); }
-.pc-label { font-size: 0.5rem; color: #444; position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
-
-.tool-wall { width: 100%; height: 150px; border: 1px solid #1a1a1a; background-image: radial-gradient(var(--border-color) 1px, transparent 1.5px); background-size: 12px 12px; }
-.electronics-bench { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin-top: 15px; }
-.tool-box { border: 1px solid #222; padding: 15px 5px; font-size: 0.55rem; text-align: center; background: rgba(255,255,255,0.02); transition: 0.3s; color: #666; }
-
-/* --- 4. PROJECTS SECTION --- */
-.section-label { font-size: 0.8rem; color: #444; border-left: 3px solid var(--ice-white); padding-left: 15px; margin: 40px 0 20px 0; }
-.project-block { display: flex; border: 1px solid var(--border-color); margin-bottom: 15px; transition: 0.3s; text-decoration: none; color: inherit; }
-.project-block:hover { border-color: var(--ice-white); transform: translateX(5px); }
-.block-num { padding: 20px; background: #111; color: var(--ice-white); font-size: 0.8rem; font-weight: bold; }
-.block-info { padding: 15px; flex-grow: 1; }
-.block-info h3 { font-size: 0.9rem; color: var(--ice-white); }
-.block-info p { font-size: 0.75rem; color: #777; }
-.view-details { display: block; font-size: 0.55rem; color: var(--ice-white); margin-top: 10px; opacity: 0.5; }
-
-/* --- 5. MODAL SYSTEM --- */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(8px);
-    display: none; z-index: 2000; align-items: center; justify-content: center; padding: 20px;
-}
-.modal-overlay:target { display: flex; }
-.modal-content {
-    background: #0a0a0c; border: 1px solid var(--ice-white); width: 100%; max-width: 900px;
-    position: relative; padding: 40px; box-shadow: 0 0 50px rgba(240, 250, 255, 0.1);
-}
-.close-modal { position: absolute; top: 20px; right: 20px; color: var(--ice-white); text-decoration: none; font-size: 0.7rem; border: 1px solid #333; padding: 5px 10px; }
-.modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.img-placeholder { width: 100%; height: 300px; background: #111; border: 1px dashed #333; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #444; }
-.modal-text h2 { font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-.status-tag { font-size: 0.6rem; background: rgba(240, 250, 255, 0.1); padding: 3px 8px; margin-bottom: 10px; display: inline-block; }
-.specs-list { list-style: none; margin-bottom: 20px; }
-.specs-list li { font-size: 0.8rem; margin-bottom: 8px; color: #aaa; }
-.specs-list li span { color: var(--ice-white); font-weight: bold; margin-right: 10px; }
-.project-desc { font-size: 0.8rem; color: #777; line-height: 1.6; }
-.modal-image img {
+.core-pulse {
+    position: absolute;
     width: 100%;
-    height: auto;
-    border: 1px solid #333;
+    height: 100%;
+    border: 1px solid var(--ice);
+    border-radius: 50%;
+    animation: core-glow 2s infinite;
+}
+
+@keyframes core-glow {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Classe aggiunta via JS quando lo sweep colpisce il nodo */
+.radar-node.active .node-label {
+    opacity: 1;
+    background: rgba(240, 250, 255, 0.1);
+}
+
+.radar-node.active .node-clickable {
+    background: #fff;
+    box-shadow: 0 0 20px #fff, 0 0 40px var(--ice);
+    transform: scale(1.3);
+    opacity: 1;
+}
+
+/* Transizione fluida per lo spegnimento */
+.node-clickable, .node-label {
+    /* Aumentiamo la durata della transizione in uscita per un effetto scia */
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.2; /* Di base devono essere quasi invisibili */
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none; /* Nascosta di base */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 600px;
+    background: #0a0a0a;
+    border: 1px solid var(--ice);
+    box-shadow: 0 0 30px rgba(240, 250, 255, 0.1);
+    position: relative;
+    padding: 20px;
+    animation: modal-appear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-appear {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- MODALE: LAYOUT E CONTENITORE --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85); /* Sfondo più scuro per focus */
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 700px; /* Larghezza massima controllata */
+    background: #050505;
+    border: 1px solid var(--ice);
+    box-shadow: 0 0 40px rgba(240, 250, 255, 0.15);
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden; /* Evita che il testo esca dai bordi */
+    animation: modal-appear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- HEADER DELLA MODALE --- */
+.modal-header-tech {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--ice-low);
+    padding-bottom: 15px;
+}
+
+.modal-header-tech h2 {
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    color: var(--ice);
+    text-transform: uppercase;
+}
+
+.modal-id {
+    font-size: 0.6rem;
+    color: #444;
     display: block;
-    box-shadow: 0 0 15px rgba(240, 250, 255, 0.1);
+    margin-bottom: 5px;
 }
 
-/* --- 6. FOOTER --- */
-.maker-footer { padding: 30px 0; border-top: 1px solid var(--border-color); margin-top: auto; }
-.footer-wrap { display: flex; justify-content: space-between; font-size: 0.6rem; color: #444; }
-
-/* --- 7. MEDIA QUERIES (SISTEMA GERARCHICO) --- */
-
-/* TABLET (Sotto 1024px) */
-@media (max-width: 1024px) {
-    .lab-layout { grid-template-columns: 1fr; }
-    .glitch-title { font-size: 1.4rem; letter-spacing: 4px; }
+/* --- CORPO DELLA MODALE (GRIGLIA) --- */
+.modal-body {
+    display: flex;
+    flex-direction: column; /* Foto sopra, testi sotto */
+    gap: 15px;
 }
 
-/* SMARTPHONE (Sotto 768px) */
-@media (max-width: 768px) {
-    .header-section.left { display: none; }
-    .header-section.right { flex: 1; display: flex; justify-content: flex-end; }
-    .nav-btn { padding: 6px 12px; font-size: 0.55rem; }
+/* --- DETTAGLI E TESTO --- */
+.project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Spazio tra le righe STATUS, CATEGORY, ecc. */
+}
+
+.detail-row {
+    font-size: 0.8rem;
+    display: flex;
+    gap: 10px;
+}
+
+.detail-row .label {
+    color: #555;
+    font-weight: bold;
+}
+
+.detail-row .value {
+    color: var(--ice);
+}
+
+/* --- DESCRIZIONE (Il punto critico) --- */
+#modalDesc {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    line-height: 1.6; /* Aumenta lo spazio tra le linee di testo */
+    color: #aaa;
+    min-height: 100px; /* Evita che la finestra salti mentre scrive */
+    word-wrap: break-word; /* Forza il testo ad andare a capo */
+    white-space: normal; /* Permette il ritorno a capo standard */
+    border-top: 1px solid var(--ice-low);
+    padding-top: 20px;
+}
+
+/* --- FOOTER MODALE --- */
+.modal-footer-tech {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px solid var(--ice-low);
+    font-size: 0.65rem;
+    color: var(--ice-low);
+    letter-spacing: 1px;
+}
+
+/* --- BOTTONE CHIUDI --- */
+.close-modal {
+    background: transparent;
+    border: 1px solid var(--ice-low);
+    color: var(--ice);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-family: Arial, sans-serif; /* Per centrare meglio la 'X' */
+    font-size: 1.2rem;
+}
+
+.close-modal:hover {
+    background: #ff0000;
+    border-color: #ff0000;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* --- FIX DEFINITIVO IMMAGINI MODALE --- */
+.project-visual {
+    position: relative !important;
+    width: 100% !important;
+    height: 400px !important; /* Altezza bilanciata */
+    background-color: #000 !important;
+    border: 1px solid var(--ice-low) !important;
+    margin-bottom: 20px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#modalImage {
+    /* Rimuoviamo le percentuali fisse e usiamo max-width/height */
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     
-    .main-desk-setup { flex-direction: column; align-items: center; gap: 40px; }
-    .screen.main-curved { width: 150px; height: 65px; }
-    .screen.vertical { width: 35px; height: 85px; }
-    .screen:not(.vertical):not(.main-curved) { width: 65px; height: 45px; }
+    /* Object-fit contain garantisce che tutta l'immagine sia visibile senza tagli */
+    object-fit: contain !important; 
     
-    .project-block { flex-direction: column; }
-    .block-num { width: 100%; text-align: center; padding: 10px; }
-    
-    .modal-grid { grid-template-columns: 1fr; }
-    .modal-content { padding: 20px; height: 90vh; overflow-y: auto; }
+    /* Rimuove eventuali distorsioni */
+    display: block !important;
+    filter: brightness(1.1) contrast(1.05) !important; /* Leggero boost per l'estetica cyber */
 }
 
-/* SMARTPHONE PICCOLI (Sotto 480px) */
-@media (max-width: 480px) {
-    .monitor-setup { transform: scale(0.85); }
-    .glitch-title { font-size: 1.1rem; letter-spacing: 2px; }
-    .footer-wrap { flex-direction: column; align-items: center; gap: 10px; }
+/* Sistemiamo la linea laser in modo che segua l'altezza del contenitore */
+.project-visual::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--ice);
+    box-shadow: 0 0 15px var(--ice);
+    opacity: 0.5;
+    z-index: 10;
+    pointer-events: none;
+    /* Usiamo 100% invece di pixel fissi per l'altezza */
+    animation: scan-line-dynamic 3s linear infinite;
 }
 
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-/* Animazione di apparizione */
-@keyframes modalFade {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes scan-line-dynamic {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(400px); opacity: 0; } /* Deve coincidere con height di .project-visual */
 }
 
-.modal-overlay:target .modal-content {
-    animation: modalFade 0.4s ease-out;
+/* --- FIX AGGIUNTIVO PER IL TESTO --- */
+#modalDesc {
+    /* Evita che il testo lungo spinga l'immagine fuori dallo schermo */
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ice-low) transparent;
 }
 
 .lang-selector {
-    margin-top: 10px;
     display: flex;
-    gap: 5px;
-    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
 }
 
 .lang-btn {
-    background: none;
-    border: none;
-    color: #444;
+    background: transparent;
+    border: 1px solid var(--ice-low);
+    color: var(--ice-low);
     font-family: 'Courier New', monospace;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+    padding: 3px 8px;
     cursor: pointer;
-    transition: 0.3s;
-    padding: 2px 5px;
+    transition: all 0.3s;
 }
 
 .lang-btn.active {
-    color: var(--ice-white);
-    text-shadow: 0 0 5px var(--ice-white);
+    border-color: var(--ice);
+    color: var(--ice);
+    box-shadow: 0 0 8px var(--ice-low);
 }
 
 .lang-btn:hover {
-    color: var(--ice-white);
+    background: var(--ice-low);
 }
 
-.separator {
-    font-size: 0.6rem;
-    color: #222;
-}
+/* --- NUOVO RESPONSIVE REBOOT 2026 --- */
 
-.project-credits {
-    font-size: 0.7rem;
-    margin: 10px 0;
-    color: #666;
-    font-family: 'Courier New', monospace;
-}
+@media (max-width: 1100px) {
+    /* 1. SBLOCCO SCROLL E RESET BODY */
+    body, html {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
 
-.author-link {
-    color: var(--ice-white);
-    text-decoration: none;
-    border-bottom: 1px dashed #444;
-    transition: 0.3s;
-}
+    .maker-interface {
+        height: auto;
+        display: block; /* Passiamo da flex a blocco normale per lo scroll */
+    }
 
-.author-link:hover {
-    color: #fff;
-    border-bottom: 1px solid var(--ice-white);
-    text-shadow: 0 0 5px var(--ice-white);
+    /* 2. HEADER E FOOTER: DA ORIZZONTALE A VERTICALE */
+    .main-header, .main-footer {
+        height: auto !important;
+        flex-direction: column !important;
+        padding: 20px 10px !important;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .header-section, .footer-section {
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100%;
+    }
+
+    /* Nascondiamo il superfluo che crea clutter */
+    .separator-v, .separator, .time-module, .signal-bars, .terminal-stats {
+        display: none !important;
+    }
+
+    /* Allineamento icone e testi */
+    .header-right .system-box, .header-left .system-box {
+        align-items: center !important;
+    }
+
+    /* 3. VIEWPORT E RADAR */
+    .content-viewport {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        padding: 40px 10px !important;
+        gap: 40px;
+    }
+
+    .radar-base {
+        position: relative !important;
+        width: 320px !important; /* Dimensione fissa piccola per mobile */
+        height: 320px !important;
+        margin: 0 auto !important;
+        flex-shrink: 0;
+    }
+
+    /* Reset dei cerchi radar per la nuova dimensione */
+    .ring-1 { width: 60px; height: 60px; }
+    .ring-2 { width: 150px; height: 150px; }
+    .ring-3 { width: 240px; height: 240px; }
+    .ring-4 { width: 320px; height: 320px; }
+
+    .radar-sweep {
+        width: 320px !important;
+        height: 320px !important;
+    }
+
+    /* 4. NODI: RIPOSIZIONAMENTO */
+    .radar-node {
+        --dist: 110px !important; /* Portiamo i nodi vicini al centro */
+    }
+
+    .node-label {
+        font-size: 0.6rem;
+        padding: 2px 5px;
+    }
+
+    /* 5. PANNELLI LATERALI: DIVENTANO SCHEDE */
+    .side-panel {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 400px;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        padding: 0 15px;
+    }
+
+    .inventory-item {
+        background: rgba(240, 250, 255, 0.05);
+        border: 1px solid var(--ice-low);
+        margin-bottom: 5px;
+    }
+
+    /* 6. MODALE RESPONSIVE */
+    .modal-content {
+        width: 95% !important;
+        padding: 15px !important;
+    }
+
+    .project-visual {
+        height: 200px !important;
+    }
+
+    #modalImage {
+        max-height: 180px !important;
+    }
+
+    @keyframes scan-line-dynamic {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(200px); }
+    }
 }

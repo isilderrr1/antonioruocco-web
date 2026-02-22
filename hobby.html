@@ -4,217 +4,447 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="./favicon.png?v=5.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAKER_ARCHIVE | Antonio Ruocco</title>
+    <title>MAKER_ARCHIVE_2026</title>
     <link rel="stylesheet" href="hobby.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body class="maker-body">
+<body class="maker-interface">
 
-    <header class="maker-header">
-    <div class="header-blueprint-line"></div>
-    <div class="header-content wrapper">
-        <div class="header-section left">
-            <div class="status-indicator">
-                <span class="blink-dot"></span>
-                <span class="status-text">SYSTEM_ACTIVE</span>
-            </div>
-            <div class="coord-info">LOC: 40.8522° N, 14.2681° E</div>
-        
-        </div>
+    <div class="tech-grid-overlay"></div>
 
-        <div class="header-section center">
-            <h1 class="glitch-title" data-text="LAB_FILES_2026">LAB_FILES_2026</h1>
-            <div class="sub-line">// HARDWARE_ARCHIVE_STORAGE</div>
+    <header class="main-header">
+    <div class="header-section header-left">
+        <div class="system-box">
+            <span class="label">STATUS</span>
+            <span class="value system-ready">SYSTEM_READY</span>
         </div>
-<div class="lang-selector">
-    <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">ENG</button>
-    <span class="separator">|</span>
-    <button onclick="setLanguage('it')" id="btn-it" class="lang-btn">ITA</button>
-    <span class="separator">|</span>
-    <button onclick="setLanguage('es')" id="btn-es" class="lang-btn">ESP</button>
-</div>
-        <div class="header-section right">
-            <nav class="maker-nav">
-                <a href="index.html" class="nav-btn">
-                    <i class="fas fa-terminal"></i> 
-                    <span>RETURN_TO_BASE</span>
-                </a>
-            </nav>
+        <div class="system-box">
+            <span class="label">NET_LINK</span>
+            <span class="value">ENCRYPTED</span>
         </div>
     </div>
+
+    <div class="header-section header-center">
+        <div class="scanner-line"></div>
+        <h1>MAKER_ARCHIVE_PRO_v2.6</h1>
+        <div class="sub-title">CORE_INTERFACE // ANTONIO_RUOCCO</div>
+    </div>
+
+    <div class="header-section header-right">
+    <div class="time-module">
+        <span class="label">LOCATION_COORDS</span>
+        <span class="value">40.8522 N / 14.2681 E</span>
+    </div>
+
+    <div class="signal-bars">
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar active"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div class="separator-v"></div>
+
+    <a href="index.html" class="home-button">
+        <div class="system-box" style="text-align: right;">
+            <span class="label">EXIT_TO</span>
+            <span class="value">ROOT_DIR</span>
+        </div>
+        <div class="home-icon">
+            <i class="fas fa-door-open"></i>
+        </div>
+    </a>
+</div>
 </header>
 
-    <main class="maker-main">
-        <div class="wrapper">
+    <main class="content-viewport">
+
+        <aside class="side-panel left-panel">
+            <h3 class="panel-title">// LAB_EQUIPMENT</h3>
             
-            <section class="lab-section">
-                <h2 class="section-label">01 // HARDWARE_STATION_MAP</h2>
-                
-                <div class="lab-layout">
-                    <div class="lab-zone dev-core">
-    <div class="zone-tag">ZONE_ALPHA // DEV_&_FAB</div>
-    <div class="visual-engine">
-        
-        <div class="main-desk-setup">
-            <div class="monitor-setup">
-                <div class="screen vertical"><span>VERT_LOG</span></div>
-                <div class="screen main-curved"><span>PRIMARY_CORE</span></div>
-                <div class="screen"><span>SUB_02</span></div>
+            <div class="inventory-item">
+                <span class="status-on"></span>
+                <div class="item-info">
+                    <span class="item-name">BAMBULAB P1S</span>
+                    <span class="item-spec">AMS PRO 2 // 3D_FABRICATION</span>
+                </div>
             </div>
 
-            <div class="printer-3d-model">
-                <div class="ams-unit">Bambu_P1S</div>
-                <div class="print-chamber"></div>
+            <div class="inventory-item">
+                <i class="fas fa-wave-square"></i>
+                <div class="item-info">
+                    <span class="item-name">DIGITAL OSCILLOSCOPE</span>
+                    <span class="item-spec">4_CHANNELS // 200MHz</span>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <i class="fas fa-bolt"></i>
+                <div class="item-info">
+                    <span class="item-name">DC BENCH POWER SUPPLY</span>
+                    <span class="item-spec">30V 10A // VARIABLE</span>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <i class="fas fa-fire"></i>
+                <div class="item-info">
+                    <span class="item-name">SOLDERING_STATION</span>
+                    <span class="item-spec">SMD_REWORK // ESD_SAFE</span>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <i class="fas fa-microchip"></i>
+                <div class="item-info">
+                    <span class="item-name">PRECISION MULTIMETER</span>
+                    <span class="item-spec">TRUE_RMS // LOGGING</span>
+                </div>
+            </div>
+        </aside>
+
+        <div class="radar-base">
+            <div class="radar-ring ring-1"></div>
+            <div class="radar-ring ring-2"></div>
+            <div class="radar-ring ring-3"></div>
+            <div class="radar-ring ring-4"></div>
+            <div class="radar-crosshair-h"></div>
+            <div class="radar-crosshair-v"></div>
+
+            <div class="radar-sweep"></div>
+
+            <div class="radar-node" style="--angle: 45deg; --dist: 280px;">
+    <a href="#p1" class="node-clickable"></a>
+    <div class="node-label"><span class="id">ID_01</span><span class="title">MESHTASTIC_NODE</span></div>
+</div>
+
+<div class="radar-node" style="--angle: 130deg; --dist: 220px;">
+    <a href="#p2" class="node-clickable"></a>
+    <div class="node-label"><span class="id">ID_02</span><span class="title">PWNAGOTCHI_V2</span></div>
+</div>
+
+<div class="radar-node" style="--angle: 190deg; --dist: 260px;">
+    <a href="#p3" class="node-clickable"></a>
+    <div class="node-label"><span class="id">ID_03</span><span class="title">ESP32_MARAUDER</span></div>
+</div>
+
+<div class="radar-node" style="--angle: 250deg; --dist: 190px;">
+    <a href="#p4" class="node-clickable"></a>
+    <div class="node-label"><span class="id">ID_04</span><span class="title">PICO_RUBBER_DUCKY</span></div>
+</div>
+
+<div class="radar-node" style="--angle: 320deg; --dist: 300px;">
+    <a href="#p5" class="node-clickable"></a>
+    <div class="node-label"><span class="id">ID_05</span><span class="title">SUB-GHZ_ANALYZER</span></div>
+</div>
+
+            <div class="radar-core">
+                <i class="fas fa-microchip"></i>
+                <div class="core-pulse"></div>
             </div>
         </div>
 
-        <div class="under-pc">
-            <div class="led-fans"></div>
-            <span class="pc-label">MASTER_PC</span>
+        <aside class="side-panel right-panel">
+            <h3 class="panel-title">// WORKSTATION_SPECS</h3>
+            
+            <div class="inventory-item">
+                <i class="fas fa-microchip"></i>
+                <div class="item-info">
+                    <span class="item-name">INTEL CORE i9-13900K</span>
+                    <span class="item-spec">24_CORES // 5.8 GHz</span>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <i class="fas fa-vr-cardboard"></i>
+                <div class="item-info">
+                    <span class="item-name">NVIDIA RTX 4070</span>
+                    <span class="item-spec">12GB GDDR6X // RAY_TRACING</span>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <i class="fas fa-memory"></i>
+                <div class="item-info">
+                    <span class="item-name">32GB DDR5 RAM</span>
+                    <span class="item-spec">5200 MT/s // DUAL_CHANNEL</span>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <i class="fas fa-hdd"></i>
+                <div class="item-info">
+                    <span class="item-name">1TB NVMe SSD</span>
+                    <span class="item-spec">GEN4 // 7000 MB/s</span>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <i class="fas fa-desktop"></i>
+                <div class="item-info">
+                    <span class="item-name">TRIPLE_SCREEN_SETUP</span>
+                    <span class="item-spec">SURROUND_DISPLAY // 4K_UHD</span>
+                </div>
+            </div>
+        </aside>
+
+
+        <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <div class="modal-header-tech">
+            <div class="lang-selector">
+    <button onclick="changeLang('en')" class="lang-btn active" id="btn-en">EN</button>
+    <button onclick="changeLang('it')" class="lang-btn" id="btn-it">IT</button>
+    <button onclick="changeLang('es')" class="lang-btn" id="btn-es">ES</button>
+</div>
+            <span class="modal-id" id="modalId">ID_00</span>
+            <h2 id="modalTitle">PROJECT_NAME</h2>
+            <button class="close-modal" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="project-visual">
+                <div class="glitch-box">
+                    <img src="" id="modalImage" alt="Project Visual">
+                </div>
+            </div>
+            <div class="project-details">
+                <div class="detail-row">
+                    <span class="label">STATUS:</span>
+                    <span class="value" id="modalStatus">COMPLETED</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">CATEGORY:</span>
+                    <span class="value" id="modalCategory">HARDWARE_MOD</span>
+                </div>
+                <p class="project-desc" id="modalDesc">
+                    Inizializzazione dati...
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer-tech">
+            <span class="tech-specs" id="modalSpecs">SPECS // RAM: 8GB - CPU: ESP32</span>
         </div>
     </div>
 </div>
-                    <div class="lab-zone fab-core">
-                        <div class="zone-tag">ZONE_BETA // ELECTRONICS</div>
-                        <div class="visual-engine">
-                            <div class="tool-wall">
-                                <div class="peg-grid"></div>
-                                <span class="wall-desc">PEG_BOARD // TOOLS_WALL</span>
-                            </div>
-                            
-                            <div class="electronics-bench">
-                                <div class="tool-box">PWR_STATION</div>
-                                <div class="tool-box">SOLDER_STATION</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-<section class="projects-section">
-    <h2 class="section-label">02 // PROJECTS_AND_PROTOTYPES</h2>
-    <div class="projects-container">
-        
-        <a href="#project1" class="project-block">
-            <div class="block-num">ID_01</div>
-            <div class="block-info">
-                <h3>YARH.IO_MKI_TERMINAL</h3>
-                <p id="proj1-short-desc">Hackable handheld computer // Raspberry Pi 3B+ // Modded Keyboard</p>
-                <span class="view-details" id="proj1-details-btn">CLICK_FOR_SPECS [+]</span>
-            </div>
-        </a>
 
-        <div id="project1" class="modal-overlay">
-            <div class="modal-content">
-                <a href="#" class="close-modal" id="modal-close-btn">&times; CLOSE_SYSTEM</a>
-                
-                <div class="modal-grid">
-                    <div class="modal-image">
-                        <img src="img/cyberdeck.png" alt="YARH.IO MKI" style="width:100%; border:1px solid #333;">
-                    </div>
-                    
-                    <div class="modal-text">
-                        <div class="status-tag" id="proj1-status">STATUS: UNDER_CONSTRUCTION</div>
-                        
-                        <h2>YARH.IO_MKI</h2>
-                        
-                        <ul class="specs-list">
-                            <li><span id="spec-core">CORE:</span> Raspberry Pi 3 Model B+</li>
-                            <li><span id="spec-disp">DISPLAY:</span> 5" TFT LCD (HDMI interface)</li>
-                            <li><span id="spec-kbd">KEYBOARD:</span> Modded Bluetooth Keyboard (Integrated)</li>
-                            <li><span id="spec-pwr">POWER:</span> 3.7V Li-Ion + Boost Module</li>
-                            <li><span id="spec-enc">ENCLOSURE:</span> 3D Printed Modular Design</li>
-                        </ul>
-
-                        <p class="project-desc" id="proj1-long-desc">
-                            A modular handheld computer pushing the DIY concept to the limit. The core is a Raspberry Pi 3B+, with input handled by a disassembled Bluetooth keyboard integrated into a 3D printed frame. The design allows for hardware modules to be added or removed via external bolts.
-                        </p>
-                        <div class="project-credits">
-    <span id="label-credits">DESIGNED_BY:</span> 
-    <a href="https://yarh.io" target="_blank" class="author-link">YARH.IO</a>
-</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-        </div>
     </main>
 
-    <footer class="maker-footer">
-        <div class="footer-wrap wrapper">
-            <span>© 2026 ARCHIVE_01 // ANTONIO RUOCCO</span>
-            <span class="pulse-point">SYSTEM_READY</span>
+    <footer class="main-footer">
+    <div class="footer-section footer-left">
+        <div class="log-unit">
+            <span class="label">OPERATOR</span>
+            <span class="value">A_RUOCCO_01</span>
         </div>
-    </footer>
+        <div class="separator"></div>
+        <div class="log-unit">
+            <span class="label">AUTH_LEVEL</span>
+            <span class="value">SEC_04 // ADMIN</span>
+        </div>
+    </div>
+
+    <div class="footer-section footer-center">
+        <div class="loading-bar-container">
+            <div class="loading-label">DATA_STREAM // SYNCING...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-section footer-right">
+        <div class="terminal-stats">
+            <span class="stat-item"><i class="fas fa-microchip"></i> 14% CPU</span>
+            <span class="stat-item"><i class="fas fa-memory"></i> 4.2GB RAM</span>
+        </div>
+        <div class="pulse-indicator">
+            <span class="pulse-text">LIVE</span>
+            <div class="pulse-dot"></div>
+        </div>
+    </div>
+</footer>
 
 <script>
-const translations = {
-    it: {
-        "proj1-short-desc": "Computer palmare hackerabile // Raspberry Pi 3B+ // Tastiera Moddata",
-        "proj1-details-btn": "DETTAGLI [+]",
-        "modal-close-btn": "× CHIUDI_SISTEMA",
-        "proj1-status": "STATO: IN_COSTRUZIONE",
-        "spec-core": "CUORE:",
-        "spec-disp": "DISPLAY:",
-        "spec-kbd": "TASTIERA:",
-        "spec-pwr": "ALIMENTAZIONE:",
-        "spec-enc": "CASE:",
-        "proj1-long-desc": "Un computer portatile modulare che spinge al massimo il concetto di DIY. Il cuore del sistema è un Raspberry Pi 3B+, mentre l'input è affidato a una tastiera Bluetooth smontata e integrata in un telaio stampato in 3D."
+    // DATABASE MULTILINGUA
+const projectData = {
+    p1: { 
+        id: "ID_01", 
+        title: "MESHTASTIC_NODE", 
+        img: "img/meshtastic.jpg", 
+        status: "OPERATIONAL", 
+        category: "COMMS",
+        desc: {
+            en: "Off-grid encrypted messaging system using LoRa technology. Creates a decentralized mesh network for GPS and text data without internet or cellular coverage.",
+            it: "Sistema di messaggistica criptata off-grid basato su tecnologia LoRa. Crea una rete mesh decentralizzata per dati GPS e testo senza copertura internet o cellulare.",
+            es: "Sistema de mensajería cifrada fuera de la red mediante tecnología LoRa. Crea una red mesh descentralizada para datos GPS y texto sin cobertura de internet o móvil."
+        },
+        specs: "CHIP: ESP32 // RADIO: LoRa 868MHz // PROTOCOL: MESHTASTIC"
     },
-    en: {
-        "proj1-short-desc": "Hackable handheld computer // Raspberry Pi 3B+ // Modded Keyboard",
-        "proj1-details-btn": "CLICK_FOR_SPECS [+]",
-        "modal-close-btn": "× CLOSE_SYSTEM",
-        "proj1-status": "STATUS: UNDER_CONSTRUCTION",
-        "spec-core": "CORE:",
-        "spec-disp": "DISPLAY:",
-        "spec-kbd": "KEYBOARD:",
-        "spec-pwr": "POWER:",
-        "spec-enc": "ENCLOSURE:",
-        "proj1-long-desc": "A modular handheld computer pushing the DIY concept to the limit. The core is a Raspberry Pi 3B+, with input handled by a disassembled Bluetooth keyboard integrated into a 3D printed frame."
+    p2: { 
+        id: "ID_02", 
+        title: "PWNAGOTCHI_V2", 
+        img: "img/pwnagotchi.jpg", 
+        status: "ACTIVE", 
+        category: "AI_CYBER",
+        desc: {
+            en: "AI-driven WiFi auditing tool based on reinforcement learning. Captures WPA handshakes while adapting to the radio environment to maximize efficiency.",
+            it: "Strumento di auditing WiFi basato su intelligenza artificiale e apprendimento per rinforzo. Cattura handshake WPA adattandosi all'ambiente radio circostante.",
+            es: "Herramienta de auditoría WiFi basada en IA y aprendizaje por refuerzo. Captura handshakes WPA adaptándose al entorno de radio para maximizar la eficiencia."
+        },
+        specs: "CORE: RPi ZERO 2W // DISP: E-INK 2.13 // OS: CUSTOM_LINUX"
     },
-    es: {
-        "proj1-short-desc": "Ordenador de mano hackeable // Raspberry Pi 3B+ // Teclado modificado",
-        "proj1-details-btn": "DETALLES [+]",
-        "modal-close-btn": "× CERRAR_SISTEMA",
-        "proj1-status": "ESTADO: EN_CONSTRUCCIÓN",
-        "spec-core": "NÚCLEO:",
-        "spec-disp": "PANTALLA:",
-        "spec-kbd": "TECLADO:",
-        "spec-pwr": "ALIMENTACIÓN:",
-        "spec-enc": "CARCASA:",
-        "proj1-long-desc": "Un ordenador portátil modular que lleva el concepto DIY al límite. El corazón del sistema es una Raspberry Pi 3B+, mientras que la entrada corre a cargo de un teclado Bluetooth desmontado e integrado en un chasis impreso en 3D."
+    p3: { 
+        id: "ID_03", 
+        title: "ESP32_MARAUDER", 
+        img: "img/marauder.jpg", 
+        status: "TESTING", 
+        category: "PENTEST",
+        desc: {
+            en: "Comprehensive suite for WiFi and Bluetooth analysis. Capable of wardriving, BLE sniffing, and detecting credit card skimmers via radio signals.",
+            it: "Suite completa per l'analisi di reti WiFi e Bluetooth. Supporta wardriving, sniffing BLE e rilevamento di skimmer di carte di credito tramite segnali radio.",
+            es: "Suite completa para el análisis de WiFi y Bluetooth. Capaz de realizar wardriving, sniffing BLE y detección de skimmers de tarjetas de crédito."
+        },
+        specs: "MCU: ESP32-S3 // FEATURES: WIFI+BLE // STORAGE: SD_CARD"
+    },
+    p4: { 
+        id: "ID_04", 
+        title: "PICO_RUBBER_DUCKY", 
+        img: "img/pico_ducky.jpg", 
+        status: "STABLE", 
+        category: "HID_ATTACK",
+        desc: {
+            en: "Low-cost keystroke injection tool. Recognized as a HID keyboard, it executes pre-programmed payloads at lightning speed for rapid system auditing.",
+            it: "Strumento di keystroke injection a basso costo. Riconosciuto come tastiera HID, esegue payload pre-programmati a velocità estrema per auditing rapidi.",
+            es: "Herramienta de inyección de pulsaciones de bajo coste. Reconocido como teclado HID, ejecuta payloads programados a velocidad extrema para auditoría."
+        },
+        specs: "CHIP: RP2040 // LANG: CIRCUIT_PYTHON // INTERFACE: USB-C"
+    },
+    p5: { 
+        id: "ID_05", 
+        title: "SUB-GHZ_ANALYZER", 
+        img: "img/sub_ghz.jpg", 
+        status: "COMPLETED", 
+        category: "RF_HACKING",
+        desc: {
+            en: "DIY radio frequency analyzer for signals below 1GHz. Capable of receiving and analyzing signals from gate remotes, sensors, and weather stations.",
+            it: "Analizzatore di radiofrequenze DIY per segnali sotto 1GHz. Riceve e analizza segnali di cancelli automatici, sensori e stazioni meteo.",
+            es: "Analizador de radiofrecuencias DIY para señales por debajo de 1GHz. Recibe y analiza señales de mandos de garaje, sensores y estaciones meteorológicas."
+        },
+        specs: "CHIP: CC1101 // MCU: ESP32 // RANGE: 300MHz-928MHz"
     }
 };
 
-function setLanguage(lang) {
-    const data = translations[lang];
-    for (let id in data) {
-        const element = document.getElementById(id);
-        if (element) {
-            // Se è il tasto chiudi, usiamo innerHTML per mantenere la '×'
-            if (id === 'modal-close-btn') element.innerHTML = data[id];
-            else element.innerText = data[id];
+    // LOGICA TRADUZIONE E STATO
+    let currentLang = 'en';
+    let activeProjectId = null;
+
+    function changeLang(lang) {
+        currentLang = lang;
+        
+        // Aggiorna UI Bottoni
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById(`btn-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        // Se la modale è aperta, aggiorna la descrizione al volo
+        if (activeProjectId && projectData[activeProjectId]) {
+            typeWriter(projectData[activeProjectId].desc[currentLang], 'modalDesc');
         }
     }
-    
-    // Aggiorna stile bottoni
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    const activeBtn = document.getElementById(`btn-${lang}`);
-    if (activeBtn) activeBtn.classList.add('active');
 
-    localStorage.setItem('projectLang', lang);
-}
+    // RADAR LOGIC
+    let currentAngle = 0;
+    const sweepSpeed = 0.8; 
 
-window.onload = () => {
-    const savedLang = localStorage.getItem('projectLang') || 'en';
-    setLanguage(savedLang);
-};
+    function updateRadar() {
+        const sweep = document.querySelector('.radar-sweep');
+        const nodes = document.querySelectorAll('.radar-node');
+        
+        if(!sweep) return;
+
+        currentAngle = (currentAngle + sweepSpeed) % 360;
+        sweep.style.transform = `translate(-50%, -50%) rotate(${currentAngle}deg)`;
+
+        nodes.forEach(node => {
+            const nodeAngle = parseFloat(node.style.getPropertyValue('--angle').replace('deg', ''));
+            let diff = (currentAngle - nodeAngle + 360) % 360;
+            
+            if (diff < 15) {
+                node.classList.add('active');
+            } else {
+                node.classList.remove('active');
+            }
+        });
+
+        requestAnimationFrame(updateRadar);
+    }
+
+    // TYPEWRITER EFFECT
+    function typeWriter(text, elementId) {
+        let i = 0;
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        element.textContent = ""; 
+        if (element.typeTimeout) clearTimeout(element.typeTimeout);
+
+        function type() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                element.typeTimeout = setTimeout(type, 15);
+            }
+        }
+        type();
+    }
+
+    // GESTIONE EVENTI
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('modalOverlay');
+        const closeBtn = document.getElementById('closeModal');
+
+        document.querySelectorAll('.node-clickable').forEach(btn => {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                const projectId = btn.getAttribute('href').replace('#', '');
+                const data = projectData[projectId];
+
+                if(data) {
+                    activeProjectId = projectId; // Salva ID per il cambio lingua
+                    
+                    document.getElementById('modalId').innerText = data.id;
+                    document.getElementById('modalTitle').innerText = data.title;
+                    document.getElementById('modalStatus').innerText = data.status;
+                    document.getElementById('modalCategory').innerText = data.category;
+                    document.getElementById('modalSpecs').innerText = `SPECS // ${data.specs}`;
+                    
+                    const imgEl = document.getElementById('modalImage');
+                    imgEl.src = data.img;
+                    imgEl.onerror = () => { imgEl.src = 'img/placeholder.jpg'; };
+
+                    modal.style.display = 'flex';
+                    // Avvia typewriter con la lingua corrente
+                    typeWriter(data.desc[currentLang], 'modalDesc');
+                }
+            };
+        });
+
+        if(closeBtn) closeBtn.onclick = () => {
+            modal.style.display = 'none';
+            activeProjectId = null;
+        };
+        
+        window.onclick = (e) => { 
+            if (e.target == modal) {
+                modal.style.display = 'none';
+                activeProjectId = null;
+            }
+        }
+
+        updateRadar();
+    });
 </script>
+
 
 </body>
 </html>
