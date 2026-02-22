@@ -3,13 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="./favicon.png?v=5.0">
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M5Z9HP7J');</script>
-<!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intel Reports | Antonio Ruocco Archive</title>
     <link rel="stylesheet" href="reports.css">
@@ -61,10 +54,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
             <div class="intel-filters">
-                <button class="filter-btn active" data-key="filter_all">ALL_THREATS</button>
-                <button class="filter-btn" data-key="filter_apt">APT_GROUPS</button>
-                <button class="filter-btn" data-key="filter_vuln">VULNERABILITIES</button>
-            </div>
+    <button class="filter-btn active" data-key="filter_all">ALL_THREATS</button>
+    <button class="filter-btn" data-key="filter_apt">APT_GROUPS</button>
+    <button class="filter-btn" data-key="filter_vuln">VULNERABILITIES</button>
+    
+    <button class="cve-db-btn" id="open-cve-db">
+        <i class="fas fa-database"></i> CVE_MASTER_INDEX
+    </button>
+</div>
 
             <div class="reports-grid">
                 <article class="intel-card" data-category="apt_groups" id="case-1">
@@ -162,6 +159,150 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
                     </div>
                 </article>
+
+                <article class="intel-card" data-category="apt_groups" id="case-7">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #SW-20</span>
+            <span class="threat-level critical">CRITICAL</span>
+        </div>
+        <h3 data-key="case7_title">SOLARWINDS SUNBURST</h3>
+        <p class="summary" data-key="case7_summary">Deep dive into the supply chain compromise of the Orion platform by APT29.</p>
+        <div class="redacted-preview">
+            Entry: <span class="blur">Malicious DLL</span>. Scope: <span class="blur">US Gov Agencies</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="vulnerabilities" id="case-8">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #LOG4-21</span>
+            <span class="threat-level critical">CRITICAL</span>
+        </div>
+        <h3 data-key="case8_title">LOG4SHELL (CVE-2021-44228)</h3>
+        <p class="summary" data-key="case8_summary">Analysis of the Java logging library vulnerability that set the internet on fire.</p>
+        <div class="redacted-preview">
+            Vector: <span class="blur">JNDI Lookup</span>. Impact: <span class="blur">RCE (Remote Code Execution)</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="apt_groups" id="case-9">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #PGS-21</span>
+            <span class="threat-level high">HIGH_THREAT</span>
+        </div>
+        <h3 data-key="case9_title">NSO PEGASUS SPYWARE</h3>
+        <p class="summary" data-key="case9_summary">Investigation into the zero-click mobile surveillance tool used against high-value targets.</p>
+        <div class="redacted-preview">
+            Vector: <span class="blur">iMessage Zero-Click</span>. Access: <span class="blur">Total Device Control</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="vulnerabilities" id="case-10">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #CP-21</span>
+            <span class="threat-level high">HIGH_THREAT</span>
+        </div>
+        <h3 data-key="case10_title">COLONIAL PIPELINE</h3>
+        <p class="summary" data-key="case10_summary">Ransomware attack by DarkSide that paralyzed the US East Coast fuel supply.</p>
+        <div class="redacted-preview">
+            Entry: <span class="blur">Compromised VPN</span>. Result: <span class="blur">Physical Infrastructure Halt</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="apt_groups" id="case-11">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #LAPS-22</span>
+            <span class="threat-level high">HIGH_THREAT</span>
+        </div>
+        <h3 data-key="case11_title">LAPSUS$ OPERATIONS</h3>
+        <p class="summary" data-key="case11_summary">Teenage hacking group that breached NVIDIA, Microsoft, and Uber using social engineering.</p>
+        <div class="redacted-preview">
+            Method: <span class="blur">MFA Fatigue</span>. Target: <span class="blur">Source Code Repos</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="vulnerabilities" id="case-12">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #WEB3-24</span>
+            <span class="threat-level high">HIGH_THREAT</span>
+        </div>
+        <h3 data-key="case12_title">SMART CONTRACT EXPLOIT</h3>
+        <p class="summary" data-key="case12_summary">Technical analysis of bridge vulnerabilities in decentralized finance (DeFi) networks.</p>
+        <div class="redacted-preview">
+            Vulnerability: <span class="blur">Logic Error in Bridge</span>. Loss: <span class="blur">$200M+ Crypto</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="apt_groups" id="case-13">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #LB-24</span>
+            <span class="threat-level critical">CRITICAL</span>
+        </div>
+        <h3 data-key="case13_title">LOCKBIT 3.0 (CRONOS)</h3>
+        <p class="summary" data-key="case13_summary">Deconstruction of the most prolific RaaS and the Operation Cronos takedown.</p>
+        <div class="redacted-preview">
+            Payload: <span class="blur">LockBit Black</span>. Takedown: <span class="blur">International LEA</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="vulnerabilities" id="case-14">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #XZ-24</span>
+            <span class="threat-level critical">CRITICAL</span>
+        </div>
+        <h3 data-key="case14_title">XZ UTILS BACKDOOR</h3>
+        <p class="summary" data-key="case14_summary">The sophisticated multi-year social engineering attack to backdoor the Linux SSH.</p>
+        <div class="redacted-preview">
+            Actor: <span class="blur">Jia Tan</span>. Vector: <span class="blur">Upstream Library Supply Chain</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
+
+<article class="intel-card" data-category="vulnerabilities" id="case-15">
+    <div class="card-edge"></div>
+    <div class="card-content">
+        <div class="card-meta">
+            <span class="case-id">CASE: #Q-DAY</span>
+            <span class="threat-level high">HIGH_THREAT</span>
+        </div>
+        <h3 data-key="case15_title">POST-QUANTUM TRANSITION</h3>
+        <p class="summary" data-key="case15_summary">Technical report on Harvest Now, Decrypt Later (HNDL) strategy and PQC migration.</p>
+        <div class="redacted-preview">
+            Threat: <span class="blur">Shor's Algorithm</span>. Status: <span class="blur">PQC Implementation</span>.
+        </div>
+        <button class="view-report-btn" data-key="read_more">READ_FULL_ANALYSIS</button>
+    </div>
+</article>
             </div>
         </div>
     </main>
@@ -185,7 +326,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </footer>
 
-
 <div id="report-modal" class="modal">
     <div class="modal-overlay"></div>
     <div class="modal-container">
@@ -208,7 +348,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </div>
 
+<div id="cve-modal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container" style="border-color: #ff00ff; box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);">
+        <div class="modal-header" style="border-bottom-color: #ff00ff;">
+            <div class="modal-case-info">
+                <span class="modal-label">DATABASE_LINK:</span>
+                <span class="modal-value" style="color: #ff00ff;">GLOBAL_CVE_RECORDS</span>
+            </div>
+            <button class="modal-close cve-close" style="color: #ff00ff; border-color: #ff00ff;">&times; CLOSE_DB</button>
+        </div>
+        <div class="modal-body">
+            <h2 style="color: #ff00ff;">CRITICAL_VULNERABILITY_INDEX</h2>
+            <p class="modal-text">Top critical CVEs affecting global infrastructure. For the complete live list of all 200,000+ known vulnerabilities, access the external NIST framework.</p>
+            <div class="modal-divider" style="background: rgba(255, 0, 255, 0.2);"></div>
+            
+            <ul class="cve-list">
+                <li><span class="cve-tag">CVE-2021-44228</span> <strong>Log4Shell:</strong> Critical RCE in Apache Log4j (CVSS: 10.0)</li>
+                <li><span class="cve-tag">CVE-2017-0144</span> <strong>EternalBlue:</strong> SMBv1 exploit used by WannaCry/NotPetya (CVSS: 8.5)</li>
+                <li><span class="cve-tag">CVE-2014-0160</span> <strong>Heartbleed:</strong> OpenSSL memory leak exposing private keys (CVSS: 7.5)</li>
+                <li><span class="cve-tag">CVE-2024-3094</span> <strong>XZ Utils:</strong> Malicious backdoor in Linux SSH compression library (CVSS: 10.0)</li>
+                <li><span class="cve-tag">CVE-2019-0708</span> <strong>BlueKeep:</strong> RCE in Microsoft Remote Desktop Services (CVSS: 9.8)</li>
+                <li><span class="cve-tag">CVE-2023-34362</span> <strong>MOVEit MFT:</strong> SQL Injection leading to mass data exfiltration (CVSS: 9.8)</li>
+                <li><span class="cve-tag">CVE-2017-5638</span> <strong>Apache Struts:</strong> OGNL injection utilized in the Equifax breach (CVSS: 10.0)</li>
+                <li><span class="cve-tag">CVE-2021-30860</span> <strong>FORCEDENTRY:</strong> Zero-click iMessage exploit used by Pegasus (CVSS: 8.8)</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://nvd.nist.gov/vuln/search" target="_blank" class="external-db-btn">
+                    <i class="fas fa-external-link-alt"></i> ACCESS_NIST_NATIONAL_VULNERABILITY_DATABASE
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="reports.js"></script>
 </body>
-
 </html>

