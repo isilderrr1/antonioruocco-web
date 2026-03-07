@@ -87,55 +87,82 @@
         </div>
     </footer>
 
-    <script>
-       // --- 1. CONFIGURAZIONE NEWS (VERSIONE RECOVERY) ---
+<script>
+// --- 1. CONFIGURAZIONE NEWS (SISTEMA ANTI-429: DOPPIO PROXY + CACHE) ---
+
+async function fetchXmlDaProxy(targetUrl) {
+    const proxies = [
+        { url: 'https://api.allorigins.win/get?url=', type: 'json' }, 
+        { url: 'https://api.codetabs.com/v1/proxy?quest=', type: 'text' } 
+    ];
+
+    for (let p of proxies) {
+        try {
+            const response = await fetch(`${p.url}${encodeURIComponent(targetUrl)}`);
+            if (!response.ok) continue; 
+
+            if (p.type === 'json') {
+                const data = await response.json();
+                if (data.contents) return data.contents; 
+            } else {
+                return await response.text(); 
+            }
+        } catch (e) {
+            console.warn("Rilevato blocco proxy per le news, passaggio alla rete di riserva...");
+        }
+    }
+    throw new Error("Tutti i proxy delle news sono in rate-limit.");
+}
+
 async function fetchMultiNews() {
+    const container = document.getElementById('news-feed');
+    if (!container) return;
+
+    const cacheKey = "cyber_news_cache";
+    const cacheTimeKey = "cyber_news_time";
+    const cachedNews = sessionStorage.getItem(cacheKey);
+    const cacheTime = sessionStorage.getItem(cacheTimeKey);
+
+    if (cachedNews && cacheTime && (Date.now() - parseInt(cacheTime) < 300000)) {
+        disegnaCardNews(JSON.parse(cachedNews), container);
+        return;
+    }
+
     const sources = [
         { name: 'CS360', url: 'https://www.cybersecurity360.it/feed/' },
         { name: 'THN_GLOBAL', url: 'https://feeds.feedburner.com/TheHackersNews' }
     ];
-    
-    const container = document.getElementById('news-feed');
-    if (!container) return;
-
-    // Usiamo un proxy diverso e più permissivo
-    const proxy = "https://corsproxy.io/?";
 
     try {
         const requests = sources.map(async (source) => {
             try {
-                const response = await fetch(`${proxy}${encodeURIComponent(source.url)}`);
-                if (!response.ok) throw new Error("Fetch failed");
-                const xmlText = await response.text();
+                const xmlText = await fetchXmlDaProxy(source.url);
                 
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(xmlText, "text/xml");
                 const items = xmlDoc.querySelectorAll("item");
 
                 let results = [];
-                items.forEach((item, index) => {
-                    if (index < 10) { // Limite per sorgente
-                        const title = item.querySelector("title")?.textContent || "";
-                        const link = item.querySelector("link")?.textContent || "#";
-                        const pubDate = item.querySelector("pubDate")?.textContent || "";
-                        const description = item.querySelector("description")?.textContent || "";
-                        
-                        // Pulizia rapida tag HTML
-                        const cleanDesc = description.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 120);
+                Array.from(items).slice(0, 10).forEach(item => {
+                    const title = item.querySelector("title")?.textContent || "Senza Titolo";
+                    const link = item.querySelector("link")?.textContent || "#";
+                    const pubDate = item.querySelector("pubDate")?.textContent || new Date().toISOString();
+                    const description = item.querySelector("description")?.textContent || "";
+                    
+                    const cleanDesc = description.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 120);
 
-                        results.push({
-                            title,
-                            link,
-                            description: cleanDesc,
-                            pubDate: new Date(pubDate),
-                            sourceName: source.name
-                        });
-                    }
+                    results.push({
+                        title,
+                        link,
+                        description: cleanDesc,
+                        pubDate: new Date(pubDate).getTime(),
+                        sourceName: source.name
+                    });
                 });
                 return results;
             } catch (err) {
-                console.warn(`Errore caricamento ${source.name}:`, err);
-                return [];
+                console.warn(`Errore sorgente ${source.name}:`, err);
+                return []; 
             }
         });
 
@@ -143,52 +170,91 @@ async function fetchMultiNews() {
         const articles = allResults.flat().sort((a, b) => b.pubDate - a.pubDate);
 
         if (articles.length > 0) {
-            container.innerHTML = ''; 
-            articles.forEach(item => { 
-                const article = document.createElement('article');
-                article.className = 'intel-card';
-                const categoryClass = item.sourceName === 'THN_GLOBAL' ? 'gold' : 'red';
-                
-                article.innerHTML = `
-                    <div class="card-edge"></div>
-                    <div class="intel-content">
-                        <span class="category ${categoryClass}">${item.sourceName}</span>
-                        <h3>${item.title}</h3>
-                        <p>${item.description}...</p>
-                        <a href="${item.link}" target="_blank" class="read-link">DECRYPT_REPORT ></a>
-                    </div>
-                `;
-                container.appendChild(article);
-            });
+            sessionStorage.setItem(cacheKey, JSON.stringify(articles));
+            sessionStorage.setItem(cacheTimeKey, Date.now().toString());
+            disegnaCardNews(articles, container);
         } else {
             container.innerHTML = '<div class="error-text">NO_INTEL_RECORDS_FOUND</div>';
         }
     } catch (error) {
-        console.error("Global News Error:", error);
-        container.innerHTML = '<div class="error-text">CONNECTION_FAILED: CHECK_CONSOLE</div>';
+        console.error("Errore critico modulo News:", error);
+        container.innerHTML = '<div class="error-text">CONNECTION_FAILED: SYSTEM_OFFLINE</div>';
     }
 }
 
-// --- 2. CONFIGURAZIONE MERCATI (CRYPTO & COMMODITIES) ---
+function disegnaCardNews(articles, container) {
+    container.innerHTML = ''; 
+    articles.forEach(item => { 
+        const article = document.createElement('article');
+        article.className = 'intel-card';
+        const categoryClass = item.sourceName === 'THN_GLOBAL' ? 'gold' : 'red';
+        
+        article.innerHTML = `
+            <div class="card-edge"></div>
+            <div class="intel-content">
+                <span class="category ${categoryClass}">${item.sourceName}</span>
+                <h3>${item.title}</h3>
+                <p>${item.description}...</p>
+                <a href="${item.link}" target="_blank" class="read-link">DECRYPT_REPORT ></a>
+            </div>
+        `;
+        container.appendChild(article);
+    });
+}
+
+// --- 2. CONFIGURAZIONE MERCATI (SISTEMA ANTI-BLOCCO: COINCAP -> FALLBACK COINGECKO) ---
 async function fetchMarketData() {
     try {
-        // Recupero Crypto
-        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,polkadot,chainlink&vs_currencies=usd');
-        const d = await response.json();
+        let cryptoData = null;
+        let isCoinCap = true;
+
+        // TENTATIVO 1: Connessione diretta a CoinCap
+        try {
+            const response = await fetch('https://api.coincap.io/v2/assets?ids=bitcoin,ethereum,solana,xrp,cardano,polkadot,chainlink');
+            if (!response.ok) throw new Error("CoinCap HTTP Error");
+            const json = await response.json();
+            cryptoData = json.data;
+        } catch (primaryError) {
+            console.warn("Connessione diretta a CoinCap bloccata, avvio protocollo di emergenza (CoinGecko via Proxy)...");
+            isCoinCap = false;
+            
+            // TENTATIVO 2: Se fallisce, usiamo CoinGecko passando dal proxy AllOrigins
+            const coingeckoUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,polkadot,chainlink&vs_currencies=usd';
+            const proxy = "https://api.allorigins.win/get?url=";
+            const backupResponse = await fetch(`${proxy}${encodeURIComponent(coingeckoUrl)}`);
+            if (!backupResponse.ok) throw new Error("Anche CoinGecko offline");
+            const wrapper = await backupResponse.json();
+            cryptoData = JSON.parse(wrapper.contents);
+        }
         
-        // Helper per aggiornare i valori crypto se esistono gli ID
-        const updateCrypto = (id, val) => {
+        // Helper per aggiornare l'HTML a prescindere da quale API abbia risposto
+        const updateCrypto = (id, coincapSymbol, coingeckoId) => {
             const el = document.getElementById(id);
-            if(el && val) el.querySelector('span').innerText = `$${val.toLocaleString()}`;
+            if(!el) return;
+
+            let price = 0;
+            if (isCoinCap && cryptoData) {
+                // Lettura stile CoinCap
+                const coin = cryptoData.find(c => c.symbol === coincapSymbol);
+                if (coin) price = parseFloat(coin.priceUsd);
+            } else if (!isCoinCap && cryptoData) {
+                // Lettura stile CoinGecko
+                if (cryptoData[coingeckoId]) price = parseFloat(cryptoData[coingeckoId].usd);
+            }
+
+            if (price > 0) {
+                const formatted = price < 1 ? price.toFixed(4) : price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                el.querySelector('span').innerText = `$${formatted}`;
+            }
         };
 
-        updateCrypto('btc-val', d.bitcoin?.usd);
-        updateCrypto('eth-val', d.ethereum?.usd);
-        updateCrypto('sol-val', d.solana?.usd);
-        updateCrypto('xrp-val', d.ripple?.usd);
-        updateCrypto('ada-val', d.cardano?.usd);
-        updateCrypto('dot-val', d.polkadot?.usd);
-        updateCrypto('link-val', d.chainlink?.usd);
+        updateCrypto('btc-val', 'BTC', 'bitcoin');
+        updateCrypto('eth-val', 'ETH', 'ethereum');
+        updateCrypto('sol-val', 'SOL', 'solana');
+        updateCrypto('xrp-val', 'XRP', 'ripple');
+        updateCrypto('ada-val', 'ADA', 'cardano');
+        updateCrypto('dot-val', 'DOT', 'polkadot');
+        updateCrypto('link-val', 'LINK', 'chainlink');
 
         // Aggiornamento Materie Prime (Valori simulati aggiornati)
         const updateComm = (id, val) => {
@@ -205,7 +271,7 @@ async function fetchMarketData() {
         updateComm('palla-val', '$1,120.50');
 
     } catch (error) {
-        console.error("Market Feed Error:", error);
+        console.error("Market Feed Error Totale:", error);
     }
 }
 
@@ -243,13 +309,12 @@ function updateThreatFeed() {
 
 // --- 4. AVVIO SISTEMA ---
 window.addEventListener('load', () => {
-    fetchMultiNews();    // Carica News
-    fetchMarketData();   // Carica Crypto e Commodities
+    fetchMultiNews();    
+    fetchMarketData();   
     
-    // Timer
-    setInterval(fetchMarketData, 60000); // Aggiorna mercati ogni minuto
-    setInterval(updateThreatFeed, 3000); // Aggiorna minacce ogni 3 sec
+    setInterval(fetchMarketData, 60000); 
+    setInterval(updateThreatFeed, 3000); 
 });
-    </script>
+</script>
 </body>
 </html>
