@@ -88,7 +88,7 @@
     </footer>
 
     <script>
-       // --- 1. CONFIGURAZIONE NEWS ---
+       // --- 1. CONFIGURAZIONE NEWS (VERSIONE RECOVERY) ---
 async function fetchMultiNews() {
     const sources = [
         { name: 'CS360', url: 'https://www.cybersecurity360.it/feed/' },
@@ -96,46 +96,76 @@ async function fetchMultiNews() {
     ];
     
     const container = document.getElementById('news-feed');
-    let allArticles = [];
+    if (!container) return;
+
+    // Usiamo un proxy diverso e più permissivo
+    const proxy = "https://corsproxy.io/?";
 
     try {
-        const requests = sources.map(source => 
-            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`)
-            .then(res => res.json())
-            .then(data => {
-                if(data.status === 'ok') {
-                    return data.items.map(item => ({ ...item, sourceName: source.name }));
-                }
+        const requests = sources.map(async (source) => {
+            try {
+                const response = await fetch(`${proxy}${encodeURIComponent(source.url)}`);
+                if (!response.ok) throw new Error("Fetch failed");
+                const xmlText = await response.text();
+                
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+                const items = xmlDoc.querySelectorAll("item");
+
+                let results = [];
+                items.forEach((item, index) => {
+                    if (index < 10) { // Limite per sorgente
+                        const title = item.querySelector("title")?.textContent || "";
+                        const link = item.querySelector("link")?.textContent || "#";
+                        const pubDate = item.querySelector("pubDate")?.textContent || "";
+                        const description = item.querySelector("description")?.textContent || "";
+                        
+                        // Pulizia rapida tag HTML
+                        const cleanDesc = description.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 120);
+
+                        results.push({
+                            title,
+                            link,
+                            description: cleanDesc,
+                            pubDate: new Date(pubDate),
+                            sourceName: source.name
+                        });
+                    }
+                });
+                return results;
+            } catch (err) {
+                console.warn(`Errore caricamento ${source.name}:`, err);
                 return [];
-            })
-        );
+            }
+        });
 
-        const results = await Promise.all(requests);
-        allArticles = results.flat();
-        allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        const allResults = await Promise.all(requests);
+        const articles = allResults.flat().sort((a, b) => b.pubDate - a.pubDate);
 
-        if (allArticles.length > 0) {
+        if (articles.length > 0) {
             container.innerHTML = ''; 
-            allArticles.forEach(item => { 
+            articles.forEach(item => { 
                 const article = document.createElement('article');
                 article.className = 'intel-card';
-                const category = item.sourceName;
-                const cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 140);
+                const categoryClass = item.sourceName === 'THN_GLOBAL' ? 'gold' : 'red';
                 
                 article.innerHTML = `
                     <div class="card-edge"></div>
                     <div class="intel-content">
-                        <span class="category ${category === 'THN_GLOBAL' ? 'gold' : 'red'}">${category}</span>
+                        <span class="category ${categoryClass}">${item.sourceName}</span>
                         <h3>${item.title}</h3>
-                        <p>${cleanDesc}...</p>
+                        <p>${item.description}...</p>
                         <a href="${item.link}" target="_blank" class="read-link">DECRYPT_REPORT ></a>
                     </div>
                 `;
                 container.appendChild(article);
             });
+        } else {
+            container.innerHTML = '<div class="error-text">NO_INTEL_RECORDS_FOUND</div>';
         }
     } catch (error) {
-        container.innerHTML = '<div class="error-text">CONNECTION_ERROR: GLOBAL_LINK_FAILED</div>';
+        console.error("Global News Error:", error);
+        container.innerHTML = '<div class="error-text">CONNECTION_FAILED: CHECK_CONSOLE</div>';
     }
 }
 
