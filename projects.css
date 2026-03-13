@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
 
+/* SBLOCCO SCROLL FORZATO (Override del CSS principale) */
+html, body {
+    overflow-y: auto !important; /* Forza la riattivazione dello scroll verticale */
+    overflow-x: hidden !important; /* Previene sbavature orizzontali */
+    height: auto !important; /* Annulla eventuali height: 100vh fissi ereditati */
+}
+
+/* --- CUSTOM SCROLLBAR HACKER THEME --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #050505; 
+    border-left: 1px solid #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+    background: #00ff41; 
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff; 
+}
+
 /* Tema Retro / Projects Base */
 .retro-theme {
     font-family: 'Fira Code', monospace;
@@ -269,4 +292,5 @@
         text-align: center;
     }
     .stat-item { margin-right: 0; margin-bottom: 5px; display: block; }
+
 }
