@@ -1,19 +1,15 @@
-require('dotenv').config(); // <-- Aggiunto per leggere il file .env
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { GoogleGenerativeAI } = require("@google/generative-ai"); // <-- Aggiunta libreria IA
+const Groq = require('groq-sdk'); // <-- Nuova libreria Groq
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- CONFIGURAZIONE IA (LA MIGLIORE PER RENDER) ---
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-const model = genAI.getGenerativeModel({ 
-    model: "gemini-2.0-flash" 
-});
+// --- CONFIGURAZIONE IA (GROQ / LLaMA 3 70B) ---
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 // --- CONNESSIONE DATABASE ---
 const mongoURI = process.env.MONGO_URI;
@@ -59,9 +55,8 @@ app.post('/api/ai-terminal', async (req, res) => {
             });
         }
 
-        // 2. Definizione del Prompt
-        const prompt = `Sei WINTERMUTE, l'intelligenza artificiale di sistema del portfolio di Antonio Ruocco (Cybersecurity Analyst & Ethical Hacker). 
-        Un utente ospite ha digitato nel terminale questo comando: "${command}". 
+        // 2. Definizione del Prompt di Sistema per Groq
+        const systemPrompt = `Sei WINTERMUTE, l'intelligenza artificiale di sistema del portfolio di Antonio Ruocco (Cybersecurity Analyst & Ethical Hacker). 
         La lingua del sistema dell'utente ospite è: ${userLanguage}. 
         
         REGOLE FONDAMENTALI: 
@@ -73,13 +68,21 @@ app.post('/api/ai-terminal', async (req, res) => {
         DATABASE ANTONIO RUOCCO:
         - COMPETENZE: Linux, Bash, Python, Node.js, Network Security, SIEM (Wazuh), IDS (Argus), Cloud Security.
         - BACKGROUND: Ex Croupier professionista (Risk Management & Fraud Detection).
-        - INTERESSI: Hardware hacking, Maker, Reverse Engineering, SOC Lab fisici.
-        
-        Esegui l'output.`;
+        - INTERESSI: Hardware hacking, Maker, Reverse Engineering, SOC Lab fisici.`;
 
-        // 3. Chiamata all'IA (Usiamo l'oggetto 'model' definito fuori)
-        const result = await model.generateContent(prompt);
-        const responseText = result.response.text();
+        // 3. Chiamata all'API di Groq (LLaMA 3 70B)
+        const chatCompletion = await groq.chat.completions.create({
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: command }
+            ],
+            model: "llama3-70b-8192", // Modello LLaMA 3 70B ad altissime prestazioni
+            temperature: 0.2, // Tono freddo, analitico e zero allucinazioni
+            max_tokens: 500,
+        });
+
+        // 4. Estrazione risposta
+        const responseText = chatCompletion.choices[0]?.message?.content || "";
 
         // Pulizia simboli markdown residui
         const cleanResponse = responseText.replace(/[*#_]/g, '');
@@ -87,7 +90,7 @@ app.post('/api/ai-terminal', async (req, res) => {
         res.json({ response: cleanResponse });
 
     } catch (error) {
-        console.error("Errore WINTERMUTE:", error);
+        console.error("Errore WINTERMUTE (Groq):", error);
         res.status(500).json({ 
             response: "[ ERROR_CRITICAL ] COLLEGAMENTO CON WINTERMUTE INTERROTTO. MAINFRAME OFFLINE." 
         });
@@ -97,7 +100,6 @@ app.post('/api/ai-terminal', async (req, res) => {
 // ==========================================
 // 🛡️ ROTTA 2: CYBER RANGE (Terminale Laboratorio)
 // ==========================================
-// Questa è la tua rotta originale, intatta!
 app.post('/api/terminal', async (req, res) => {
     const { command, module } = req.body;
     
@@ -228,18 +230,3 @@ app.post('/api/terminal', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`🚀 BACKEND ONLINE: http://localhost:${PORT}`));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
