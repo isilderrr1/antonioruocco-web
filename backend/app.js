@@ -70,14 +70,14 @@ app.post('/api/ai-terminal', async (req, res) => {
         - BACKGROUND: Ex Croupier professionista (Risk Management & Fraud Detection).
         - INTERESSI: Hardware hacking, Maker, Reverse Engineering, SOC Lab fisici.`;
 
-        // 3. Chiamata all'API di Groq (LLaMA 3 70B)
+        // 3. Chiamata all'API di Groq
         const chatCompletion = await groq.chat.completions.create({
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: command }
             ],
-            model: "llama3-70b-8192", // Modello LLaMA 3 70B ad altissime prestazioni
-            temperature: 0.2, // Tono freddo, analitico e zero allucinazioni
+            model: "llama-3.3-70b-versatile", // <-- IL NOME ESATTO ESTRATTO DALLA TUA API
+            temperature: 0.2, 
             max_tokens: 500,
         });
 
