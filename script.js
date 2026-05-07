@@ -275,7 +275,9 @@ window.contact = function() {
     return "Looking forward to hearing from you!";
 };
 
-// --- ANTI-SCRAPING CONTACT REVEAL ---
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- ANTI-SCRAPING CONTACT REVEAL ---
     const phoneElement = document.getElementById('secure-phone');
     
     if (phoneElement) {
