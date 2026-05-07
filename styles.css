@@ -1119,3 +1119,129 @@ footer p, footer a { font-size: 0.75rem; color: #888; text-decoration: none; }
         width: 45px;
     }
 }
+
+/* ============================================================
+   CYBER RANGE WIDGET (LEFT OF PROFILE)
+   ============================================================ */
+.lab-widget-access {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(5, 5, 5, 0.8);
+    border: 1px solid rgba(0, 136, 255, 0.3);
+    border-left: 3px solid #0088ff; 
+    padding: 25px 20px;
+    gap: 15px;
+    width: 160px;
+    
+    /* ECCO IL TRUCCO PER SPOSTARLO PIÙ A SINISTRA */
+    margin-right: 150px; /* Aggiunge spazio extra tra il widget e la foto */
+    
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 15px rgba(0, 136, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effetto scanline interno al widget */
+.lab-widget-access::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(transparent 50%, rgba(0, 136, 255, 0.05) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+}
+
+.widget-icon i { font-size: 2.5rem; color: rgba(0, 136, 255, 0.7); transition: 0.3s; }
+.widget-text { display: flex; flex-direction: column; gap: 5px; }
+.w-title { color: #0088ff; font-family: 'Courier New', monospace; font-weight: bold; font-size: 0.9rem; letter-spacing: 1px; }
+.w-subtitle { color: #888; font-family: 'Courier New', monospace; font-size: 0.65rem; }
+.w-pentest-badge {
+    display: inline-block;
+    background: rgba(255, 62, 62, 0.1); /* Sfondo rosso leggero */
+    color: #ff3e3e; /* Testo rosso acceso */
+    border: 1px solid rgba(255, 62, 62, 0.6); /* Bordo rosso */
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px rgba(255, 62, 62, 0.3); /* Effetto glow */
+    margin: 2px auto; /* Lo mantiene centrato */
+}
+.widget-status {
+    color: #0088ff;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-top: 1px dashed rgba(0, 136, 255, 0.3);
+    padding-top: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.pulse-dot-cyan {
+    width: 6px; height: 6px; background: #0088ff; border-radius: 50%;
+    box-shadow: 0 0 8px #0088ff; animation: pulse-glow-cyan 1.5s infinite;
+}
+
+@keyframes pulse-glow-cyan {
+    0%, 100% { opacity: 1; box-shadow: 0 0 5px #0088ff; }
+    50% { opacity: 0.3; box-shadow: 0 0 15px #0088ff; }
+}
+
+/* Hover Effects */
+.lab-widget-access:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #00ccff;
+    box-shadow: 0 0 25px rgba(0, 136, 255, 0.2);
+    background: rgba(0, 136, 255, 0.05);
+}
+.lab-widget-access:hover .widget-icon i { color: #00ccff; text-shadow: 0 0 15px #00ccff; }
+
+/* ============================================================
+   RESPONSIVITÀ WIDGET (TABLET E SMARTPHONE)
+   ============================================================ */
+
+/* TABLET (schermi medi) */
+@media (max-width: 900px) {
+    .lab-widget-access {
+        flex-direction: row; /* Da verticale diventa orizzontale */
+        width: 100%;
+        max-width: 400px;
+        margin-right: 0; /* Rimuove lo spazio extra che serviva su desktop */
+        margin-bottom: 20px; /* Crea spazio SOTTO il widget, prima della foto */
+        padding: 15px 20px;
+        border-left: 1px solid rgba(0, 136, 255, 0.3);
+        border-top: 3px solid #0088ff; /* Il bordo colorato passa in alto */
+        justify-content: space-between;
+    }
+    
+    .widget-status {
+        border-top: none;
+        border-left: 1px dashed rgba(0, 136, 255, 0.3);
+        padding-top: 0;
+        padding-left: 15px;
+        width: auto;
+    }
+}
+
+/* CELLULARI (schermi piccoli) */
+@media (max-width: 600px) {
+    .lab-widget-access {
+        max-width: 100%;
+        padding: 12px;
+        gap: 10px;
+    }
+    .widget-icon i { font-size: 1.8rem; }
+    .w-title { font-size: 0.8rem; }
+    .w-subtitle { font-size: 0.6rem; }
+    .widget-status { font-size: 0.6rem; padding-left: 10px; }
+}
