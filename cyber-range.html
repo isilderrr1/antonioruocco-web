@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antonio Ruocco | Cyber Range</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="cyber-range.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="retro-theme cr-body">
+
+    <header class="cr-header">
+        <div class="cr-header-content">
+            <div class="terminal-path">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> <span id="back-btn-text">RETURN_TO_CORE</span></a>
+                <span class="user-host">root@kali</span>:<span class="current-dir">~/cyber-range</span>$ <span class="cursor-blink">_</span>
+            </div>
+            <div class="header-center-title">
+                <h2 id="page-title" class="decrypt-effect" data-value="CYBER_RANGE_TOPOLOGY">CYBER_RANGE_TOPOLOGY</h2>
+            </div>
+            <div class="language-buttons">
+                <button id="lang-en" class="lang-btn">EN</button>
+                <button id="lang-it" class="lang-btn active">IT</button>
+                <button id="lang-es" class="lang-btn">ES</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="cr-layout">
+        
+        <aside class="cr-sidebar">
+            <div class="intel-brief">
+                <h3 id="phil-title"><i class="fas fa-book-reader"></i> ARCHITECTURE_PHILOSOPHY</h3>
+                <p id="phil-desc" class="phil-sub">Simulating the dynamics of a real modern enterprise infrastructure.</p>
+                <ul class="phil-list">
+                    <li id="phil-1"><span class="highlight-blue">Modern Targets:</span> Nessuna macchina obsoleta. I target sono sistemi moderni.</li>
+                    <li id="p-stealth"><span class="highlight-red">Stealth Ops:</span> Uso di Debian custom invece di Kali per evadere le signature.</li>
+                    <li id="p-soc"><span class="highlight-green">Active Defense:</span> Wazuh SIEM integrato con agenti reali sui sistemi.</li>
+                    <li id="p-mal"><span class="highlight-purple">Air-Gapped:</span> Rete detonazione isolata con INetSim.</li>
+                </ul>
+            </div>
+
+            <div class="live-traffic-monitor">
+                <div class="traffic-header"><span>[SYS_NET_MONITOR]</span> <span class="pulse-dot-cyan"></span></div>
+                <div id="traffic-log" class="traffic-log">
+                    <p>> Network sensors initialization...</p>
+                    <p>> Wazuh SIEM Agent: ONLINE.</p>
+                </div>
+            </div>
+        </aside>
+
+        <section class="cr-main-content">
+            
+            <div class="topology-wrapper">
+                
+                <div class="fw-node">
+                    <div class="fw-box" data-node="fw" id="node-fw">
+                        <i class="fas fa-shield-alt"></i> FW-OPNSENSE
+                        <span>VMnet8 / NAT | 10.10.10.1</span>
+                    </div>
+                </div>
+
+                <div class="subnet-grid">
+                    
+                    <div class="subnet-card subnet-attack">
+                        <div class="subnet-header">VMnet2 | ATTACK</div>
+                        <div class="vm-node" data-node="atk1" id="node-atk1">
+                            <span class="vm-name"><i class="fab fa-linux"></i> ATK-DEBIAN</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                    </div>
+
+                    <div class="subnet-card subnet-corp">
+                        <div class="subnet-header">VMnet3 | CORP</div>
+                        <div class="vm-node" data-node="dc" id="node-dc">
+                            <span class="vm-name"><i class="fab fa-windows"></i> DC-ARES01</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                        <div class="vm-node" data-node="winclient" id="node-winclient">
+                            <span class="vm-name"><i class="fab fa-windows"></i> WIN-CLIENT</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                        <div class="vm-node" data-node="linweb" id="node-linweb">
+                            <span class="vm-name"><i class="fab fa-linux"></i> LINUX-WEB</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                    </div>
+
+                    <div class="subnet-card subnet-soc">
+                        <div class="subnet-header">VMnet4 | SOC</div>
+                        <div class="vm-node" data-node="wazuh" id="node-wazuh">
+                            <span class="vm-name"><i class="fas fa-eye"></i> SOC-WAZUH</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                    </div>
+
+                    <div class="subnet-card subnet-dmz">
+                        <div class="subnet-header">VMnet5 | DMZ</div>
+                        <div class="vm-node" data-node="dmzweb" id="node-dmzweb">
+                            <span class="vm-name"><i class="fas fa-globe"></i> DMZ-WEB01</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                    </div>
+
+                    <div class="subnet-card subnet-malware">
+                        <div class="subnet-header">VMnet6 | MALWARE</div>
+                        <div class="vm-node" data-node="malgw" id="node-malgw">
+                            <span class="vm-name"><i class="fas fa-biohazard"></i> MAL-GW01</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                        <div class="vm-node" data-node="flare" id="node-flare">
+                            <span class="vm-name"><i class="fab fa-windows"></i> FLARE-WIN</span>
+                            <span class="vm-status"><div class="dot"></div> <span class="status-txt">ONLINE</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="datacenter-metrics">
+                <div class="metrics-header"><span>[HYPERVISOR_METRICS]</span> <span class="status-txt" style="color:#00ff41;">ONLINE</span></div>
+                <div class="metric-row">
+                    <div class="metric-info"><span>CPU_LOAD (XEON)</span> <span id="cpu-val">24%</span></div>
+                    <div class="metric-bar-bg"><div class="metric-bar-fill cpu-fill"></div></div>
+                </div>
+                <div class="metric-row">
+                    <div class="metric-info"><span>RAM_ALLOC (128GB)</span> <span id="ram-val">68%</span></div>
+                    <div class="metric-bar-bg"><div class="metric-bar-fill ram-fill"></div></div>
+                </div>
+                <div class="metric-row">
+                    <div class="metric-info"><span>NET_THROUGHPUT</span> <span id="net-val">1.2 Gbps</span></div>
+                    <div class="metric-bar-bg"><div class="metric-bar-fill net-fill"></div></div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <div id="node-modal" class="node-modal">
+        <div class="node-modal-content">
+            <div class="modal-header">
+                <span id="modal-hostname">HOSTNAME</span>
+                <button id="close-modal" class="close-sim">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="tech-grid">
+                    <div class="tech-row"><span class="tech-label">IP_ADDRESS</span><span id="modal-ip" class="tech-value"></span></div>
+                    <div class="tech-row"><span class="tech-label">OS_KERNEL</span><span id="modal-os" class="tech-value"></span></div>
+                    <div class="tech-row"><span class="tech-label">ROLE/SVC</span><span id="modal-role" class="tech-value"></span></div>
+                </div>
+                <div class="tech-desc-box">
+                    <span class="tech-label">SYS_NOTES // INTEL_REPORT</span>
+                    <ul id="modal-desc-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="cr-footer">
+        <div class="cr-footer-content">
+            <div class="footer-brand">
+                <h3>Antonio Ruocco</h3>
+                <p>&copy; 2026 | All rights reserved.</p>
+            </div>
+            <div class="footer-social">
+                <div class="social-icons-wrapper">
+                    <a href="https://www.linkedin.com/in/antonio-ruocco-81271aa5" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/isilderrr1" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cyber-range.js"></script>
+</body>
+</html>
