@@ -274,3 +274,30 @@ window.contact = function() {
     console.log("%c[!] Email: antonio.ruocco2k@hotmail.com", "color: #00ff00; font-size: 16px; font-weight: bold;");
     return "Looking forward to hearing from you!";
 };
+
+// --- ANTI-SCRAPING CONTACT REVEAL ---
+    const phoneElement = document.getElementById('secure-phone');
+    
+    if (phoneElement) {
+        phoneElement.addEventListener('click', function() {
+            // 1. Il numero è frammentato per impedire il parsing Regex
+            const country = "+39";
+            const block1 = "334";
+            const block2 = "975";
+            const block3 = "4922";
+            
+            // 2. Ricostruiamo la stringa per l'URI (senza spazi) e per la visualizzazione
+            const rawPhone = `${country}${block1}${block2}${block3}`;
+            const displayPhone = `${country} ${block1} ${block2} ${block3}`;
+            
+            // 3. Iniettiamo l'ancora HTML reale nel DOM solo dopo il click
+            // Sostituisci la vecchia riga "this.innerHTML = ..." con questa:
+
+this.innerHTML = `<i class="fas fa-phone" style="color: #00d4ff;"></i> <a href="tel:${rawPhone}" class="revealed-phone">${displayPhone}</a>`;
+            
+            // Rimuoviamo il cursore a forma di mano dal contenitore visto che ora c'è il link
+            this.style.cursor = "default";
+            
+        }, { once: true }); // Il listener "{ once: true }" fa sì che si attivi una volta sola
+    }
+});
