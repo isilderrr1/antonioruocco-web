@@ -1245,3 +1245,49 @@ footer p, footer a { font-size: 0.75rem; color: #888; text-decoration: none; }
     .w-subtitle { font-size: 0.6rem; }
     .widget-status { font-size: 0.6rem; padding-left: 10px; }
 }
+
+
+/* ============================================================
+   SECURE CONTACT REVEALER (ANTI-SCRAPER)
+   ============================================================ */
+.secure-contact-wrapper {
+    display: block;
+    margin-top: 4px;
+}
+
+/* Stile del pulsante [DECRYPT_PHONE] */
+.decrypt-btn {
+    cursor: pointer;
+    color: #00ff00; /* Verde Terminale */
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    background: rgba(0, 255, 0, 0.05); /* Sfondo leggermente verde */
+    border: 1px solid rgba(0, 255, 0, 0.3); /* Bordo hacker */
+    padding: 2px 6px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.decrypt-btn:hover {
+    background: rgba(0, 255, 0, 0.15);
+    border-color: #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    text-shadow: 0 0 5px #00ff00;
+}
+
+/* Stile per il numero una volta rivelato */
+.revealed-phone {
+    color: #00d4ff; /* Azzurro Cyber per indicare un link sicuro */
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.revealed-phone:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #00d4ff;
+}
